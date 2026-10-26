@@ -35,8 +35,8 @@ data class ExportData(
 data class ExportFile(val fileName: String, val json: String)
 
 object ExportBuilder {
+    // Compact on purpose: the export goes into Claude's context, where indentation is pure overhead.
     private val json = Json {
-        prettyPrint = true
         explicitNulls = false
         encodeDefaults = true
     }
