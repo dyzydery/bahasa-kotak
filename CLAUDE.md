@@ -6,7 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Greenfield. `bahasa-kotak-prompt.md` (Polish) is the original product brief for **Bahasa Kotak**, a sideloaded Android app for learning Indonesian. `docs/SPEC.md` (Polish) records the agreed design decisions on top of it (stack: Kotlin + Compose + Room; Leitner intervals; session planning; import idempotency) and wins where the two differ. Data formats live in `schemas/pack.schema.json` and `schemas/export.schema.json`; keep SPEC, schemas, and code in sync when changing any of them. Remote: `github.com/dyzydery/bahasa-kotak`. Commit and push after each milestone.
 
-No build system, code, or tests exist yet. Once milestone 1 is in place, add the real build, test (including single-test), and install commands here.
+## Commands
+
+Toolchain: JDK 21 (Temurin) at `~/.local/share/jdks/jdk-21`, pinned for Gradle via `org.gradle.java.home` in `gradle.properties`. Fedora 44 only ships JDK 25+, which AGP doesn't support as the Gradle JDK, so don't remove the pin. Android SDK at `~/Android/Sdk` (`local.properties`). There is no system `gradle`; always use `./gradlew`.
+
+```fish
+./gradlew assembleDebug                      # APK → app/build/outputs/apk/debug/app-debug.apk
+./gradlew test                               # JVM unit tests (JUnit 5)
+./gradlew test --tests '*AnswerCheckerTest'  # single test class; append .methodName for one test
+./gradlew installDebug                       # install on the phone over adb (USB)
+~/Android/Sdk/platform-tools/adb devices
+```
+
+Dependency versions live in `gradle/libs.versions.toml`. Bytecode targets Java 17 (`compileOptions` + Kotlin `jvmTarget`); don't add `jvmToolchain(...)`, because no matching JDK is installed and toolchain auto-download is off.
 
 ## Hard constraints from the brief
 

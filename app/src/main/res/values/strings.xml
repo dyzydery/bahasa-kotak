@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Bahasa Kotak</string>
+    <string name="home_greeting">Selamat datang!</string>
+    <string name="home_subtitle">Nauka indonezyjskiego, 5 minut dziennie.</string>
+    <string name="home_start">Zacznij</string>
+</resources>

@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- A box ("kotak") outline with a red/white band (Indonesian flag colours). -->
+    <path
+        android:fillColor="#CE1126"
+        android:pathData="M34,34h40v20h-40z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,54h40v20h-40z" />
+    <path
+        android:strokeColor="#3B2F2F"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:pathData="M34,34h40v40h-40z" />
+</vector>
