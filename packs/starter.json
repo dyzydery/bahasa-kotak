@@ -1,0 +1,2424 @@
+{
+  "schemaVersion": 1,
+  "packId": "starter",
+  "packVersion": 1,
+  "title": "Paczka startowa",
+  "description": "Podstawy pracy z Indonezyjczykami: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
+  "createdAt": "2026-10-26T12:00:00Z",
+  "topics": [
+    {
+      "id": "basics",
+      "title": "Podstawy",
+      "order": 0,
+      "lessons": [
+        {
+          "id": "basics.l1",
+          "title": "Podstawy",
+          "order": 0,
+          "difficulty": 1,
+          "items": [
+            {
+              "id": "basics.selamat-pagi",
+              "kind": "phrase",
+              "id_text": "selamat pagi",
+              "pl_text": "dzień dobry (rano)",
+              "register": "neutral",
+              "acceptedPl": [
+                "dzień dobry"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.selamat-siang",
+              "kind": "phrase",
+              "id_text": "selamat siang",
+              "pl_text": "dzień dobry (w południe)",
+              "register": "neutral",
+              "acceptedPl": [
+                "dzień dobry"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.selamat-sore",
+              "kind": "phrase",
+              "id_text": "selamat sore",
+              "pl_text": "dzień dobry (po południu)",
+              "register": "neutral",
+              "acceptedPl": [
+                "dzień dobry"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.selamat-malam",
+              "kind": "phrase",
+              "id_text": "selamat malam",
+              "pl_text": "dobry wieczór",
+              "register": "neutral",
+              "acceptedPl": [
+                "dobranoc"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.apa-kabar",
+              "kind": "phrase",
+              "id_text": "apa kabar?",
+              "pl_text": "jak się masz?",
+              "register": "neutral",
+              "acceptedPl": [
+                "co słychać",
+                "jak leci"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.baik",
+              "kind": "word",
+              "id_text": "baik",
+              "pl_text": "dobrze",
+              "register": "neutral",
+              "acceptedPl": [
+                "dobry",
+                "w porządku"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.terima-kasih",
+              "kind": "phrase",
+              "id_text": "terima kasih",
+              "pl_text": "dziękuję",
+              "register": "neutral",
+              "acceptedPl": [
+                "dzięki"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.sama-sama",
+              "kind": "phrase",
+              "id_text": "sama-sama",
+              "pl_text": "proszę bardzo (w odpowiedzi na dziękuję)",
+              "register": "neutral",
+              "acceptedPl": [
+                "proszę bardzo",
+                "nie ma za co",
+                "proszę"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.maaf",
+              "kind": "word",
+              "id_text": "maaf",
+              "pl_text": "przepraszam",
+              "register": "neutral",
+              "acceptedPl": [
+                "przepraszam bardzo",
+                "wybacz"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.permisi",
+              "kind": "word",
+              "id_text": "permisi",
+              "pl_text": "przepraszam (żeby przejść lub zagadnąć)",
+              "register": "neutral",
+              "acceptedPl": [
+                "przepraszam"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.ya",
+              "kind": "word",
+              "id_text": "ya",
+              "pl_text": "tak",
+              "register": "neutral",
+              "placementOnly": true
+            },
+            {
+              "id": "basics.tidak",
+              "kind": "word",
+              "id_text": "tidak",
+              "pl_text": "nie",
+              "register": "formal",
+              "placementOnly": true
+            },
+            {
+              "id": "basics.saya",
+              "kind": "word",
+              "id_text": "saya",
+              "pl_text": "ja",
+              "register": "formal",
+              "placementOnly": true
+            },
+            {
+              "id": "basics.aku",
+              "kind": "word",
+              "id_text": "aku",
+              "pl_text": "ja (potocznie)",
+              "register": "colloquial",
+              "acceptedPl": [
+                "ja"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.anda",
+              "kind": "word",
+              "id_text": "Anda",
+              "pl_text": "Pan / Pani",
+              "register": "formal",
+              "acceptedPl": [
+                "pan",
+                "pani",
+                "ty"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.kamu",
+              "kind": "word",
+              "id_text": "kamu",
+              "pl_text": "ty",
+              "register": "colloquial",
+              "notes": "Nieformalne, ale nie slangowe. Do przełożonych i klientów używaj Bapak/Ibu/Anda.",
+              "placementOnly": true
+            },
+            {
+              "id": "basics.satu",
+              "kind": "word",
+              "id_text": "satu",
+              "pl_text": "jeden",
+              "register": "neutral",
+              "acceptedPl": [
+                "1"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.dua",
+              "kind": "word",
+              "id_text": "dua",
+              "pl_text": "dwa",
+              "register": "neutral",
+              "acceptedPl": [
+                "2"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.tiga",
+              "kind": "word",
+              "id_text": "tiga",
+              "pl_text": "trzy",
+              "register": "neutral",
+              "acceptedPl": [
+                "3"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.empat",
+              "kind": "word",
+              "id_text": "empat",
+              "pl_text": "cztery",
+              "register": "neutral",
+              "acceptedPl": [
+                "4"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.lima",
+              "kind": "word",
+              "id_text": "lima",
+              "pl_text": "pięć",
+              "register": "neutral",
+              "acceptedPl": [
+                "5"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.enam",
+              "kind": "word",
+              "id_text": "enam",
+              "pl_text": "sześć",
+              "register": "neutral",
+              "acceptedPl": [
+                "6"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.tujuh",
+              "kind": "word",
+              "id_text": "tujuh",
+              "pl_text": "siedem",
+              "register": "neutral",
+              "acceptedPl": [
+                "7"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.delapan",
+              "kind": "word",
+              "id_text": "delapan",
+              "pl_text": "osiem",
+              "register": "neutral",
+              "acceptedPl": [
+                "8"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.sembilan",
+              "kind": "word",
+              "id_text": "sembilan",
+              "pl_text": "dziewięć",
+              "register": "neutral",
+              "acceptedPl": [
+                "9"
+              ],
+              "placementOnly": true
+            },
+            {
+              "id": "basics.sepuluh",
+              "kind": "word",
+              "id_text": "sepuluh",
+              "pl_text": "dziesięć",
+              "register": "neutral",
+              "acceptedPl": [
+                "10"
+              ],
+              "placementOnly": true
+            }
+          ]
+        }
+      ],
+      "description": "Powitania, liczby i zaimki – tylko w teście poziomującym."
+    },
+    {
+      "id": "meet",
+      "title": "Przedstawianie się i spotkania",
+      "order": 1,
+      "lessons": [
+        {
+          "id": "meet.intro",
+          "title": "Przedstawianie się",
+          "order": 0,
+          "difficulty": 1,
+          "grammarNote": {
+            "id": "meet.intro.note",
+            "title": "Zwroty grzecznościowe",
+            "body": "W pracy mów o sobie **saya**, a do rozmówcy **Bapak** (do mężczyzny), **Ibu** (do kobiety) albo **Anda**.\n\n- **aku / kamu** – między znajomymi,\n- **gue / lo** – slang jakartański, tylko wśród bliskich.\n\nBapak i Ibu działają też jak „pan/pani” przed imieniem: *Pak Budi*, *Bu Sari*."
+          },
+          "items": [
+            {
+              "id": "meet.perkenalkan",
+              "kind": "word",
+              "id_text": "perkenalkan",
+              "pl_text": "pozwól(cie), że się przedstawię",
+              "register": "formal",
+              "acceptedPl": [
+                "przedstawiam się",
+                "pozwólcie że się przedstawię",
+                "pozwól że się przedstawię",
+                "pozwolę sobie się przedstawić"
+              ]
+            },
+            {
+              "id": "meet.nama",
+              "kind": "word",
+              "id_text": "nama",
+              "pl_text": "imię",
+              "register": "neutral",
+              "acceptedPl": [
+                "nazwa",
+                "nazwisko"
+              ]
+            },
+            {
+              "id": "meet.bapak",
+              "kind": "word",
+              "id_text": "Bapak",
+              "pl_text": "pan (zwrot grzecznościowy)",
+              "register": "formal",
+              "acceptedId": [
+                "pak"
+              ],
+              "acceptedPl": [
+                "pan"
+              ]
+            },
+            {
+              "id": "meet.ibu",
+              "kind": "word",
+              "id_text": "Ibu",
+              "pl_text": "pani (zwrot grzecznościowy)",
+              "register": "formal",
+              "acceptedId": [
+                "bu"
+              ],
+              "acceptedPl": [
+                "pani"
+              ]
+            },
+            {
+              "id": "meet.senang",
+              "kind": "word",
+              "id_text": "senang",
+              "pl_text": "zadowolony",
+              "register": "neutral",
+              "acceptedPl": [
+                "zadowolona",
+                "szczęśliwy",
+                "miło"
+              ]
+            },
+            {
+              "id": "meet.bertemu",
+              "kind": "word",
+              "id_text": "bertemu",
+              "pl_text": "spotkać (się)",
+              "register": "neutral",
+              "acceptedPl": [
+                "spotkać",
+                "spotykać się",
+                "spotkać się"
+              ]
+            },
+            {
+              "id": "meet.dengan",
+              "kind": "word",
+              "id_text": "dengan",
+              "pl_text": "z (kimś / czymś)",
+              "register": "neutral",
+              "acceptedPl": [
+                "z"
+              ]
+            },
+            {
+              "id": "meet.bekerja",
+              "kind": "word",
+              "id_text": "bekerja",
+              "pl_text": "pracować",
+              "register": "neutral",
+              "acceptedPl": [
+                "praca"
+              ]
+            },
+            {
+              "id": "meet.perusahaan",
+              "kind": "word",
+              "id_text": "perusahaan",
+              "pl_text": "firma",
+              "register": "neutral",
+              "acceptedPl": [
+                "przedsiębiorstwo",
+                "spółka"
+              ]
+            },
+            {
+              "id": "meet.di",
+              "kind": "word",
+              "id_text": "di",
+              "pl_text": "w, na (miejsce)",
+              "register": "neutral",
+              "acceptedPl": [
+                "w",
+                "na"
+              ]
+            },
+            {
+              "id": "meet.dari",
+              "kind": "word",
+              "id_text": "dari",
+              "pl_text": "z, od",
+              "register": "neutral",
+              "acceptedPl": [
+                "z",
+                "od"
+              ]
+            },
+            {
+              "id": "meet.telekomunikasi",
+              "kind": "word",
+              "id_text": "telekomunikasi",
+              "pl_text": "telekomunikacja",
+              "register": "neutral",
+              "acceptedPl": [
+                "telekomunikacyjny"
+              ]
+            },
+            {
+              "id": "meet.s-nama-saya",
+              "kind": "sentence",
+              "id_text": "Nama saya Maciek.",
+              "pl_text": "Nazywam się Maciek.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Mam na imię Maciek.",
+                "Moje imię to Maciek."
+              ]
+            },
+            {
+              "id": "meet.s-senang-bertemu",
+              "kind": "sentence",
+              "id_text": "Senang bertemu dengan Anda.",
+              "pl_text": "Miło Pana poznać.",
+              "register": "formal",
+              "acceptedId": [
+                "Senang bertemu Anda."
+              ],
+              "acceptedPl": [
+                "Miło Panią poznać.",
+                "Miło mi Pana poznać.",
+                "Miło mi Panią poznać.",
+                "Miło cię poznać.",
+                "Miło mi cię poznać."
+              ]
+            },
+            {
+              "id": "meet.s-saya-bekerja",
+              "kind": "sentence",
+              "id_text": "Saya bekerja di perusahaan telekomunikasi.",
+              "pl_text": "Pracuję w firmie telekomunikacyjnej.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Pracuję w przedsiębiorstwie telekomunikacyjnym."
+              ]
+            },
+            {
+              "id": "meet.s-saya-dari",
+              "kind": "sentence",
+              "id_text": "Saya dari Polandia.",
+              "pl_text": "Jestem z Polski.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Pochodzę z Polski."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "meet.meeting",
+          "title": "Spotkanie",
+          "order": 1,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "meet.meeting.note",
+            "title": "Szyk zdania",
+            "body": "Szyk jest prosty: **podmiot – orzeczenie – dopełnienie**, jak w polskim.\n\nPrzymiotnik stoi **po** rzeczowniku:\n\n- *rapat penting* – ważne spotkanie,\n- *ruang rapat* – sala spotkań (dosł. „pokój spotkania”).\n\nCzasowniki się nie odmieniają: *saya setuju*, *kita setuju* – „zgadzam się”, „zgadzamy się”."
+          },
+          "items": [
+            {
+              "id": "meet.rapat",
+              "kind": "word",
+              "id_text": "rapat",
+              "pl_text": "spotkanie",
+              "register": "formal",
+              "acceptedPl": [
+                "zebranie",
+                "narada"
+              ]
+            },
+            {
+              "id": "meet.meeting",
+              "kind": "word",
+              "id_text": "meeting",
+              "pl_text": "spotkanie",
+              "register": "colloquial",
+              "acceptedId": [
+                "miting"
+              ],
+              "acceptedPl": [
+                "zebranie"
+              ],
+              "notes": "W biurach w Dżakarcie często mówi się po prostu „meeting”."
+            },
+            {
+              "id": "meet.jadwal",
+              "kind": "word",
+              "id_text": "jadwal",
+              "pl_text": "harmonogram",
+              "register": "neutral",
+              "acceptedPl": [
+                "plan",
+                "grafik",
+                "rozkład"
+              ]
+            },
+            {
+              "id": "meet.besok",
+              "kind": "word",
+              "id_text": "besok",
+              "pl_text": "jutro",
+              "register": "neutral"
+            },
+            {
+              "id": "meet.hari-ini",
+              "kind": "phrase",
+              "id_text": "hari ini",
+              "pl_text": "dziś",
+              "register": "neutral",
+              "acceptedPl": [
+                "dzisiaj"
+              ]
+            },
+            {
+              "id": "meet.jam",
+              "kind": "word",
+              "id_text": "jam",
+              "pl_text": "godzina",
+              "register": "neutral",
+              "acceptedPl": [
+                "zegar",
+                "o godzinie"
+              ]
+            },
+            {
+              "id": "meet.penting",
+              "kind": "word",
+              "id_text": "penting",
+              "pl_text": "ważny",
+              "register": "neutral",
+              "acceptedPl": [
+                "ważne",
+                "ważna"
+              ]
+            },
+            {
+              "id": "meet.presentasi",
+              "kind": "word",
+              "id_text": "presentasi",
+              "pl_text": "prezentacja",
+              "register": "neutral"
+            },
+            {
+              "id": "meet.pertanyaan",
+              "kind": "word",
+              "id_text": "pertanyaan",
+              "pl_text": "pytanie",
+              "register": "neutral",
+              "acceptedPl": [
+                "pytania"
+              ]
+            },
+            {
+              "id": "meet.setuju",
+              "kind": "word",
+              "id_text": "setuju",
+              "pl_text": "zgadzać się",
+              "register": "neutral",
+              "acceptedPl": [
+                "zgadzam się",
+                "zgoda",
+                "zgodzić się"
+              ]
+            },
+            {
+              "id": "meet.ruang-rapat",
+              "kind": "phrase",
+              "id_text": "ruang rapat",
+              "pl_text": "sala konferencyjna",
+              "register": "neutral",
+              "acceptedPl": [
+                "sala spotkań",
+                "pokój spotkań",
+                "salka"
+              ]
+            },
+            {
+              "id": "meet.apakah",
+              "kind": "word",
+              "id_text": "apakah",
+              "pl_text": "czy (w pytaniu)",
+              "register": "formal",
+              "acceptedPl": [
+                "czy"
+              ]
+            },
+            {
+              "id": "meet.ada",
+              "kind": "word",
+              "id_text": "ada",
+              "pl_text": "jest, są (istnieje)",
+              "register": "neutral",
+              "acceptedPl": [
+                "jest",
+                "są",
+                "istnieje",
+                "mieć"
+              ]
+            },
+            {
+              "id": "meet.kita",
+              "kind": "word",
+              "id_text": "kita",
+              "pl_text": "my (razem z rozmówcą)",
+              "register": "neutral",
+              "acceptedPl": [
+                "my"
+              ]
+            },
+            {
+              "id": "meet.mulai",
+              "kind": "word",
+              "id_text": "mulai",
+              "pl_text": "zaczynać",
+              "register": "neutral",
+              "acceptedPl": [
+                "zacząć",
+                "rozpocząć",
+                "rozpoczynać"
+              ]
+            },
+            {
+              "id": "meet.sekarang",
+              "kind": "word",
+              "id_text": "sekarang",
+              "pl_text": "teraz",
+              "register": "neutral",
+              "acceptedPl": [
+                "obecnie"
+              ]
+            },
+            {
+              "id": "meet.s-rapat-penting",
+              "kind": "sentence",
+              "id_text": "Rapat penting besok jam sepuluh.",
+              "pl_text": "Ważne spotkanie jutro o dziesiątej.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Ważne spotkanie jest jutro o dziesiątej.",
+                "Ważne spotkanie jutro o 10.",
+                "Ważne spotkanie jest jutro o 10."
+              ]
+            },
+            {
+              "id": "meet.s-ada-pertanyaan",
+              "kind": "sentence",
+              "id_text": "Apakah ada pertanyaan?",
+              "pl_text": "Czy są pytania?",
+              "register": "formal",
+              "acceptedId": [
+                "Ada pertanyaan?"
+              ],
+              "acceptedPl": [
+                "Czy są jakieś pytania?"
+              ]
+            },
+            {
+              "id": "meet.s-saya-setuju",
+              "kind": "sentence",
+              "id_text": "Saya setuju dengan Bapak.",
+              "pl_text": "Zgadzam się z panem.",
+              "register": "formal"
+            },
+            {
+              "id": "meet.s-kita-mulai",
+              "kind": "sentence",
+              "id_text": "Kita mulai presentasi sekarang.",
+              "pl_text": "Zaczynamy teraz prezentację.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Teraz zaczynamy prezentację.",
+                "Zaczynamy prezentację teraz."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comm",
+      "title": "E-mail i komunikacja",
+      "order": 2,
+      "lessons": [
+        {
+          "id": "comm.email",
+          "title": "E-mail i telefon",
+          "order": 0,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "comm.email.note",
+            "title": "Przedrostek me-",
+            "body": "Wiele czasowników „czynnych” ma przedrostek **me-**, który zmienia się zależnie od pierwszej litery rdzenia:\n\n- *kirim* → **meng**irim (wysyłać),\n- *balas* → **mem**balas (odpowiadać),\n- *telepon* → **men**elepon (dzwonić; *t* znika),\n- *baca* → **mem**baca (czytać).\n\nW mowie potocznej przedrostek często odpada: *kirim email*, *baca dulu*."
+          },
+          "items": [
+            {
+              "id": "comm.email",
+              "kind": "word",
+              "id_text": "email",
+              "pl_text": "e-mail",
+              "register": "neutral",
+              "acceptedId": [
+                "surel",
+                "e-mail",
+                "imel"
+              ],
+              "acceptedPl": [
+                "email",
+                "mail",
+                "wiadomość e-mail"
+              ],
+              "notes": "Formalnie: surel (surat elektronik)."
+            },
+            {
+              "id": "comm.mengirim",
+              "kind": "word",
+              "id_text": "mengirim",
+              "pl_text": "wysyłać",
+              "register": "neutral",
+              "acceptedId": [
+                "kirim"
+              ],
+              "acceptedPl": [
+                "wysłać",
+                "przesłać",
+                "przesyłać"
+              ]
+            },
+            {
+              "id": "comm.membalas",
+              "kind": "word",
+              "id_text": "membalas",
+              "pl_text": "odpowiadać (na wiadomość)",
+              "register": "neutral",
+              "acceptedId": [
+                "balas"
+              ],
+              "acceptedPl": [
+                "odpisać",
+                "odpowiedzieć",
+                "odpisywać",
+                "odpowiadać"
+              ]
+            },
+            {
+              "id": "comm.lampiran",
+              "kind": "word",
+              "id_text": "lampiran",
+              "pl_text": "załącznik",
+              "register": "neutral"
+            },
+            {
+              "id": "comm.pesan",
+              "kind": "word",
+              "id_text": "pesan",
+              "pl_text": "wiadomość",
+              "register": "neutral",
+              "acceptedPl": [
+                "komunikat"
+              ],
+              "notes": "Pesan znaczy też „zamawiać” (np. jedzenie)."
+            },
+            {
+              "id": "comm.menelepon",
+              "kind": "word",
+              "id_text": "menelepon",
+              "pl_text": "dzwonić",
+              "register": "neutral",
+              "acceptedId": [
+                "telepon",
+                "nelpon"
+              ],
+              "acceptedPl": [
+                "zadzwonić",
+                "telefonować"
+              ]
+            },
+            {
+              "id": "comm.segera",
+              "kind": "word",
+              "id_text": "segera",
+              "pl_text": "niezwłocznie",
+              "register": "neutral",
+              "acceptedPl": [
+                "wkrótce",
+                "zaraz",
+                "szybko",
+                "natychmiast"
+              ]
+            },
+            {
+              "id": "comm.mohon",
+              "kind": "word",
+              "id_text": "mohon",
+              "pl_text": "uprzejmie proszę (formalnie)",
+              "register": "formal",
+              "acceptedPl": [
+                "proszę",
+                "uprzejmie proszę",
+                "prosić"
+              ]
+            },
+            {
+              "id": "comm.tolong",
+              "kind": "word",
+              "id_text": "tolong",
+              "pl_text": "proszę (o przysługę)",
+              "register": "neutral",
+              "acceptedPl": [
+                "proszę",
+                "pomóż",
+                "pomocy"
+              ]
+            },
+            {
+              "id": "comm.cek",
+              "kind": "word",
+              "id_text": "cek",
+              "pl_text": "sprawdzić",
+              "register": "neutral",
+              "acceptedPl": [
+                "sprawdzać",
+                "sprawdź"
+              ]
+            },
+            {
+              "id": "comm.s-mengirim-email",
+              "kind": "sentence",
+              "id_text": "Saya akan mengirim email hari ini.",
+              "pl_text": "Wyślę dzisiaj e-mail.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Dzisiaj wyślę e-mail.",
+                "Wyślę e-mail dzisiaj.",
+                "Dziś wyślę e-mail.",
+                "Wyślę e-mail dziś.",
+                "Wyślę dziś e-mail."
+              ]
+            },
+            {
+              "id": "comm.s-cek-lampiran",
+              "kind": "sentence",
+              "id_text": "Mohon cek lampiran.",
+              "pl_text": "Proszę sprawdzić załącznik.",
+              "register": "formal",
+              "acceptedPl": [
+                "Uprzejmie proszę sprawdzić załącznik.",
+                "Proszę o sprawdzenie załącznika."
+              ]
+            },
+            {
+              "id": "comm.s-terima-kasih-balasan",
+              "kind": "sentence",
+              "id_text": "Terima kasih atas balasan Anda.",
+              "pl_text": "Dziękuję za Pana odpowiedź.",
+              "register": "formal",
+              "acceptedPl": [
+                "Dziękuję za odpowiedź.",
+                "Dziękuję za Pani odpowiedź.",
+                "Dziękuję za pańską odpowiedź."
+              ]
+            },
+            {
+              "id": "comm.s-menelepon-besok",
+              "kind": "sentence",
+              "id_text": "Saya akan menelepon Anda besok.",
+              "pl_text": "Zadzwonię do Pana jutro.",
+              "register": "formal",
+              "acceptedPl": [
+                "Jutro do Pana zadzwonię.",
+                "Zadzwonię do Pani jutro.",
+                "Jutro do Pani zadzwonię.",
+                "Jutro zadzwonię do Pana.",
+                "Jutro zadzwonię do Pani."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "comm.status",
+          "title": "Co już zrobione",
+          "order": 1,
+          "difficulty": 3,
+          "grammarNote": {
+            "id": "comm.status.note",
+            "title": "Czas bez odmiany",
+            "body": "Czasownik się nie zmienia, a czas wyrażają słowa przed nim:\n\n- **sudah** – już (zrobione),\n- **belum** – jeszcze nie,\n- **sedang** – właśnie (w trakcie),\n- **akan** – będzie (przyszłość).\n\n*Saya sudah membaca* – przeczytałem. *Saya belum membaca* – jeszcze nie przeczytałem.\n\nNa pytanie „Sudah …?” odpowiada się **Sudah** albo **Belum** – nie *tidak*."
+          },
+          "items": [
+            {
+              "id": "comm.sudah",
+              "kind": "word",
+              "id_text": "sudah",
+              "pl_text": "już",
+              "register": "formal"
+            },
+            {
+              "id": "comm.belum",
+              "kind": "word",
+              "id_text": "belum",
+              "pl_text": "jeszcze nie",
+              "register": "neutral"
+            },
+            {
+              "id": "comm.sedang",
+              "kind": "word",
+              "id_text": "sedang",
+              "pl_text": "właśnie (w trakcie)",
+              "register": "neutral",
+              "acceptedPl": [
+                "właśnie",
+                "w trakcie",
+                "teraz"
+              ]
+            },
+            {
+              "id": "comm.akan",
+              "kind": "word",
+              "id_text": "akan",
+              "pl_text": "będzie (czas przyszły)",
+              "register": "neutral",
+              "acceptedPl": [
+                "będzie",
+                "będę"
+              ]
+            },
+            {
+              "id": "comm.kemarin",
+              "kind": "word",
+              "id_text": "kemarin",
+              "pl_text": "wczoraj",
+              "register": "neutral"
+            },
+            {
+              "id": "comm.minggu-depan",
+              "kind": "phrase",
+              "id_text": "minggu depan",
+              "pl_text": "w przyszłym tygodniu",
+              "register": "neutral",
+              "acceptedPl": [
+                "przyszły tydzień",
+                "za tydzień"
+              ]
+            },
+            {
+              "id": "comm.selesai",
+              "kind": "word",
+              "id_text": "selesai",
+              "pl_text": "skończony",
+              "register": "neutral",
+              "acceptedPl": [
+                "skończyć",
+                "gotowe",
+                "zakończony",
+                "koniec"
+              ]
+            },
+            {
+              "id": "comm.menunggu",
+              "kind": "word",
+              "id_text": "menunggu",
+              "pl_text": "czekać",
+              "register": "neutral",
+              "acceptedId": [
+                "tunggu",
+                "nunggu"
+              ],
+              "acceptedPl": [
+                "oczekiwać",
+                "zaczekać"
+              ]
+            },
+            {
+              "id": "comm.membaca",
+              "kind": "word",
+              "id_text": "membaca",
+              "pl_text": "czytać",
+              "register": "neutral",
+              "acceptedId": [
+                "baca"
+              ],
+              "acceptedPl": [
+                "przeczytać"
+              ]
+            },
+            {
+              "id": "comm.laporan",
+              "kind": "word",
+              "id_text": "laporan",
+              "pl_text": "raport",
+              "register": "neutral",
+              "acceptedPl": [
+                "sprawozdanie"
+              ]
+            },
+            {
+              "id": "comm.kami",
+              "kind": "word",
+              "id_text": "kami",
+              "pl_text": "my (bez rozmówcy)",
+              "register": "neutral",
+              "acceptedPl": [
+                "my"
+              ]
+            },
+            {
+              "id": "comm.jawaban",
+              "kind": "word",
+              "id_text": "jawaban",
+              "pl_text": "odpowiedź",
+              "register": "neutral"
+            },
+            {
+              "id": "comm.s-sudah-membaca",
+              "kind": "sentence",
+              "id_text": "Saya sudah membaca email Anda.",
+              "pl_text": "Przeczytałem Pana e-mail.",
+              "register": "formal",
+              "acceptedPl": [
+                "Już przeczytałem Pana e-mail.",
+                "Przeczytałam Pana e-mail.",
+                "Przeczytałem Pani e-mail.",
+                "Przeczytałem pański e-mail.",
+                "Przeczytałem już Pana e-mail."
+              ]
+            },
+            {
+              "id": "comm.s-laporan-belum",
+              "kind": "sentence",
+              "id_text": "Laporannya belum selesai.",
+              "pl_text": "Raport jeszcze nie jest skończony.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Raport nie jest jeszcze skończony.",
+                "Raport jeszcze nie jest gotowy.",
+                "Raport nie jest jeszcze gotowy."
+              ],
+              "notes": "-nya na końcu rzeczownika działa jak „ten” (ten konkretny raport)."
+            },
+            {
+              "id": "comm.s-menunggu-jawaban",
+              "kind": "sentence",
+              "id_text": "Kami sedang menunggu jawaban dari operator.",
+              "pl_text": "Czekamy na odpowiedź od operatora.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Czekamy na odpowiedź operatora.",
+                "Właśnie czekamy na odpowiedź od operatora.",
+                "Właśnie czekamy na odpowiedź operatora."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project",
+      "title": "Projekt i wdrożenie",
+      "order": 3,
+      "lessons": [
+        {
+          "id": "project.presales",
+          "title": "Projekt i oferta",
+          "order": 0,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "project.presales.note",
+            "title": "Przedrostek ber-",
+            "body": "Przedrostek **ber-** tworzy czasowniki „nieprzechodnie” – opisujące stan albo czynność bez dopełnienia:\n\n- *kerja* (praca) → **ber**kerja (pracować),\n- *hasil* (wynik) → **ber**hasil (odnieść sukces),\n- *temu* → **ber**temu (spotkać się).\n\nPytanie o liczbę lub cenę zaczyna się od **berapa** (ile)."
+          },
+          "items": [
+            {
+              "id": "project.proyek",
+              "kind": "word",
+              "id_text": "proyek",
+              "pl_text": "projekt",
+              "register": "neutral"
+            },
+            {
+              "id": "project.tenggat-waktu",
+              "kind": "phrase",
+              "id_text": "tenggat waktu",
+              "pl_text": "termin",
+              "register": "formal",
+              "acceptedId": [
+                "deadline",
+                "tenggat"
+              ],
+              "acceptedPl": [
+                "deadline",
+                "termin końcowy",
+                "ostateczny termin"
+              ],
+              "notes": "Potocznie: deadline."
+            },
+            {
+              "id": "project.pelanggan",
+              "kind": "word",
+              "id_text": "pelanggan",
+              "pl_text": "klient",
+              "register": "neutral",
+              "acceptedPl": [
+                "abonent",
+                "subskrybent",
+                "klienci"
+              ],
+              "notes": "W telco to też „abonent”."
+            },
+            {
+              "id": "project.kebutuhan",
+              "kind": "word",
+              "id_text": "kebutuhan",
+              "pl_text": "wymaganie",
+              "register": "neutral",
+              "acceptedPl": [
+                "wymagania",
+                "potrzeba",
+                "potrzeby"
+              ]
+            },
+            {
+              "id": "project.solusi",
+              "kind": "word",
+              "id_text": "solusi",
+              "pl_text": "rozwiązanie",
+              "register": "neutral"
+            },
+            {
+              "id": "project.berhasil",
+              "kind": "word",
+              "id_text": "berhasil",
+              "pl_text": "odnieść sukces",
+              "register": "neutral",
+              "acceptedPl": [
+                "udać się",
+                "udało się",
+                "sukces",
+                "pomyślnie"
+              ]
+            },
+            {
+              "id": "project.biaya",
+              "kind": "word",
+              "id_text": "biaya",
+              "pl_text": "koszt",
+              "register": "neutral",
+              "acceptedPl": [
+                "koszty",
+                "opłata"
+              ]
+            },
+            {
+              "id": "project.penawaran",
+              "kind": "word",
+              "id_text": "penawaran",
+              "pl_text": "oferta",
+              "register": "neutral"
+            },
+            {
+              "id": "project.kontrak",
+              "kind": "word",
+              "id_text": "kontrak",
+              "pl_text": "umowa",
+              "register": "neutral",
+              "acceptedPl": [
+                "kontrakt"
+              ]
+            },
+            {
+              "id": "project.tim",
+              "kind": "word",
+              "id_text": "tim",
+              "pl_text": "zespół",
+              "register": "neutral",
+              "acceptedPl": [
+                "team",
+                "drużyna"
+              ]
+            },
+            {
+              "id": "project.ini",
+              "kind": "word",
+              "id_text": "ini",
+              "pl_text": "ten, ta, to",
+              "register": "neutral",
+              "acceptedPl": [
+                "ten",
+                "ta",
+                "to"
+              ]
+            },
+            {
+              "id": "project.berapa",
+              "kind": "word",
+              "id_text": "berapa",
+              "pl_text": "ile",
+              "register": "neutral",
+              "acceptedPl": [
+                "ile kosztuje"
+              ]
+            },
+            {
+              "id": "project.s-proyek-berhasil",
+              "kind": "sentence",
+              "id_text": "Proyek ini berhasil.",
+              "pl_text": "Ten projekt zakończył się sukcesem.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Ten projekt się udał.",
+                "Projekt się udał.",
+                "Ten projekt odniósł sukces."
+              ]
+            },
+            {
+              "id": "project.s-mengirim-penawaran",
+              "kind": "sentence",
+              "id_text": "Kami akan mengirim penawaran minggu depan.",
+              "pl_text": "Wyślemy ofertę w przyszłym tygodniu.",
+              "register": "neutral",
+              "acceptedPl": [
+                "W przyszłym tygodniu wyślemy ofertę."
+              ]
+            },
+            {
+              "id": "project.s-kebutuhan-pelanggan",
+              "kind": "sentence",
+              "id_text": "Apa kebutuhan pelanggan?",
+              "pl_text": "Jakie są wymagania klienta?",
+              "register": "neutral",
+              "acceptedPl": [
+                "Jakie są potrzeby klienta?",
+                "Czego potrzebuje klient?"
+              ]
+            },
+            {
+              "id": "project.s-berapa-biaya",
+              "kind": "sentence",
+              "id_text": "Berapa biayanya?",
+              "pl_text": "Ile to kosztuje?",
+              "register": "neutral",
+              "acceptedPl": [
+                "Jaki jest koszt?",
+                "Ile kosztuje?",
+                "Ile wynosi koszt?"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "project.rollout",
+          "title": "Wdrożenie",
+          "order": 1,
+          "difficulty": 3,
+          "grammarNote": {
+            "id": "project.rollout.note",
+            "title": "Strona bierna: di-",
+            "body": "Zamień **me-** na **di-**, a dostaniesz stronę bierną:\n\n- *memasang* (instalować) → **di**pasang (zainstalowany),\n- *menguji* (testować) → **di**uji (testowany),\n- *memperbaiki* (naprawiać) → **di**perbaiki (naprawiony).\n\nW mailach i raportach strona bierna jest bardzo częsta: *Perangkat sudah dipasang* – urządzenie zostało zainstalowane."
+          },
+          "items": [
+            {
+              "id": "project.implementasi",
+              "kind": "word",
+              "id_text": "implementasi",
+              "pl_text": "wdrożenie",
+              "register": "formal",
+              "acceptedId": [
+                "penerapan"
+              ],
+              "acceptedPl": [
+                "implementacja"
+              ]
+            },
+            {
+              "id": "project.memasang",
+              "kind": "word",
+              "id_text": "memasang",
+              "pl_text": "instalować",
+              "register": "neutral",
+              "acceptedId": [
+                "pasang"
+              ],
+              "acceptedPl": [
+                "zainstalować",
+                "montować",
+                "zamontować"
+              ]
+            },
+            {
+              "id": "project.menguji",
+              "kind": "word",
+              "id_text": "menguji",
+              "pl_text": "testować",
+              "register": "neutral",
+              "acceptedId": [
+                "uji",
+                "tes",
+                "ngetes"
+              ],
+              "acceptedPl": [
+                "przetestować",
+                "sprawdzać"
+              ]
+            },
+            {
+              "id": "project.masalah",
+              "kind": "word",
+              "id_text": "masalah",
+              "pl_text": "problem",
+              "register": "neutral",
+              "acceptedPl": [
+                "kłopot",
+                "usterka"
+              ]
+            },
+            {
+              "id": "project.memperbaiki",
+              "kind": "word",
+              "id_text": "memperbaiki",
+              "pl_text": "naprawiać",
+              "register": "neutral",
+              "acceptedId": [
+                "perbaiki",
+                "benerin"
+              ],
+              "acceptedPl": [
+                "naprawić",
+                "poprawić",
+                "poprawiać"
+              ]
+            },
+            {
+              "id": "project.siap",
+              "kind": "word",
+              "id_text": "siap",
+              "pl_text": "gotowy",
+              "register": "neutral",
+              "acceptedPl": [
+                "gotowe",
+                "gotowa"
+              ]
+            },
+            {
+              "id": "project.dokumentasi",
+              "kind": "word",
+              "id_text": "dokumentasi",
+              "pl_text": "dokumentacja",
+              "register": "neutral"
+            },
+            {
+              "id": "project.pembaruan",
+              "kind": "word",
+              "id_text": "pembaruan",
+              "pl_text": "aktualizacja",
+              "register": "formal",
+              "acceptedId": [
+                "update"
+              ],
+              "acceptedPl": [
+                "update"
+              ]
+            },
+            {
+              "id": "project.server",
+              "kind": "word",
+              "id_text": "server",
+              "pl_text": "serwer",
+              "register": "neutral"
+            },
+            {
+              "id": "project.sistem",
+              "kind": "word",
+              "id_text": "sistem",
+              "pl_text": "system",
+              "register": "neutral"
+            },
+            {
+              "id": "project.s-perangkat-dipasang",
+              "kind": "sentence",
+              "id_text": "Perangkat sudah dipasang.",
+              "pl_text": "Urządzenie zostało zainstalowane.",
+              "register": "formal",
+              "acceptedPl": [
+                "Urządzenie jest już zainstalowane.",
+                "Urządzenie zostało już zainstalowane.",
+                "Urządzenia zostały zainstalowane.",
+                "Urządzenie już zainstalowano."
+              ]
+            },
+            {
+              "id": "project.s-sistem-diuji",
+              "kind": "sentence",
+              "id_text": "Sistem sedang diuji.",
+              "pl_text": "System jest właśnie testowany.",
+              "register": "formal",
+              "acceptedPl": [
+                "System jest testowany.",
+                "System jest w trakcie testów.",
+                "System właśnie jest testowany."
+              ]
+            },
+            {
+              "id": "project.s-masalah-diperbaiki",
+              "kind": "sentence",
+              "id_text": "Masalahnya sudah diperbaiki.",
+              "pl_text": "Problem został już naprawiony.",
+              "register": "formal",
+              "acceptedPl": [
+                "Problem został naprawiony.",
+                "Problem jest już naprawiony."
+              ]
+            },
+            {
+              "id": "project.s-server-siap",
+              "kind": "sentence",
+              "id_text": "Apakah servernya sudah siap?",
+              "pl_text": "Czy serwer jest już gotowy?",
+              "register": "formal",
+              "acceptedId": [
+                "Servernya sudah siap?"
+              ],
+              "acceptedPl": [
+                "Czy serwer jest gotowy?",
+                "Czy serwer jest już gotowy do pracy?"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "telco",
+      "title": "Sieci i telco",
+      "order": 4,
+      "lessons": [
+        {
+          "id": "telco.network",
+          "title": "Sieć i urządzenia",
+          "order": 0,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "telco.network.note",
+            "title": "Liczba mnoga",
+            "body": "Rzeczowniki nie mają osobnej formy liczby mnogiej. Liczba wynika z kontekstu albo ze słów:\n\n- **banyak** – dużo, wiele: *banyak pelanggan* – wielu klientów,\n- **beberapa** – kilka: *beberapa perangkat* – kilka urządzeń.\n\nPodwojenie (*perangkat-perangkat*) podkreśla różnorodność, ale po *banyak/beberapa* się go nie używa."
+          },
+          "items": [
+            {
+              "id": "telco.jaringan",
+              "kind": "word",
+              "id_text": "jaringan",
+              "pl_text": "sieć",
+              "register": "neutral"
+            },
+            {
+              "id": "telco.perangkat",
+              "kind": "word",
+              "id_text": "perangkat",
+              "pl_text": "urządzenie",
+              "register": "neutral",
+              "acceptedPl": [
+                "urządzenia",
+                "sprzęt"
+              ],
+              "notes": "Też: perangkat lunak – oprogramowanie, perangkat keras – sprzęt."
+            },
+            {
+              "id": "telco.operator",
+              "kind": "word",
+              "id_text": "operator",
+              "pl_text": "operator",
+              "register": "neutral"
+            },
+            {
+              "id": "telco.internet",
+              "kind": "word",
+              "id_text": "internet",
+              "pl_text": "internet",
+              "register": "neutral"
+            },
+            {
+              "id": "telco.kecepatan",
+              "kind": "word",
+              "id_text": "kecepatan",
+              "pl_text": "prędkość",
+              "register": "neutral",
+              "acceptedPl": [
+                "szybkość"
+              ]
+            },
+            {
+              "id": "telco.koneksi",
+              "kind": "word",
+              "id_text": "koneksi",
+              "pl_text": "połączenie",
+              "register": "neutral",
+              "acceptedId": [
+                "sambungan"
+              ]
+            },
+            {
+              "id": "telco.sinyal",
+              "kind": "word",
+              "id_text": "sinyal",
+              "pl_text": "sygnał",
+              "register": "neutral",
+              "acceptedPl": [
+                "zasięg"
+              ]
+            },
+            {
+              "id": "telco.banyak",
+              "kind": "word",
+              "id_text": "banyak",
+              "pl_text": "dużo",
+              "register": "neutral",
+              "acceptedPl": [
+                "wiele",
+                "wielu",
+                "mnóstwo"
+              ]
+            },
+            {
+              "id": "telco.beberapa",
+              "kind": "word",
+              "id_text": "beberapa",
+              "pl_text": "kilka",
+              "register": "neutral",
+              "acceptedPl": [
+                "parę",
+                "niektóre",
+                "kilku"
+              ]
+            },
+            {
+              "id": "telco.punya",
+              "kind": "word",
+              "id_text": "punya",
+              "pl_text": "mieć",
+              "register": "neutral",
+              "acceptedId": [
+                "mempunyai",
+                "memiliki"
+              ],
+              "acceptedPl": [
+                "posiadać"
+              ]
+            },
+            {
+              "id": "telco.lambat",
+              "kind": "word",
+              "id_text": "lambat",
+              "pl_text": "wolny",
+              "register": "neutral",
+              "acceptedPl": [
+                "powolny",
+                "wolno",
+                "powoli"
+              ],
+              "notes": "Potocznie też: lemot (o internecie)."
+            },
+            {
+              "id": "telco.terhubung",
+              "kind": "word",
+              "id_text": "terhubung",
+              "pl_text": "podłączony",
+              "register": "neutral",
+              "acceptedPl": [
+                "połączony",
+                "podłączone",
+                "połączone"
+              ]
+            },
+            {
+              "id": "telco.s-operator-pelanggan",
+              "kind": "sentence",
+              "id_text": "Operator ini punya banyak pelanggan.",
+              "pl_text": "Ten operator ma wielu klientów.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Ten operator ma wielu abonentów.",
+                "Ten operator ma dużo klientów.",
+                "Ten operator ma dużo abonentów."
+              ]
+            },
+            {
+              "id": "telco.s-koneksi-lambat",
+              "kind": "sentence",
+              "id_text": "Koneksi internetnya lambat.",
+              "pl_text": "Połączenie internetowe jest wolne.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Internet jest wolny.",
+                "Połączenie z internetem jest wolne."
+              ]
+            },
+            {
+              "id": "telco.s-perangkat-terhubung",
+              "kind": "sentence",
+              "id_text": "Beberapa perangkat tidak terhubung ke jaringan.",
+              "pl_text": "Kilka urządzeń nie jest podłączonych do sieci.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Kilka urządzeń nie jest połączonych z siecią.",
+                "Niektóre urządzenia nie są podłączone do sieci."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "telco.cpe",
+          "title": "Zarządzanie urządzeniami",
+          "order": 1,
+          "difficulty": 3,
+          "grammarNote": {
+            "id": "telco.cpe.note",
+            "title": "Słowo yang",
+            "body": "**yang** łączy rzeczownik z opisem, jak polskie „który”:\n\n- *perangkat yang bermasalah* – urządzenie, które ma problem,\n- *operator yang besar* – duży operator (dosł. „operator, który jest duży”).\n\nPo **perlu** (trzeba) i **bisa** (móc) czasownik stoi w formie podstawowej albo biernej: *perlu diperbarui* – trzeba zaktualizować."
+          },
+          "items": [
+            {
+              "id": "telco.mengelola",
+              "kind": "word",
+              "id_text": "mengelola",
+              "pl_text": "zarządzać",
+              "register": "neutral",
+              "acceptedId": [
+                "kelola"
+              ],
+              "acceptedPl": [
+                "zarządzanie"
+              ]
+            },
+            {
+              "id": "telco.konfigurasi",
+              "kind": "word",
+              "id_text": "konfigurasi",
+              "pl_text": "konfiguracja",
+              "register": "neutral"
+            },
+            {
+              "id": "telco.pengaturan",
+              "kind": "word",
+              "id_text": "pengaturan",
+              "pl_text": "ustawienia",
+              "register": "neutral",
+              "acceptedPl": [
+                "ustawienie"
+              ]
+            },
+            {
+              "id": "telco.memantau",
+              "kind": "word",
+              "id_text": "memantau",
+              "pl_text": "monitorować",
+              "register": "neutral",
+              "acceptedId": [
+                "pantau",
+                "monitor"
+              ],
+              "acceptedPl": [
+                "monitorowanie",
+                "nadzorować",
+                "obserwować"
+              ]
+            },
+            {
+              "id": "telco.jarak-jauh",
+              "kind": "phrase",
+              "id_text": "jarak jauh",
+              "pl_text": "zdalnie",
+              "register": "neutral",
+              "acceptedId": [
+                "remote"
+              ],
+              "acceptedPl": [
+                "zdalny",
+                "zdalna",
+                "na odległość"
+              ]
+            },
+            {
+              "id": "telco.gangguan",
+              "kind": "word",
+              "id_text": "gangguan",
+              "pl_text": "awaria",
+              "register": "neutral",
+              "acceptedPl": [
+                "zakłócenie",
+                "usterka",
+                "przerwa w działaniu"
+              ]
+            },
+            {
+              "id": "telco.pusat-data",
+              "kind": "phrase",
+              "id_text": "pusat data",
+              "pl_text": "centrum danych",
+              "register": "neutral",
+              "acceptedId": [
+                "data center"
+              ],
+              "acceptedPl": [
+                "data center",
+                "serwerownia"
+              ]
+            },
+            {
+              "id": "telco.juta",
+              "kind": "word",
+              "id_text": "juta",
+              "pl_text": "milion",
+              "register": "neutral",
+              "acceptedPl": [
+                "miliony"
+              ],
+              "notes": "sejuta – milion, jutaan – miliony."
+            },
+            {
+              "id": "telco.perlu",
+              "kind": "word",
+              "id_text": "perlu",
+              "pl_text": "trzeba",
+              "register": "neutral",
+              "acceptedPl": [
+                "potrzebować",
+                "musieć",
+                "należy"
+              ]
+            },
+            {
+              "id": "telco.bisa",
+              "kind": "word",
+              "id_text": "bisa",
+              "pl_text": "móc",
+              "register": "neutral",
+              "acceptedPl": [
+                "można",
+                "potrafić",
+                "umieć"
+              ]
+            },
+            {
+              "id": "telco.s-mengelola-jutaan",
+              "kind": "sentence",
+              "id_text": "Kami mengelola jutaan perangkat dari jarak jauh.",
+              "pl_text": "Zarządzamy zdalnie milionami urządzeń.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Zdalnie zarządzamy milionami urządzeń.",
+                "Zarządzamy milionami urządzeń zdalnie."
+              ]
+            },
+            {
+              "id": "telco.s-perangkat-bermasalah",
+              "kind": "sentence",
+              "id_text": "Perangkat yang bermasalah perlu diperbarui.",
+              "pl_text": "Urządzenia z problemami trzeba zaktualizować.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Urządzenie, które ma problem, trzeba zaktualizować.",
+                "Urządzenia, które mają problem, trzeba zaktualizować.",
+                "Problematyczne urządzenia trzeba zaktualizować.",
+                "Urządzenia z problemami należy zaktualizować."
+              ]
+            },
+            {
+              "id": "telco.s-gangguan-jakarta",
+              "kind": "sentence",
+              "id_text": "Ada gangguan jaringan di Jakarta.",
+              "pl_text": "Jest awaria sieci w Dżakarcie.",
+              "register": "neutral",
+              "acceptedPl": [
+                "W Dżakarcie jest awaria sieci.",
+                "Jest awaria sieci w Jakarcie.",
+                "W Jakarcie jest awaria sieci.",
+                "W Dżakarcie są zakłócenia sieci."
+              ]
+            },
+            {
+              "id": "telco.s-konfigurasi-diubah",
+              "kind": "sentence",
+              "id_text": "Konfigurasinya bisa diubah dari jarak jauh.",
+              "pl_text": "Konfigurację można zmienić zdalnie.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Konfigurację można zmieniać zdalnie.",
+                "Można zdalnie zmienić konfigurację."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "daily",
+      "title": "Na co dzień",
+      "order": 5,
+      "lessons": [
+        {
+          "id": "daily.food",
+          "title": "Jedzenie i miejsca",
+          "order": 0,
+          "difficulty": 1,
+          "grammarNote": {
+            "id": "daily.food.note",
+            "title": "Pytania",
+            "body": "Słowa pytające:\n\n- **apa** – co, **siapa** – kto,\n- **di mana** – gdzie, **ke mana** – dokąd,\n- **kapan** – kiedy, **berapa** – ile.\n\nPytanie „tak/nie” formalnie zaczyna się od **apakah**, a w mowie wystarcza intonacja: *Sudah siap?*"
+          },
+          "items": [
+            {
+              "id": "daily.makan",
+              "kind": "word",
+              "id_text": "makan",
+              "pl_text": "jeść",
+              "register": "neutral",
+              "acceptedPl": [
+                "zjeść",
+                "jedzenie"
+              ]
+            },
+            {
+              "id": "daily.minum",
+              "kind": "word",
+              "id_text": "minum",
+              "pl_text": "pić",
+              "register": "neutral",
+              "acceptedPl": [
+                "wypić",
+                "napić się"
+              ]
+            },
+            {
+              "id": "daily.air",
+              "kind": "word",
+              "id_text": "air",
+              "pl_text": "woda",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.kopi",
+              "kind": "word",
+              "id_text": "kopi",
+              "pl_text": "kawa",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.enak",
+              "kind": "word",
+              "id_text": "enak",
+              "pl_text": "smaczny",
+              "register": "neutral",
+              "acceptedPl": [
+                "pyszny",
+                "smaczne",
+                "pyszne",
+                "dobre"
+              ]
+            },
+            {
+              "id": "daily.di-mana",
+              "kind": "phrase",
+              "id_text": "di mana",
+              "pl_text": "gdzie",
+              "register": "neutral",
+              "acceptedId": [
+                "dimana"
+              ]
+            },
+            {
+              "id": "daily.kapan",
+              "kind": "word",
+              "id_text": "kapan",
+              "pl_text": "kiedy",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.siapa",
+              "kind": "word",
+              "id_text": "siapa",
+              "pl_text": "kto",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.mau",
+              "kind": "word",
+              "id_text": "mau",
+              "pl_text": "chcieć",
+              "register": "neutral",
+              "acceptedId": [
+                "ingin"
+              ],
+              "acceptedPl": [
+                "chcę"
+              ],
+              "notes": "Formalnie: ingin."
+            },
+            {
+              "id": "daily.kantor",
+              "kind": "word",
+              "id_text": "kantor",
+              "pl_text": "biuro",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.jalan",
+              "kind": "word",
+              "id_text": "jalan",
+              "pl_text": "ulica",
+              "register": "neutral",
+              "acceptedPl": [
+                "droga"
+              ]
+            },
+            {
+              "id": "daily.bandara",
+              "kind": "word",
+              "id_text": "bandara",
+              "pl_text": "lotnisko",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.sekali",
+              "kind": "word",
+              "id_text": "sekali",
+              "pl_text": "bardzo (po przymiotniku)",
+              "register": "neutral",
+              "acceptedPl": [
+                "bardzo"
+              ]
+            },
+            {
+              "id": "daily.s-minum-kopi",
+              "kind": "sentence",
+              "id_text": "Saya mau minum kopi.",
+              "pl_text": "Chcę napić się kawy.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Chcę się napić kawy.",
+                "Chcę pić kawę.",
+                "Chcę wypić kawę."
+              ]
+            },
+            {
+              "id": "daily.s-di-mana-kantor",
+              "kind": "sentence",
+              "id_text": "Di mana kantor Anda?",
+              "pl_text": "Gdzie jest Pana biuro?",
+              "register": "formal",
+              "acceptedPl": [
+                "Gdzie jest Pani biuro?",
+                "Gdzie jest pańskie biuro?",
+                "Gdzie jest twoje biuro?"
+              ]
+            },
+            {
+              "id": "daily.s-enak-sekali",
+              "kind": "sentence",
+              "id_text": "Makanannya enak sekali!",
+              "pl_text": "Jedzenie jest bardzo smaczne!",
+              "register": "neutral",
+              "acceptedPl": [
+                "Jedzenie jest pyszne!",
+                "Jedzenie jest bardzo dobre!",
+                "Jedzenie jest bardzo pyszne!"
+              ]
+            },
+            {
+              "id": "daily.s-kapan-rapat",
+              "kind": "sentence",
+              "id_text": "Kapan rapatnya?",
+              "pl_text": "Kiedy jest spotkanie?",
+              "register": "neutral",
+              "acceptedPl": [
+                "Kiedy spotkanie?",
+                "Kiedy będzie spotkanie?"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "daily.time",
+          "title": "Czas i liczby",
+          "order": 1,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "daily.time.note",
+            "title": "Większe liczby",
+            "body": "Liczby buduje się jak klocki:\n\n- **puluh** – dziesiątki: *dua puluh* – 20,\n- **ratus** – setki: *tiga ratus* – 300,\n- **ribu** – tysiące, **juta** – miliony.\n\nPrzedrostek **se-** znaczy „jeden”: *seratus* – 100, *seribu* – 1000, *sebelas* – 11."
+          },
+          "items": [
+            {
+              "id": "daily.menit",
+              "kind": "word",
+              "id_text": "menit",
+              "pl_text": "minuta",
+              "register": "neutral",
+              "acceptedPl": [
+                "minuty"
+              ]
+            },
+            {
+              "id": "daily.hari",
+              "kind": "word",
+              "id_text": "hari",
+              "pl_text": "dzień",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.minggu",
+              "kind": "word",
+              "id_text": "minggu",
+              "pl_text": "tydzień",
+              "register": "neutral",
+              "acceptedPl": [
+                "niedziela"
+              ],
+              "notes": "Minggu to także niedziela."
+            },
+            {
+              "id": "daily.bulan",
+              "kind": "word",
+              "id_text": "bulan",
+              "pl_text": "miesiąc",
+              "register": "neutral",
+              "acceptedPl": [
+                "księżyc"
+              ]
+            },
+            {
+              "id": "daily.tahun",
+              "kind": "word",
+              "id_text": "tahun",
+              "pl_text": "rok",
+              "register": "neutral"
+            },
+            {
+              "id": "daily.puluh",
+              "kind": "word",
+              "id_text": "puluh",
+              "pl_text": "dziesiątki (…dziesiąt)",
+              "register": "neutral",
+              "acceptedPl": [
+                "dziesiątki",
+                "dziesiąt"
+              ]
+            },
+            {
+              "id": "daily.seratus",
+              "kind": "word",
+              "id_text": "seratus",
+              "pl_text": "sto",
+              "register": "neutral",
+              "acceptedPl": [
+                "100"
+              ]
+            },
+            {
+              "id": "daily.seribu",
+              "kind": "word",
+              "id_text": "seribu",
+              "pl_text": "tysiąc",
+              "register": "neutral",
+              "acceptedPl": [
+                "1000"
+              ]
+            },
+            {
+              "id": "daily.selama",
+              "kind": "word",
+              "id_text": "selama",
+              "pl_text": "przez (czas)",
+              "register": "neutral",
+              "acceptedPl": [
+                "przez",
+                "podczas"
+              ]
+            },
+            {
+              "id": "daily.butuh",
+              "kind": "word",
+              "id_text": "butuh",
+              "pl_text": "potrzebować",
+              "register": "neutral",
+              "acceptedId": [
+                "membutuhkan",
+                "perlu"
+              ]
+            },
+            {
+              "id": "daily.s-jam-berapa",
+              "kind": "sentence",
+              "id_text": "Jam berapa sekarang?",
+              "pl_text": "Która jest teraz godzina?",
+              "register": "neutral",
+              "acceptedPl": [
+                "Która godzina?",
+                "Która teraz godzina?",
+                "Która godzina teraz?",
+                "Która jest godzina?"
+              ]
+            },
+            {
+              "id": "daily.s-dua-minggu",
+              "kind": "sentence",
+              "id_text": "Saya di Jakarta selama dua minggu.",
+              "pl_text": "Jestem w Dżakarcie przez dwa tygodnie.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Jestem w Jakarcie przez dwa tygodnie.",
+                "Będę w Dżakarcie przez dwa tygodnie.",
+                "Przez dwa tygodnie jestem w Dżakarcie."
+              ]
+            },
+            {
+              "id": "daily.s-tiga-bulan",
+              "kind": "sentence",
+              "id_text": "Proyek ini butuh tiga bulan.",
+              "pl_text": "Ten projekt potrzebuje trzech miesięcy.",
+              "register": "neutral",
+              "acceptedPl": [
+                "Ten projekt zajmie trzy miesiące.",
+                "Ten projekt wymaga trzech miesięcy."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gaul",
+      "title": "Luźna rozmowa",
+      "order": 6,
+      "lessons": [
+        {
+          "id": "gaul.chat",
+          "title": "Bahasa gaul",
+          "order": 0,
+          "difficulty": 3,
+          "grammarNote": {
+            "id": "gaul.chat.note",
+            "title": "Bahasa gaul",
+            "body": "Potoczny język Dżakarty różni się od formalnego:\n\n- **gue / lo** zamiast *saya / Anda*,\n- **nggak** zamiast *tidak*, **udah** zamiast *sudah*,\n- **banget** (bardzo) stoi po przymiotniku: *capek banget*,\n- **aja** – „tylko”, „po prostu”.\n\nUżywaj go z kolegami po pracy, nie w mailach do klienta."
+          },
+          "items": [
+            {
+              "id": "gaul.gue",
+              "kind": "word",
+              "id_text": "gue",
+              "pl_text": "ja (slang)",
+              "register": "colloquial",
+              "acceptedId": [
+                "gua",
+                "gw"
+              ],
+              "acceptedPl": [
+                "ja"
+              ]
+            },
+            {
+              "id": "gaul.lo",
+              "kind": "word",
+              "id_text": "lo",
+              "pl_text": "ty (slang)",
+              "register": "colloquial",
+              "acceptedId": [
+                "lu",
+                "elo",
+                "lho"
+              ],
+              "acceptedPl": [
+                "ty"
+              ]
+            },
+            {
+              "id": "gaul.nggak",
+              "kind": "word",
+              "id_text": "nggak",
+              "pl_text": "nie (potocznie)",
+              "register": "colloquial",
+              "acceptedId": [
+                "gak",
+                "enggak",
+                "ga",
+                "ngga"
+              ],
+              "acceptedPl": [
+                "nie"
+              ]
+            },
+            {
+              "id": "gaul.udah",
+              "kind": "word",
+              "id_text": "udah",
+              "pl_text": "już (potocznie)",
+              "register": "colloquial",
+              "acceptedId": [
+                "dah",
+                "sudah"
+              ],
+              "acceptedPl": [
+                "już"
+              ]
+            },
+            {
+              "id": "gaul.banget",
+              "kind": "word",
+              "id_text": "banget",
+              "pl_text": "bardzo (potocznie)",
+              "register": "colloquial",
+              "acceptedPl": [
+                "bardzo",
+                "strasznie"
+              ]
+            },
+            {
+              "id": "gaul.aja",
+              "kind": "word",
+              "id_text": "aja",
+              "pl_text": "tylko, po prostu",
+              "register": "colloquial",
+              "acceptedId": [
+                "saja"
+              ],
+              "acceptedPl": [
+                "tylko",
+                "po prostu"
+              ]
+            },
+            {
+              "id": "gaul.gimana",
+              "kind": "word",
+              "id_text": "gimana",
+              "pl_text": "jak (potocznie)",
+              "register": "colloquial",
+              "acceptedId": [
+                "gmn"
+              ],
+              "acceptedPl": [
+                "jak"
+              ],
+              "notes": "Formalnie: bagaimana."
+            },
+            {
+              "id": "gaul.kenapa",
+              "kind": "word",
+              "id_text": "kenapa",
+              "pl_text": "dlaczego",
+              "register": "colloquial",
+              "acceptedPl": [
+                "czemu"
+              ],
+              "notes": "Formalnie: mengapa."
+            },
+            {
+              "id": "gaul.bener",
+              "kind": "word",
+              "id_text": "bener",
+              "pl_text": "naprawdę, prawda",
+              "register": "colloquial",
+              "acceptedId": [
+                "benar"
+              ],
+              "acceptedPl": [
+                "naprawdę",
+                "prawda",
+                "serio"
+              ]
+            },
+            {
+              "id": "gaul.santai",
+              "kind": "word",
+              "id_text": "santai",
+              "pl_text": "na luzie",
+              "register": "neutral",
+              "acceptedPl": [
+                "spokojnie",
+                "luz",
+                "relaks",
+                "wyluzuj"
+              ]
+            },
+            {
+              "id": "gaul.capek",
+              "kind": "word",
+              "id_text": "capek",
+              "pl_text": "zmęczony",
+              "register": "colloquial",
+              "acceptedId": [
+                "cape",
+                "capai",
+                "lelah"
+              ],
+              "acceptedPl": [
+                "zmęczona"
+              ],
+              "notes": "Formalnie: lelah."
+            },
+            {
+              "id": "gaul.s-gue-udah-makan",
+              "kind": "sentence",
+              "id_text": "Gue udah makan.",
+              "pl_text": "Już jadłem.",
+              "register": "colloquial",
+              "acceptedPl": [
+                "Już zjadłem.",
+                "Już jadłam.",
+                "Już zjadłam.",
+                "Jadłem już."
+              ]
+            },
+            {
+              "id": "gaul.s-lo-mau-ke-mana",
+              "kind": "sentence",
+              "id_text": "Lo mau ke mana?",
+              "pl_text": "Dokąd idziesz?",
+              "register": "colloquial",
+              "acceptedPl": [
+                "Gdzie idziesz?",
+                "Dokąd się wybierasz?",
+                "Gdzie się wybierasz?"
+              ]
+            },
+            {
+              "id": "gaul.s-gimana-proyeknya",
+              "kind": "sentence",
+              "id_text": "Gimana proyeknya?",
+              "pl_text": "Jak tam projekt?",
+              "register": "colloquial",
+              "acceptedPl": [
+                "Jak idzie projekt?",
+                "Co z projektem?",
+                "Jak projekt?"
+              ]
+            },
+            {
+              "id": "gaul.s-capek-banget",
+              "kind": "sentence",
+              "id_text": "Capek banget hari ini.",
+              "pl_text": "Jestem dziś bardzo zmęczony.",
+              "register": "colloquial",
+              "acceptedPl": [
+                "Jestem dzisiaj bardzo zmęczony.",
+                "Dziś jestem bardzo zmęczony.",
+                "Dzisiaj jestem bardzo zmęczony.",
+                "Jestem dziś bardzo zmęczona."
+              ]
+            },
+            {
+              "id": "gaul.s-santai-aja",
+              "kind": "sentence",
+              "id_text": "Santai aja, nggak apa-apa.",
+              "pl_text": "Spokojnie, nic się nie stało.",
+              "register": "colloquial",
+              "acceptedPl": [
+                "Luz, nic się nie stało.",
+                "Spokojnie, nie ma problemu.",
+                "Luz, nie ma problemu."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

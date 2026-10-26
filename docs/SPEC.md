@@ -143,7 +143,9 @@ Wynik:
 
 - **correct** – obie karty elementu idą do przegródki 4 (termin: za 8 dni, czyli weryfikacja w normalnym trybie),
 - **typo** – przegródka 2,
-- **wrong** lub „Nie wiem” – element zostaje nowy.
+- **wrong** lub „Nie wiem” – element zostaje nowy. Wyjątek: element `placementOnly` nigdy nie wchodzi jako nowy materiał, więc jego obie karty idą od razu do przegródki 1 (termin: dziś) i trafiają do zwykłych powtórek.
+
+Pominięcie testu oznacza, że podstawy `placementOnly` uznajemy za znane: nie powstają dla nich karty.
 
 Jeśli w lekcji poprawnie odpowiedziano na wszystkie testowane elementy, cała lekcja jest oznaczana jako przejrzana i jej pozostałe elementy startują z przegródki 2. Elementy `placementOnly` po teście są zwykłymi kartami w powtórkach, ale nie pojawiają się jako nowy materiał.
 

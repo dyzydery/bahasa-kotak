@@ -20,6 +20,16 @@ Toolchain: JDK 21 (Temurin) at `~/.local/share/jdks/jdk-21`, pinned for Gradle v
 
 Dependency versions live in `gradle/libs.versions.toml`. Bytecode targets Java 17 (`compileOptions` + Kotlin `jvmTarget`); don't add `jvmToolchain(...)`, because no matching JDK is installed and toolchain auto-download is off.
 
+## Code layout and data flow
+
+- `domain/` is pure Kotlin with no `android.*` imports, so all required logic tests run as JVM tests.
+- `io/pack/`: `PackReader` validates against `schemas/pack.schema.json`, then checks ID uniqueness across the pack. `ImportPlanner` is a pure function that decides new/updated/retired and rejects same or older versions. `PackImportService` is the single entry point for every import, whatever transport delivers the file.
+- `data/`: Room. Content tables (`packs`, `topics`, `lessons`, `items`) are written only by import, using `@Upsert`, never `REPLACE`. Removed content is marked `retired` and never deleted. Progress tables (`cards`, `answers`, `sessions`, `lesson_progress`) have no foreign keys to content on purpose, so a re-import can't touch learning history. The exported schema history lives in `app/roomSchemas/`; changing an entity needs a DB version bump plus a migration.
+- `schemas/` and `packs/` at the repo root are added as APK assets (see `sourceSets` in `app/build.gradle.kts`). On launch the app auto-imports `packs/starter.json` if its `packVersion` is newer than the installed one, so any edit to the starter pack must bump `packVersion`. Tests read these files through the `repoRoot` system property (`RepoFiles`).
+- Wiring is manual: `AppContainer`, owned by `BahasaKotakApp`. There is no DI framework.
+
+On-device debugging: a debug build allows `adb exec-out run-as io.github.dyzydery.bahasakotak cat databases/bahasa-kotak.db` (also pull `-wal`). There's no `sqlite3` CLI on the laptop, so query the copy with `python3 -I -c 'import sqlite3 …'`.
+
 ## Hard constraints from the brief
 
 - **Single user, offline-first**: no accounts, backend, or Play Store. Data lives in a local DB.

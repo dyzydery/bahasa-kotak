@@ -3,4 +3,5 @@
     <string name="home_greeting">Selamat datang!</string>
     <string name="home_subtitle">Nauka indonezyjskiego, 5 minut dziennie.</string>
     <string name="home_start">Zacznij</string>
+    <string name="home_import_pack">Importuj paczkę</string>
 </resources>
