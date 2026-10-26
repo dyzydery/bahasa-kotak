@@ -6,3 +6,6 @@ local.properties
 *.aab
 .idea/
 *.iml
+
+# Personal learning data (exports, Claude replies)
+postepy/
