@@ -200,6 +200,10 @@ Osobna funkcja w ustawieniach:
 
 Wykresy są rysowane własnym kodem w Compose Canvas (jedna seria na wykres, kolor z motywu, wartość po stuknięciu). Przy czterech prostych wykresach biblioteka (Vico) nie była warta zależności.
 
+## 12a. Wygląd
+
+Stała paleta zamiast kolorów dynamicznych systemu: *laut* (morski turkus) jako kolor główny, *kunyit* (kurkuma) jako drugi, *merah* (czerwień flagi) jako oszczędny akcent, na ciepłym, papierowym tle. Ma własny tryb ciemny. Font: Plus Jakarta Sans (OFL, licencja w `assets/licenses`). Ekran główny zaczyna się kaflem z pozdrowieniem zależnym od pory dnia (*Selamat pagi/siang/sore/malam*), liczbą powtórek i nowych słów oraz przyciskiem „Zacznij”. Narzędzia (pętla z Claude, kopia zapasowa) są zwartymi listami pod spodem.
+
 ## 13. Build i instalacja
 
 Narzędzia CLI na Fedorze (fish):

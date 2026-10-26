@@ -19,6 +19,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import io.github.dyzydery.bahasakotak.domain.Leitner
+import io.github.dyzydery.bahasakotak.domain.PlannerInput
+import io.github.dyzydery.bahasakotak.domain.SessionPlanner
+import io.github.dyzydery.bahasakotak.domain.StatsCalculator
 import io.github.dyzydery.bahasakotak.io.export.ExportBuilder
 import io.github.dyzydery.bahasakotak.io.export.ExportFile
 import io.github.dyzydery.bahasakotak.io.transport.ContentTransport
@@ -27,6 +31,16 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.UUID
+
+/** What Home shows about today and overall progress. */
+data class TodaySummary(
+    val due: Int,
+    val newAvailable: Int,
+    val known: Int,
+    val mastered: Int,
+    val introduced: Int,
+    val total: Int,
+)
 
 sealed interface ImportUiState {
     data object Idle : ImportUiState
@@ -46,12 +60,36 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
     val placementDone: StateFlow<Boolean?> =
         container.studyRepository.placementDone.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    private val _today = MutableStateFlow<TodaySummary?>(null)
+    val today = _today.asStateFlow()
+
+    /** Called whenever Home is shown, so the counts reflect the session just finished. */
+    fun refreshToday() {
+        viewModelScope.launch {
+            val snapshot = container.studyRepository.snapshot()
+            val now = System.currentTimeMillis()
+            val cards = snapshot.cards.values.filter { it.key.itemId in snapshot.items }
+            val input = PlannerInput(now, snapshot.cards, snapshot.items, snapshot.lessons, SessionPlanner.DEFAULT_TASK_LIMIT)
+            val learnable = snapshot.items.values.filter { !it.placementOnly }
+            val introduced = cards.mapTo(HashSet()) { it.key.itemId }
+            _today.value = TodaySummary(
+                due = cards.count { it.dueAt <= now },
+                newAvailable = minOf(SessionPlanner.MAX_NEW_ITEMS, SessionPlanner.pickNewItems(input).size),
+                known = cards.count { it.box >= StatsCalculator.KNOWN_BOX },
+                mastered = cards.count { it.box == Leitner.MASTERED },
+                introduced = learnable.count { it.id in introduced },
+                total = learnable.size,
+            )
+        }
+    }
+
     private val _importState = MutableStateFlow<ImportUiState>(ImportUiState.Idle)
     val importState = _importState.asStateFlow()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             importService.importBundled(container.asset(AppContainer.STARTER_PACK_ASSET))
+            refreshToday()
         }
     }
 
@@ -72,6 +110,7 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
         val preview = (_importState.value as? ImportUiState.Showing)?.preview as? ImportPreview.Ready ?: return
         viewModelScope.launch {
             withContext(Dispatchers.IO) { importService.apply(preview.plan) }
+            refreshToday()
             _importState.value = ImportUiState.Done("Zaimportowano paczkę „${preview.plan.pack.title}”.")
         }
     }
