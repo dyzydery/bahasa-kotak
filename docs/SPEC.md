@@ -75,7 +75,7 @@ Normalizacja odpowiedzi i każdego akceptowanego wariantu:
 3. usunięcie interpunkcji (`.,!?;:"'()-…` itp.); myślnik wewnątrz słowa zamieniany na spację, żeby `kira-kira` = `kira kira`,
 4. zwinięcie wielu spacji do jednej i obcięcie z obu stron.
 
-Zbiór poprawnych odpowiedzi = główne tłumaczenie + `accepted*` z paczki. Ocena:
+Zbiór poprawnych odpowiedzi = główne tłumaczenie + `accepted*` z paczki. Każdy wariant jest dodatkowo rozwijany o formy bez podpowiedzi: fragmenty w nawiasach są opcjonalne („dzień dobry (rano)” przyjmuje „dzień dobry”), a „A / B” przyjmuje osobno A i B. Ocena:
 
 - **correct** – znormalizowana odpowiedź równa któremuś wariantowi.
 - **typo** („prawie dobrze”) – odległość Damerau-Levenshteina do najbliższego wariantu ≤ progu. Pokazujemy poprawną pisownię najbliższego wariantu.
@@ -94,7 +94,7 @@ Damerau (z transpozycją), bo zamiana sąsiednich liter to najczęstsza literów
 
 ## 5. Powtórki – Leitner
 
-| Przegródka | Następna powtórka po poprawnej odpowiedzi |
+| Karta trafia do przegródki | Następna powtórka za |
 |---|---|
 | 1 | 1 dzień |
 | 2 | 2 dni |
@@ -103,11 +103,12 @@ Damerau (z transpozycją), bo zamiana sąsiednich liter to najczęstsza literów
 | 5 | 16 dni |
 | opanowane | 60 dni, potem 120, 240… (podwajane) |
 
-Uzasadnienie: podwajanie odstępów to klasyczny schemat Leitnera i odpowiada krzywej zapominania. Start od 1 dnia wynika z rytmu „raz dziennie przez 5 minut”: krótszy odstęp i tak nie wystąpi. Przy 16 dniach w ostatniej przegródce słowo, które przejdzie bezbłędnie całą drabinkę, zostaje opanowane po ok. 31 dniach, co pasuje do horyzontu startowej paczki (2–3 tygodnie nauki plus powtórki).
+Uzasadnienie: podwajanie odstępów to klasyczny schemat Leitnera i odpowiada krzywej zapominania. Start od 1 dnia wynika z rytmu „raz dziennie przez 5 minut”: krótszy odstęp i tak nie wystąpi. Przy 16 dniach w ostatniej przegródce słowo, które przejdzie bezbłędnie całą drabinkę, zostaje opanowane po 30 dniach (2 + 4 + 8 + 16), co pasuje do horyzontu startowej paczki (2–3 tygodnie nauki plus powtórki).
 
 Przejścia:
 
 - nowa karta → przegródka 1, termin: dziś,
+- terminy są liczone w dniach kalendarzowych (północ czasu lokalnego), więc karta „za 1 dzień” pojawi się w jutrzejszej sesji niezależnie od pory dnia,
 - **correct**: przegródka +1; z przegródki 5 → **opanowane** (termin +60 dni); przy opanowanym słowie odstęp się podwaja,
 - **wrong**: przegródka 1 (również ze stanu opanowane), termin: jutro; zadanie wraca jeszcze w tej sesji,
 - **typo**: przegródka bez zmian, termin wyznaczony jak dla tej przegródki (bez awansu).
@@ -119,10 +120,10 @@ Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko
 - Sesja ma limit **zadań**, na start 20. Po każdej sesji apka liczy medianę czasu odpowiedzi z ostatnich 7 dni i ustawia limit tak, żeby wyszło ok. 300 s (zakres 10–40).
 - Kolejność doboru:
   1. zaległe karty (`dueAt ≤ teraz`), od najstarszych; opanowane na końcu kolejki,
-  2. jeśli zostało miejsce: nowe elementy z bieżącej lekcji (max 5 nowych elementów na sesję). Nowy element wprowadza obie karty kierunkowe, z kierunkiem ID→PL najpierw.
+  2. jeśli zostało miejsce: nowe elementy z bieżącej lekcji (max 5 nowych elementów na sesję). Nowy element wprowadza obie karty kierunkowe, z kierunkiem ID→PL najpierw. Każdy nowy element najpierw pojawia się jako karta „Nowe” (oba teksty, rejestr, notka), bo nie da się odpytać ze słowa, którego się jeszcze nie widziało. Pytanie ID→PL pada 2–3 zadania później, a pytania PL→ID zamykają sesję. Karta „Nowe” nie jest oceniana i nie wlicza się do limitu.
 - Kierunki są losowane tak, żeby w sesji było ich po równo (±1).
 - Typ ćwiczenia: zdania (`sentence`) dostają klocki, a słowa i frazy fiszki z wpisywaniem. Zdanie co trzeci raz trafia na fiszkę, a fraza z ≥ 3 słowami na klocki, żeby oba typy się przeplatały.
-- Błędne zadanie wraca po 3–5 kolejnych zadaniach i nie wlicza się do limitu.
+- Błędne zadanie wraca po 3–5 kolejnych zadaniach i nie wlicza się do limitu. Wraca najwyżej 3 razy, żeby sesja się nie zapętliła.
 - Lekcja jest „zaliczona”, gdy wszystkie jej karty są w przegródce ≥ 2. Następna lekcja tematu odblokowuje się wtedy automatycznie. Tematy idą równolegle według `order`.
 - Ekran startowy ma jeden przycisk „Zacznij”, a sesja ładuje się bez ekranów pośrednich. Jeśli nowa lekcja ma notkę gramatyczną, pokazuje się ona raz przed jej pierwszym zadaniem.
 

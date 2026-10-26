@@ -23,10 +23,16 @@ Dependency versions live in `gradle/libs.versions.toml`. Bytecode targets Java 1
 ## Code layout and data flow
 
 - `domain/` is pure Kotlin with no `android.*` imports, so all required logic tests run as JVM tests.
+  - `AnswerChecker`: normalization plus Damerau-Levenshtein typo grading. Variants also accept their text without `(hints)`, and each side of `A / B`.
+  - `Leitner`: due dates are local midnights, so they count in calendar days.
+  - `SessionPlanner` decides *what* a session contains: due reviews balanced by direction, then new items from each topic's first unfinished lesson, plus grammar notes and intro cards.
+  - `SessionEngine` runs the queue: the first answer moves a card, and wrong answers are re-queued as `retry` tasks that are logged but never move the card. It only reports outcomes; `SessionViewModel` persists them through `StudyRepository.saveAnswer`, which writes the card and the log entry in one transaction.
 - `io/pack/`: `PackReader` validates against `schemas/pack.schema.json`, then checks ID uniqueness across the pack. `ImportPlanner` is a pure function that decides new/updated/retired and rejects same or older versions. `PackImportService` is the single entry point for every import, whatever transport delivers the file.
 - `data/`: Room. Content tables (`packs`, `topics`, `lessons`, `items`) are written only by import, using `@Upsert`, never `REPLACE`. Removed content is marked `retired` and never deleted. Progress tables (`cards`, `answers`, `sessions`, `lesson_progress`) have no foreign keys to content on purpose, so a re-import can't touch learning history. The exported schema history lives in `app/roomSchemas/`; changing an entity needs a DB version bump plus a migration.
 - `schemas/` and `packs/` at the repo root are added as APK assets (see `sourceSets` in `app/build.gradle.kts`). On launch the app auto-imports `packs/starter.json` if its `packVersion` is newer than the installed one, so any edit to the starter pack must bump `packVersion`. Tests read these files through the `repoRoot` system property (`RepoFiles`).
 - Wiring is manual: `AppContainer`, owned by `BahasaKotakApp`. There is no DI framework.
+
+Driving the phone UI with `adb shell input` needs MIUI's "USB debugging (Security settings)" plus an unlocked screen. Without that, `input` fails with an INJECT_EVENTS SecurityException.
 
 On-device debugging: a debug build allows `adb exec-out run-as io.github.dyzydery.bahasakotak cat databases/bahasa-kotak.db` (also pull `-wal`). There's no `sqlite3` CLI on the laptop, so query the copy with `python3 -I -c 'import sqlite3 …'`.
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import io.github.dyzydery.bahasakotak.data.BahasaDatabase
 import io.github.dyzydery.bahasakotak.data.ContentRepository
+import io.github.dyzydery.bahasakotak.data.StudyRepository
 import io.github.dyzydery.bahasakotak.io.pack.PackImportService
 import io.github.dyzydery.bahasakotak.io.pack.PackReader
 
@@ -11,6 +12,7 @@ import io.github.dyzydery.bahasakotak.io.pack.PackReader
 class AppContainer(private val context: Context) {
     val database by lazy { BahasaDatabase.open(context) }
     val contentRepository by lazy { ContentRepository(database) }
+    val studyRepository by lazy { StudyRepository(database) }
     val packImportService by lazy {
         PackImportService(PackReader(asset(PACK_SCHEMA_ASSET)), contentRepository)
     }

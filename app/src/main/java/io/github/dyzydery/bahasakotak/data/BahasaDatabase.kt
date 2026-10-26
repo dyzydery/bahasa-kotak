@@ -17,6 +17,7 @@ import androidx.room.TypeConverters
 @TypeConverters(Converters::class)
 abstract class BahasaDatabase : RoomDatabase() {
     abstract fun contentDao(): ContentDao
+    abstract fun studyDao(): StudyDao
 
     companion object {
         const val FILE_NAME = "bahasa-kotak.db"
