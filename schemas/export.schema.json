@@ -5,43 +5,97 @@
   "description": "Full answer log and current learning state, exported for analysis by Claude.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "exportedAt", "appVersion", "packs", "answers", "cards", "lessons", "sessions"],
+  "required": [
+    "schemaVersion",
+    "exportedAt",
+    "timeZone",
+    "appVersion",
+    "installedPacks",
+    "content",
+    "answers",
+    "cards",
+    "lessons",
+    "sessions"
+  ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "exportedAt": { "type": "string", "format": "date-time" },
-    "appVersion": { "type": "string" },
-    "packs": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "timeZone": {
+      "type": "string",
+      "description": "IANA zone of the device, e.g. Europe/Warsaw. Timestamps are UTC; convert for time-of-day analysis."
+    },
+    "appVersion": {
+      "type": "string"
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/answer"
+      }
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/card"
+      }
+    },
+    "lessons": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/lessonProgress"
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/session"
+      }
+    },
+    "installedPacks": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["packId", "packVersion", "importedAt"],
+        "required": [
+          "packId",
+          "packVersion",
+          "importedAt"
+        ],
         "properties": {
-          "packId": { "type": "string" },
-          "packVersion": { "type": "integer", "minimum": 1 },
-          "importedAt": { "type": "string", "format": "date-time" }
+          "packId": {
+            "type": "string"
+          },
+          "packVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "importedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       }
     },
-    "answers": {
+    "content": {
       "type": "array",
-      "items": { "$ref": "#/$defs/answer" }
-    },
-    "cards": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/card" }
-    },
-    "lessons": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/lessonProgress" }
-    },
-    "sessions": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/session" }
+      "description": "Every installed pack as currently held by the app (active items only), each in the format of pack.schema.json. A corrected pack is returned as a new packVersion of one of these.",
+      "items": {
+        "type": "object"
+      }
     }
   },
   "$defs": {
-    "direction": { "enum": ["pl_id", "id_pl"] },
+    "direction": {
+      "enum": [
+        "pl_id",
+        "id_pl"
+      ]
+    },
     "box": {
       "type": "integer",
       "minimum": 0,
@@ -51,58 +105,174 @@
     "answer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["itemId", "direction", "exerciseType", "prompt", "userAnswer", "expected", "grade", "answeredAt", "boxBefore", "boxAfter", "sessionId", "retry"],
+      "required": [
+        "itemId",
+        "direction",
+        "exerciseType",
+        "prompt",
+        "userAnswer",
+        "expected",
+        "grade",
+        "answeredAt",
+        "boxBefore",
+        "boxAfter",
+        "sessionId",
+        "retry"
+      ],
       "properties": {
-        "itemId": { "type": "string" },
-        "direction": { "$ref": "#/$defs/direction" },
-        "exerciseType": { "enum": ["typed", "blocks", "placement"] },
-        "prompt": { "type": "string", "description": "Text shown to the user." },
-        "userAnswer": { "type": "string" },
-        "expected": { "type": "string", "description": "Closest accepted variant." },
-        "grade": { "enum": ["correct", "typo", "wrong"] },
-        "answeredAt": { "type": "string", "format": "date-time" },
-        "durationMs": { "type": "integer", "minimum": 0 },
-        "boxBefore": { "$ref": "#/$defs/box" },
-        "boxAfter": { "$ref": "#/$defs/box" },
-        "sessionId": { "type": "string" },
-        "retry": { "type": "boolean", "description": "True for an in-session repeat after a wrong answer (does not move the card)." }
+        "itemId": {
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/$defs/direction"
+        },
+        "exerciseType": {
+          "enum": [
+            "typed",
+            "blocks",
+            "placement"
+          ]
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Text shown to the user."
+        },
+        "userAnswer": {
+          "type": "string"
+        },
+        "expected": {
+          "type": "string",
+          "description": "Closest accepted variant."
+        },
+        "grade": {
+          "enum": [
+            "correct",
+            "typo",
+            "wrong"
+          ]
+        },
+        "answeredAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "boxBefore": {
+          "$ref": "#/$defs/box"
+        },
+        "boxAfter": {
+          "$ref": "#/$defs/box"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "retry": {
+          "type": "boolean",
+          "description": "True for an in-session repeat after a wrong answer (does not move the card)."
+        }
       }
     },
     "card": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["itemId", "direction", "box", "dueAt"],
+      "required": [
+        "itemId",
+        "direction",
+        "box",
+        "dueAt",
+        "masteredIntervalDays",
+        "introducedAt",
+        "retired"
+      ],
       "properties": {
-        "itemId": { "type": "string" },
-        "direction": { "$ref": "#/$defs/direction" },
-        "box": { "$ref": "#/$defs/box" },
-        "dueAt": { "type": ["string", "null"], "format": "date-time" },
-        "masteredIntervalDays": { "type": "integer", "minimum": 0 },
-        "introducedAt": { "type": ["string", "null"], "format": "date-time" },
-        "retired": { "type": "boolean" }
+        "itemId": {
+          "type": "string"
+        },
+        "direction": {
+          "$ref": "#/$defs/direction"
+        },
+        "box": {
+          "$ref": "#/$defs/box"
+        },
+        "dueAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Local midnight of the day the card is due."
+        },
+        "masteredIntervalDays": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "introducedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retired": {
+          "type": "boolean",
+          "description": "True when the item was removed from its pack; kept for history."
+        }
       }
     },
     "lessonProgress": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["lessonId", "topicId", "status"],
+      "required": [
+        "lessonId",
+        "topicId",
+        "status"
+      ],
       "properties": {
-        "lessonId": { "type": "string" },
-        "topicId": { "type": "string" },
-        "status": { "enum": ["locked", "available", "in_progress", "completed"] },
-        "grammarNoteSeen": { "type": "boolean" }
+        "lessonId": {
+          "type": "string"
+        },
+        "topicId": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "locked",
+            "available",
+            "in_progress",
+            "completed"
+          ]
+        },
+        "grammarNoteSeen": {
+          "type": "boolean"
+        }
       }
     },
     "session": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "startedAt", "taskCount"],
+      "required": [
+        "id",
+        "startedAt",
+        "taskCount"
+      ],
       "properties": {
-        "id": { "type": "string" },
-        "startedAt": { "type": "string", "format": "date-time" },
-        "endedAt": { "type": ["string", "null"], "format": "date-time" },
-        "taskCount": { "type": "integer", "minimum": 0 },
-        "placement": { "type": "boolean" }
+        "id": {
+          "type": "string"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "taskCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "placement": {
+          "type": "boolean"
+        }
       }
     }
   }

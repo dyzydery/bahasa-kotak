@@ -20,34 +20,12 @@ class ContentRepository(private val db: BahasaDatabase) {
 
     /** Applies a plan atomically. Only content tables are written; progress is untouched. */
     suspend fun apply(plan: ImportPlan.Apply, now: Long) {
-        val pack = plan.pack
+        val rows = plan.pack.toRows(importedAt = now)
         db.withTransaction {
-            dao.upsertPack(PackEntity(pack.packId, pack.packVersion, pack.title, pack.description, now))
-            dao.upsertTopics(pack.topics.map { t ->
-                TopicEntity(t.id, pack.packId, t.title, t.description, t.order)
-            })
-            dao.upsertLessons(pack.topics.flatMap { t ->
-                t.lessons.map { l ->
-                    LessonEntity(
-                        id = l.id, topicId = t.id, packId = pack.packId, title = l.title, order = l.order,
-                        difficulty = l.difficulty, grammarNoteId = l.grammarNote?.id,
-                        grammarNoteTitle = l.grammarNote?.title, grammarNoteBody = l.grammarNote?.body,
-                    )
-                }
-            })
-            dao.upsertItems(pack.topics.flatMap { t ->
-                t.lessons.flatMap { l ->
-                    l.items.mapIndexed { index, i ->
-                        ItemEntity(
-                            id = i.id, lessonId = l.id, packId = pack.packId, order = index, kind = i.kind,
-                            idText = i.idText, plText = i.plText, register = i.register,
-                            acceptedId = i.acceptedId, acceptedPl = i.acceptedPl,
-                            distractorsId = i.distractorsId, distractorsPl = i.distractorsPl,
-                            notes = i.notes, tags = i.tags, placementOnly = i.placementOnly,
-                        )
-                    }
-                }
-            })
+            dao.upsertPack(rows.pack)
+            dao.upsertTopics(rows.topics)
+            dao.upsertLessons(rows.lessons)
+            dao.upsertItems(rows.items)
             if (plan.retiredTopicIds.isNotEmpty()) dao.retireTopics(plan.retiredTopicIds)
             if (plan.retiredLessonIds.isNotEmpty()) dao.retireLessons(plan.retiredLessonIds)
             if (plan.retiredItemIds.isNotEmpty()) dao.retireItems(plan.retiredItemIds)

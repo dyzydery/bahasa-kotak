@@ -32,7 +32,8 @@ android {
 
     sourceSets {
         // Schemas and bundled packs live at the repo root so Claude and the app share one copy.
-        getByName("main").assets.srcDirs(rootProject.file("schemas"), rootProject.file("packs"))
+        // docs/ supplies ANALYSIS_PROMPT.md, which the export is shared with.
+        getByName("main").assets.srcDirs(rootProject.file("schemas"), rootProject.file("packs"), rootProject.file("docs"))
     }
 
     packaging {

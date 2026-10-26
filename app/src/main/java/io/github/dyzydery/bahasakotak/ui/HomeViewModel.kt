@@ -19,6 +19,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import io.github.dyzydery.bahasakotak.io.export.ExportBuilder
+import io.github.dyzydery.bahasakotak.io.export.ExportFile
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 sealed interface ImportUiState {
@@ -76,6 +82,55 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
             container.studyRepository.saveSession(
                 SessionEntity(UUID.randomUUID().toString(), now, now, taskCount = 0, placement = true)
             )
+        }
+    }
+
+    /** Builds the export and hands it to the transport; a transport that returns a pack goes to import preview. */
+    fun shareExport() {
+        viewModelScope.launch {
+            val file = withContext(Dispatchers.IO) { buildExport() }
+            val prompt = withContext(Dispatchers.IO) { container.asset(AppContainer.ANALYSIS_PROMPT_ASSET) }
+            val pack = container.transport.sendExport(file, prompt)
+            if (pack != null) _importState.value = ImportUiState.Showing(importService.preview(pack))
+        }
+    }
+
+    fun saveExport(target: Uri) = runReporting("Zapisano eksport.") {
+        val file = buildExport()
+        checkNotNull(container.openWriter(target)).use { it.write(file.json) }
+    }
+
+    fun exportFileName(): String = ExportBuilder.fileName(Instant.now(), ZoneId.systemDefault())
+
+    fun backup(target: Uri) = runReporting("Kopia zapasowa zapisana.") { container.backupManager.backup(target) }
+
+    fun backupFileName(): String =
+        "bahasa-kotak-" + DateTimeFormatter.ofPattern("yyyyMMdd-HHmm").format(LocalDateTime.now()) + ".db"
+
+    fun restore(source: Uri) {
+        viewModelScope.launch {
+            val error = container.backupManager.restore(source)
+            if (error == null) container.backupManager.restartApp()
+            else _importState.value = ImportUiState.Done(error)
+        }
+    }
+
+    private suspend fun buildExport(): ExportFile {
+        val now = Instant.now()
+        val zone = ZoneId.systemDefault()
+        val data = container.database.exportDao().exportData()
+        return ExportBuilder.toFile(ExportBuilder.build(data, container.appVersion, now, zone), now, zone)
+    }
+
+    private fun runReporting(success: String, action: suspend () -> Unit) {
+        viewModelScope.launch {
+            val message = try {
+                withContext(Dispatchers.IO) { action() }
+                success
+            } catch (e: Exception) {
+                "Nie udało się: ${e.message}"
+            }
+            _importState.value = ImportUiState.Done(message)
         }
     }
 

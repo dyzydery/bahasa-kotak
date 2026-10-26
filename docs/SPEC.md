@@ -34,18 +34,17 @@ Zasada: `domain` nie importuje nic z `android.*`. Wszystkie testy wymagane brief
 
 ### 2.1 Warstwa transportu
 
-Eksport i import są rozdzielone, bo przy pliku to dwie niezależne czynności użytkownika, a przy API jedno żądanie:
-
 ```kotlin
-interface ExportSink   { suspend fun send(export: ExportPayload): SendResult }
-interface PackSource   { suspend fun receive(): PackResult }        // surowy JSON → walidacja w PackImporter
-interface ContentTransport : ExportSink, PackSource { val id: String; val displayName: String }
+interface ContentTransport {
+    /** Zwraca JSON paczki, jeśli transport dostaje ją od razu; inaczej null. */
+    suspend fun sendExport(file: ExportFile, prompt: String): String?
+}
 ```
 
-- `FileTransport` (teraz): `send` zapisuje plik i otwiera systemowe udostępnianie (`ACTION_SEND`, FileProvider). `receive` otwiera wybór pliku (`ACTION_OPEN_DOCUMENT`).
-- `FrogApiTransport` (później): `send` robi POST eksportu do serwisu na VPS, a odpowiedzią jest paczka, którą `receive` zwraca od razu. Serwis na Mikrus Frog (Alpine, 256 MB RAM, za Cloudflare) dostaje eksport, dokleja `ANALYSIS_PROMPT.md`, woła Claude API i zwraca paczkę. Uwierzytelnianie: statyczny token w nagłówku.
+- `FileTransport` (teraz): zapisuje eksport w cache i otwiera systemowe udostępnianie (`ACTION_SEND` przez FileProvider). Plik jest załącznikiem, a treść `docs/ANALYSIS_PROMPT.md` tekstem wiadomości, więc do aplikacji Claude wystarcza jedno udostępnienie. Zwraca `null`: paczka wraca później jako plik wybierany przyciskiem „Importuj paczkę”. Dla drogi przez laptopa jest też „Zapisz eksport do pliku”.
+- `FrogApiTransport` (później): POST eksportu i promptu do serwisu na VPS (Mikrus Frog, Alpine, 256 MB RAM, za Cloudflare). Serwis woła Claude API i odsyła paczkę, którą `sendExport` zwraca. Apka od razu pokazuje podgląd importu. Uwierzytelnianie: statyczny token w nagłówku.
 
-Wybór transportu to ustawienie w apce. Import zawsze przechodzi przez tę samą walidację niezależnie od źródła.
+Import zawsze przechodzi przez `PackImportService`, czyli tę samą walidację, niezależnie od źródła.
 
 ## 3. Model danych
 
@@ -167,13 +166,16 @@ Zasady idempotencji:
 
 Schemat: `schemas/export.schema.json`, `schemaVersion: 1`. Zawartość:
 
-- metadane: wersja apki, data eksportu, zainstalowane paczki z wersjami,
+- metadane: wersja apki, data eksportu, strefa czasowa urządzenia, zainstalowane paczki z wersjami,
+- **pełna treść zainstalowanych paczek** (`content`, aktywne elementy w formacie paczki). Bez niej Claude nie znałby tekstów ani ID, więc nie mógłby poprawić wariantów ani uniknąć kolizji ID. Poprawka istniejących elementów to nowa wersja tej paczki zbudowana z `content`,
 - **pełny log odpowiedzi** (wszystkie pola z §3.2),
 - bieżący stan kart (przegródka, termin),
 - postęp lekcji i tematów,
 - sesje.
 
 Eksport jest zawsze pełny, bez przyrostów. Przy 5 minutach dziennie to ok. 30 odpowiedzi dziennie, czyli rząd ~1 MB rocznie, więc rozmiar nie jest problemem.
+
+Nowe paczki z pętli mają `packId` `loop-NNN`. Mogą dokładać lekcje do istniejących tematów: temat z tym samym ID przechodzi wtedy do nowej paczki, a jego treść musi być identyczna. Test `AnalysisPromptTest` pilnuje, żeby przykład w prompcie był poprawną paczką.
 
 `docs/ANALYSIS_PROMPT.md` to gotowy prompt do wklejenia razem z eksportem. Zawiera zasady analizy (wzorce błędów, rejestry, IT/telco, dobór trudności), wymaga zachowania istniejących ID i zwrócenia jednej paczki zgodnej z `pack.schema.json`.
 

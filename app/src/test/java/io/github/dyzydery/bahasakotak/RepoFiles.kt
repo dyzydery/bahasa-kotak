@@ -10,4 +10,6 @@ object RepoFiles {
 
     val packSchema get() = read("schemas/pack.schema.json")
     val starterPack get() = read("packs/starter.json")
+    val exportSchema get() = read("schemas/export.schema.json")
+    val analysisPrompt get() = read("docs/ANALYSIS_PROMPT.md")
 }

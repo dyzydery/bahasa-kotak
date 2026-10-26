@@ -22,6 +22,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -42,12 +45,23 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () ->
     val pickPack = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) viewModel.onPackFilePicked(uri)
     }
+    val saveExport = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+        if (uri != null) viewModel.saveExport(uri)
+    }
+    val saveBackup = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
+        if (uri != null) viewModel.backup(uri)
+    }
+    val pickBackup = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) viewModel.restore(uri)
+    }
+    var confirmRestore by remember { mutableStateOf(false) }
 
     Scaffold { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
+                .verticalScroll(rememberScrollState())
                 .padding(24.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,19 +77,52 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () ->
             }
             Spacer(Modifier.height(32.dp))
             ContentSummary(packs, stats)
+            Spacer(Modifier.height(24.dp))
+            ToolsSection(title = "Pętla z Claude") {
+                OutlinedButton(onClick = viewModel::shareExport, Modifier.fillMaxWidth()) { Text("Wyślij eksport do Claude") }
+                OutlinedButton(onClick = { saveExport.launch(viewModel.exportFileName()) }, Modifier.fillMaxWidth()) {
+                    Text("Zapisz eksport do pliku")
+                }
+                // MIUI's file manager often reports .json as application/octet-stream, so accept anything
+                // and let the schema validation reject what isn't a pack.
+                OutlinedButton(onClick = { pickPack.launch(arrayOf("*/*")) }, Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.home_import_pack))
+                }
+            }
             Spacer(Modifier.height(16.dp))
-            // MIUI's file manager often reports .json as application/octet-stream, so accept anything
-            // and let the schema validation reject what isn't a pack.
-            OutlinedButton(onClick = { pickPack.launch(arrayOf("*/*")) }) {
-                Text(stringResource(R.string.home_import_pack))
+            ToolsSection(title = "Kopia zapasowa") {
+                OutlinedButton(onClick = { saveBackup.launch(viewModel.backupFileName()) }, Modifier.fillMaxWidth()) {
+                    Text("Utwórz kopię zapasową")
+                }
+                OutlinedButton(onClick = { confirmRestore = true }, Modifier.fillMaxWidth()) { Text("Przywróć z kopii") }
             }
         }
+    }
+
+    if (confirmRestore) {
+        AlertDialog(
+            onDismissRequest = { confirmRestore = false },
+            title = { Text("Przywrócić z kopii?") },
+            text = { Text("Wszystkie obecne dane i postępy zostaną zastąpione zawartością kopii. Aplikacja uruchomi się ponownie.") },
+            confirmButton = {
+                TextButton(onClick = { confirmRestore = false; pickBackup.launch(arrayOf("*/*")) }) { Text("Wybierz plik") }
+            },
+            dismissButton = { TextButton(onClick = { confirmRestore = false }) { Text("Anuluj") } },
+        )
     }
 
     when (val state = importState) {
         ImportUiState.Idle -> Unit
         is ImportUiState.Done -> InfoDialog(state.message, viewModel::dismissImport)
         is ImportUiState.Showing -> ImportPreviewDialog(state.preview, viewModel::confirmImport, viewModel::dismissImport)
+    }
+}
+
+@Composable
+private fun ToolsSection(title: String, content: @Composable () -> Unit) {
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Text(title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+        content()
     }
 }
 
