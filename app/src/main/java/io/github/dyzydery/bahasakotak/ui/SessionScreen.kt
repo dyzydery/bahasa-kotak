@@ -397,7 +397,8 @@ private fun RegisterTag(register: Register) {
     val colors = MaterialTheme.colorScheme
     when (register) {
         Register.FORMAL -> Tag("formalny", colors.primaryContainer, colors.onPrimaryContainer)
-        Register.COLLOQUIAL -> Tag("potoczny", colors.secondaryContainer, colors.onSecondaryContainer)
+        Register.OFFICE -> Tag("Jakarta · biuro", colors.tertiaryContainer, colors.onTertiaryContainer)
+        Register.COLLOQUIAL -> Tag("potoczny (gaul)", colors.secondaryContainer, colors.onSecondaryContainer)
         Register.NEUTRAL -> Unit
     }
 }

@@ -38,6 +38,8 @@ data class GrammarNote(val id: String, val title: String, val body: String)
 
 data class LessonInfo(
     val id: String,
+    val topicId: String,
+    /** Sort key only: topics from different packs may share an order value, so never group by it. */
     val topicOrder: Int,
     val order: Int,
     val difficulty: Int,

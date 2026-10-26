@@ -71,9 +71,9 @@ object SessionPlanner {
     internal fun pickNewItems(input: PlannerInput): List<StudyItem> {
         val introduced = input.cards.keys.mapTo(HashSet()) { it.itemId }
         return input.lessons
-            .groupBy { it.topicOrder }
-            .toSortedMap()
+            .groupBy { it.topicId }
             .values
+            .sortedWith(compareBy({ it.first().topicOrder }, { it.first().topicId }))
             .mapNotNull { lessons -> lessons.sortedBy { it.order }.firstOrNull { !isFinished(it, input.cards) } }
             .flatMap { lesson -> lesson.items.filter { !it.placementOnly && it.id !in introduced } }
     }

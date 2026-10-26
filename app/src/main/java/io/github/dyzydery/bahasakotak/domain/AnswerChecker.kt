@@ -9,7 +9,7 @@ data class CheckResult(
 )
 
 /**
- * Grades a typed answer against every accepted variant. Case, punctuation, extra spaces and Polish
+ * Grades a typed answer against every accepted variant. Case, punctuation, spaces, hyphens and Polish
  * diacritics are ignored. A small edit distance, scaled by length, counts as a typo ("prawie dobrze").
  */
 object AnswerChecker {
@@ -19,7 +19,9 @@ object AnswerChecker {
         val given = normalize(answer)
         if (given.isEmpty()) return CheckResult(Grade.WRONG, variants.first())
 
-        expanded.firstOrNull { normalize(it) == given }?.let { return CheckResult(Grade.CORRECT, it) }
+        // Spaces are compared loosely: "meetingnya" = "meeting-nya", "kirakira" = "kira-kira".
+        val compactGiven = given.replace(" ", "")
+        expanded.firstOrNull { normalize(it).replace(" ", "") == compactGiven }?.let { return CheckResult(Grade.CORRECT, it) }
 
         val (closest, distance) = expanded
             .map { it to damerauLevenshtein(given, normalize(it)) }

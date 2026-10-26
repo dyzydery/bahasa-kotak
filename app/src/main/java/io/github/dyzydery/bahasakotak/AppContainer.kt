@@ -4,6 +4,11 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.net.Uri
 import io.github.dyzydery.bahasakotak.data.BahasaDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
 import io.github.dyzydery.bahasakotak.data.ContentRepository
 import io.github.dyzydery.bahasakotak.data.StatsRepository
 import io.github.dyzydery.bahasakotak.data.StudyRepository
@@ -23,6 +28,16 @@ class AppContainer(private val context: Context) {
     val shareTransport: ContentTransport by lazy { FileTransport(context) }
     val clipboardTransport: ContentTransport by lazy { ClipboardTransport(context) }
     val backupManager by lazy { BackupManager(context) { database } }
+    private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+    /**
+     * Imports the bundled starter pack when the app ships a newer version than installed. Started with the
+     * process (not with a screen, which may never draw while the phone is locked); readers await it.
+     */
+    val bundledImport: Deferred<Unit> by lazy {
+        appScope.async { packImportService.importBundled(asset(STARTER_PACK_ASSET)) }
+    }
+
     val appVersion: String by lazy {
         context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "?"
     }

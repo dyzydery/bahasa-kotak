@@ -25,6 +25,7 @@ class StudyRepository(private val db: BahasaDatabase) {
             val l = row.lesson
             LessonInfo(
                 id = l.id,
+                topicId = l.topicId,
                 topicOrder = row.topicOrder,
                 order = l.order,
                 difficulty = l.difficulty,

@@ -18,7 +18,7 @@ object PlacementPlanner {
 
         val basics = lessons.flatMap { it.items }.filter { it.placementOnly && eligible(it) }
             .shuffled(random).take(MAX_BASICS)
-        val sampled = lessons.groupBy { it.topicOrder }.toSortedMap().values
+        val sampled = lessons.groupBy { it.topicId }.values.sortedBy { it.first().topicOrder }
             .mapNotNull { topic -> topic.minByOrNull { it.order } }
             .flatMap { lesson ->
                 lesson.items.filter { !it.placementOnly && eligible(it) }.shuffled(random).take(PER_TOPIC)

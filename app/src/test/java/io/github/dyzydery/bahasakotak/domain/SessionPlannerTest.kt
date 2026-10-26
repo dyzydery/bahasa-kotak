@@ -14,7 +14,7 @@ class SessionPlannerTest {
     private val tomorrow = midnight("2026-10-27")
 
     private fun lesson(id: String, topicOrder: Int, order: Int, items: List<StudyItem>, note: GrammarNote? = null, seen: Boolean = false) =
-        LessonInfo(id, topicOrder, order, difficulty = 1, grammarNote = note, grammarNoteSeen = seen, items = items)
+        LessonInfo(id, id.substringBefore('.'), topicOrder, order, difficulty = 1, grammarNote = note, grammarNoteSeen = seen, items = items)
 
     private fun input(lessons: List<LessonInfo>, cards: List<CardState> = emptyList(), limit: Int = 20) = PlannerInput(
         nowMillis = nowMillis,
@@ -107,6 +107,13 @@ class SessionPlannerTest {
         val b = lesson("b.l1", 1, 0, listOf(item("b.1", "b.l1")))
         val introducedA = listOf(card("a.1", ID_PL, 1, tomorrow), card("a.1", PL_ID, 1, tomorrow))
         assertEquals(listOf("a.2", "b.1"), SessionPlanner.pickNewItems(input(listOf(a, b), introducedA)).map { it.id })
+    }
+
+    @Test
+    fun `topics sharing an order value still advance separately`() {
+        val a = lesson("a.l1", 3, 0, listOf(item("a.1", "a.l1")))
+        val b = lesson("b.l1", 3, 0, listOf(item("b.1", "b.l1")))
+        assertEquals(listOf("a.1", "b.1"), SessionPlanner.pickNewItems(input(listOf(a, b))).map { it.id })
     }
 
     @Test

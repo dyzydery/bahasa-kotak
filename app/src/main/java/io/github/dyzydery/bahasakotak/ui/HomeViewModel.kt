@@ -66,6 +66,7 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
     /** Called whenever Home is shown, so the counts reflect the session just finished. */
     fun refreshToday() {
         viewModelScope.launch {
+            container.bundledImport.await()
             val snapshot = container.studyRepository.snapshot()
             val now = System.currentTimeMillis()
             val cards = snapshot.cards.values.filter { it.key.itemId in snapshot.items }
@@ -85,13 +86,6 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
 
     private val _importState = MutableStateFlow<ImportUiState>(ImportUiState.Idle)
     val importState = _importState.asStateFlow()
-
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            importService.importBundled(container.asset(AppContainer.STARTER_PACK_ASSET))
-            refreshToday()
-        }
-    }
 
     fun onPackFilePicked(uri: Uri) {
         viewModelScope.launch {

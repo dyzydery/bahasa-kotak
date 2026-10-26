@@ -83,7 +83,7 @@ class BlocksTest {
 
     @Test
     fun `planner turns long answers into blocks with tiles`() {
-        val lesson = LessonInfo("t.l1", 0, 0, difficulty = 3, grammarNote = null, grammarNoteSeen = false, items = listOf(sentence, item("t.w")))
+        val lesson = LessonInfo("t.l1", "t", 0, 0, difficulty = 3, grammarNote = null, grammarNoteSeen = false, items = listOf(sentence, item("t.w")))
         val tasks = SessionPlanner.plan(
             PlannerInput(NOW.toEpochMilli(), emptyMap(), lesson.items.associateBy { it.id }, listOf(lesson), taskLimit = 20),
             Random(3),

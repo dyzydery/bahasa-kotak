@@ -83,7 +83,7 @@ object ExportBuilder {
         val activeLessons = data.lessons.filter { !it.retired }
         val infos = activeLessons.map { l ->
             LessonInfo(
-                id = l.id, topicOrder = topicOrder[l.topicId] ?: 0, order = l.order, difficulty = l.difficulty,
+                id = l.id, topicId = l.topicId, topicOrder = topicOrder[l.topicId] ?: 0, order = l.order, difficulty = l.difficulty,
                 grammarNote = null, grammarNoteSeen = false,
                 items = activeItems[l.id].orEmpty().map { StudyItem(it.id, it.lessonId, it.kind, it.idText, it.plText, it.register, placementOnly = it.placementOnly) },
             )

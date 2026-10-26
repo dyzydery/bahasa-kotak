@@ -9,11 +9,11 @@ import kotlin.random.Random
 
 class PlacementTest {
     private val basics = (1..15).map { item("basics.b$it", "basics.l1", placementOnly = true) }
-    private val basicsLesson = LessonInfo("basics.l1", 0, 0, 1, null, false, basics)
+    private val basicsLesson = LessonInfo("basics.l1", "basics", 0, 0, 1, null, false, basics)
     private val meetItems = (1..4).map { item("meet.w$it", "meet.l1") } +
         item("meet.s1", "meet.l1").copy(kind = ItemKind.SENTENCE)
-    private val meet1 = LessonInfo("meet.l1", 1, 0, 1, null, false, meetItems)
-    private val meet2 = LessonInfo("meet.l2", 1, 1, 2, null, false, listOf(item("meet.x", "meet.l2")))
+    private val meet1 = LessonInfo("meet.l1", "meet", 1, 0, 1, null, false, meetItems)
+    private val meet2 = LessonInfo("meet.l2", "meet", 1, 1, 2, null, false, listOf(item("meet.x", "meet.l2")))
     private val lessons = listOf(basicsLesson, meet1, meet2)
 
     private fun answerAll(engine: PlacementEngine, answer: (Task.Ask) -> String) {

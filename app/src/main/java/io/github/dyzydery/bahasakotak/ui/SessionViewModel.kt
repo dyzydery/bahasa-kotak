@@ -39,7 +39,7 @@ sealed interface SessionUiState {
     }
 }
 
-class SessionViewModel(container: AppContainer, private val placement: Boolean) : ViewModel() {
+class SessionViewModel(private val container: AppContainer, private val placement: Boolean) : ViewModel() {
     private val repository = container.studyRepository
     private val zone = ZoneId.systemDefault()
     private val sessionId = UUID.randomUUID().toString()
@@ -52,6 +52,7 @@ class SessionViewModel(container: AppContainer, private val placement: Boolean) 
 
     init {
         viewModelScope.launch {
+            container.bundledImport.await()
             val snapshot = repository.snapshot()
             engine = if (placement) {
                 val tasks = PlacementPlanner.plan(snapshot.lessons, snapshot.cards)

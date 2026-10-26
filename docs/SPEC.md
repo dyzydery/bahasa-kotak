@@ -56,7 +56,12 @@ Import zawsze przechodzi przez `PackImportService`, czyli tę samą walidację, 
 - **Lesson** – `id`, `topicId`, `title`, `order`, `difficulty` (1–5), opcjonalna `grammarNote`.
 - **Item** – `id`, `lessonId`, `kind` (`word` | `phrase` | `sentence`), `id_text`, `pl_text`, `register`, `acceptedId[]`, `acceptedPl[]`, `notes`, `tags[]`, `placementOnly`, `retired`.
 
-`register`: `formal` (baku), `colloquial` (gaul/jakartański) lub `neutral`. Wartość `neutral` dodaję, bo słowa takie jak *komputer* czy *jaringan* nie należą do żadnego rejestru, a wymuszenie wyboru fałszowałoby dane. Pole jest obowiązkowe.
+`register` (pole obowiązkowe):
+
+- `formal` – bahasa baku: maile do klientów, dokumenty, prezentacje,
+- `office` – **mowa biurowa z Dżakarty**: mieszanka indonezyjskiego z angielskim (*di-follow up*, *meeting-nya*, *di-approve*), skróty z czatów (*PIC*, *japri*, *WFH*, *otw*, *noted*), partykuły (*ya, sih, dong, deh, kok*) i czasowniki na *-in* (*kabarin*, *kirimin*). To, jak naprawdę mówi się w pracy. Dla użytkownika to priorytet, w UI ma znaczek „Jakarta · biuro”,
+- `colloquial` – uliczny gaul (*gue/lo*), między znajomymi,
+- `neutral` – pasuje wszędzie (*komputer*, *jaringan*); bez tej wartości trzeba by wymuszać fałszywy wybór.
 
 Zdania przykładowe są pełnoprawnymi elementami (`kind: sentence`) w tej samej lekcji co słowo. Dzięki temu mają własne ID, warianty i postęp, i to z nich powstają ćwiczenia z klocków.
 
@@ -74,6 +79,8 @@ Normalizacja odpowiedzi i każdego akceptowanego wariantu:
 2. usunięcie polskich znaków diakrytycznych: ą→a, ć→c, ę→e, ł→l, ń→n, ó→o, ś→s, ź→z, ż→z (dla indonezyjskiego to nic nie zmienia),
 3. usunięcie interpunkcji (`.,!?;:"'()-…` itp.); myślnik wewnątrz słowa zamieniany na spację, żeby `kira-kira` = `kira kira`,
 4. zwinięcie wielu spacji do jednej i obcięcie z obu stron.
+
+Przy porównaniu spacje nie mają znaczenia: „meetingnya” = „meeting-nya”, „kirakira” = „kira-kira”. W mowie biurowej z Dżakarty łącznik przy angielskich słowach (*di-follow up*, *meeting-nya*) jest stawiany niekonsekwentnie.
 
 Zbiór poprawnych odpowiedzi = główne tłumaczenie + `accepted*` z paczki. Każdy wariant jest dodatkowo rozwijany o formy bez podpowiedzi: fragmenty w nawiasach są opcjonalne („dzień dobry (rano)” przyjmuje „dzień dobry”), a „A / B” przyjmuje osobno A i B. Ocena:
 

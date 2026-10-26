@@ -10,10 +10,14 @@ enum class ItemKind {
     @SerialName("sentence") SENTENCE,
 }
 
-/** formal = bahasa baku, colloquial = gaul/Jakarta, neutral = used in both. */
+/**
+ * formal = bahasa baku; office = Jakarta workplace speech (Indonesian–English mix, chat abbreviations,
+ * particles); colloquial = street gaul (gue/lo); neutral = fine anywhere.
+ */
 @Serializable
 enum class Register {
     @SerialName("formal") FORMAL,
+    @SerialName("office") OFFICE,
     @SerialName("colloquial") COLLOQUIAL,
     @SerialName("neutral") NEUTRAL,
 }

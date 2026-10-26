@@ -16,7 +16,7 @@ object Progress {
     fun lessonStatuses(lessons: List<LessonInfo>, cards: Map<CardKey, CardState>): Map<String, LessonStatus> {
         val introduced = cards.keys.mapTo(HashSet()) { it.itemId }
         val result = mutableMapOf<String, LessonStatus>()
-        for (topic in lessons.groupBy { it.topicOrder }.values) {
+        for (topic in lessons.groupBy { it.topicId }.values) {
             var open = true
             for (lesson in topic.sortedBy { it.order }) {
                 result[lesson.id] = when {

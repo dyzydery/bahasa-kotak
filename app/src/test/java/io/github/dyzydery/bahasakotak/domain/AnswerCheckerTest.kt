@@ -21,6 +21,9 @@ class AnswerCheckerTest {
             "sama sama, sama-sama",
             "jak sie masz, jak się masz?",
             "zrodlo, źródło",
+            "meetingnya, meeting-nya",
+            "kirakira, kira-kira",
+            "di follow up, di-follow up",
         )
         fun `equivalent forms are correct`(answer: String, variant: String) {
             assertEquals(Grade.CORRECT, grade(answer, variant))

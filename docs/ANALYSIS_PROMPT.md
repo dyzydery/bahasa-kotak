@@ -6,6 +6,7 @@ Jesteś moim nauczycielem języka indonezyjskiego. W załączniku jest plik eksp
 
 - Polak, uczę się indonezyjskiego od podstaw. Interfejs i tłumaczenia są po polsku.
 - Pracuję w IT/telco: pre-sales i wdrożenia systemów zarządzania urządzeniami CPE u operatorów. Rozmawiam z Indonezyjczykami zawodowo (spotkania, maile, projekty, wdrożenia, sieci) i prywatnie.
+- **Priorytet: mowa biurowa z Dżakarty** (rejestr `office`), czyli to, jak naprawdę mówią koledzy z pracy, a nie tylko podręcznikowy bahasa baku.
 - Uczę się ok. 5 minut dziennie. Aplikacja wprowadza do 5 nowych elementów na sesję.
 
 ## Co jest w eksporcie
@@ -24,7 +25,7 @@ Zanim napiszesz paczkę, ustal na podstawie danych:
 
 1. **Wzorce błędów**: które elementy i kierunki sprawiają kłopot, co wpisuję zamiast poprawnej odpowiedzi (mylenie podobnych słów, przedrostki me-/ber-/di-, kolejność słów, rejestr), co kończy się „Nie wiem”.
 2. **Fałszywe błędy**: odpowiedzi oznaczone jako `wrong` lub `typo`, które były poprawne albo akceptowalne (brakujący synonim, inna forma rodzaju, inny szyk). Takie elementy trzeba poprawić, dodając warianty.
-3. **Rejestry**: czy mylę formy formalne (baku) i potoczne (gaul), np. *tidak/nggak*, *saya/gue*.
+3. **Rejestry**: czy mylę formy formalne (baku), biurowe (`office`) i uliczne (gaul), np. *tidak/nggak*, *saya/aku/gue*, *kirimkan/kirimin*. Jak radzę sobie z elementami `office`.
 4. **Kierunki**: czy PL→ID idzie wyraźnie gorzej niż ID→PL.
 5. **Tempo i trudność**: odsetek poprawnych pierwszych odpowiedzi (bez `retry`) w ostatnich sesjach i czasy odpowiedzi.
 6. **Postęp**: które tematy i lekcje są ukończone, a które czekają.
@@ -36,6 +37,7 @@ Domyślnie przygotuj **nową paczkę z nowym materiałem**:
 - `packId`: `loop-NNN`, gdzie NNN to kolejny numer po najwyższym `loop-…` w `installedPacks` (pierwsza to `loop-001`). `packVersion: 1`. W `basedOnExport` wpisz `exportedAt` z eksportu.
 - **30–50 nowych elementów** (słowa, zwroty i zdania przykładowe razem), w 2–4 lekcjach.
 - Kontynuuj istniejące tematy (nowe lekcje w tym samym `topic.id`, z tym samym tytułem, opisem i `order` co w `content`, a `order` lekcji większy od istniejących) albo dodaj nowe tematy. Trzymaj proporcję ok. 2/3 IT/telco i 1/3 codzienność.
+- **Nacisk na mowę biurową z Dżakarty**: co najmniej **40% elementów** w rejestrze `office`. Chodzi o angielskie wtrącenia z indonezyjską morfologią (*di-follow up*, *meeting-nya*, *nge-push*, *di-forward*), skróty z czatów (*PIC*, *japri*, *WFH*, *ASAP*, *noted*, *otw*), partykuły (*ya, sih, dong, deh, kok, kan*), czasowniki na *-in* (*kabarin*, *kirimin*, *cekin*) i formy *aku/kamu*, *Mas/Mbak*, *Pak/Bu*. Gdy wprowadzasz formalny zwrot, dodaj jego biurowy odpowiednik jako osobny element albo w `notes` („W biurze powiesz: …”). Pisz tak, jak naprawdę piszą Jakartańczycy na firmowym WhatsAppie, ale bez wulgaryzmów.
 - **Wzmocnij słabe miejsca**: nowe zdania przykładowe z problematycznymi słowami (nowe ID), kontrastowe pary dla mylonych słów, kolejne przykłady dla sprawiających kłopot przedrostków. Do zdań z klockami dodaj `distractorsId` / `distractorsPl` z moimi typowymi pomyłkami.
 - **Trudność**: jeśli odsetek poprawnych pierwszych odpowiedzi przekracza 85%, podnieś `difficulty` i wprowadzaj dłuższe zdania. Poniżej 65% krótsze elementy i niższa trudność.
 - Lekcja z nowym zagadnieniem gramatycznym dostaje `grammarNote`: krótko, po polsku, na ekran telefonu.
@@ -45,7 +47,12 @@ Domyślnie przygotuj **nową paczkę z nowym materiałem**:
 ## Zasady treści
 
 - **ID są stałe i globalne**: małe litery, cyfry i separatory `.`, `-`, `_` (np. `telco.sla`, `telco.s-sla-dilanggar`). Nigdy nie używaj ID, które już istnieje w `content`, dla innej treści. Zachowuj ID przy poprawkach.
-- `register`: `formal` (baku), `colloquial` (gaul / jakartański) albo `neutral`. Każdy element ma rejestr.
+- `register` (każdy element ma rejestr):
+  - `formal` – bahasa baku: maile do klientów, dokumenty,
+  - `office` – mowa biurowa z Dżakarty (zob. wyżej); w aplikacji ma znaczek „Jakarta · biuro”,
+  - `colloquial` – uliczny gaul (*gue/lo*), między znajomymi,
+  - `neutral` – pasuje wszędzie.
+- Pisownia z łącznikiem przy angielskich słowach (*meeting-nya*, *di-approve*) jest w porządku; aplikacja ignoruje spacje i łączniki przy sprawdzaniu.
 - `pl_text` i `id_text` to formy **główne**: naturalne, poprawne i takie, z których dobrze ułożyć zdanie z klocków. Podpowiedzi dla mnie dawaj w nawiasach, np. „dzień dobry (rano)”.
 - **Warianty hojnie**: `acceptedPl` – synonimy, formy żeńskie, inne naturalne szyki, z „Pan” i „Pani”. `acceptedId` – formy z przedrostkiem i bez, potoczne skróty, jeśli pasują do rejestru.
 - `notes`: krótka uwaga po polsku tylko wtedy, gdy coś warto wiedzieć (fałszywy przyjaciel, użycie, forma formalna).

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 1,
+  "packVersion": 2,
   "title": "Paczka startowa",
-  "description": "Podstawy pracy z Indonezyjczykami: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
-  "createdAt": "2026-10-26T12:00:00Z",
+  "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
+  "createdAt": "2026-10-26T14:30:00Z",
   "topics": [
     {
       "id": "basics",
@@ -305,9 +305,599 @@
       "description": "Powitania, liczby i zaimki – tylko w teście poziomującym."
     },
     {
+      "id": "kantor",
+      "title": "Mowa biurowa w Dżakarcie",
+      "description": "Jak naprawdę mówi się w pracy: angielskie wtrącenia, skróty z czatów, partykuły.",
+      "order": 1,
+      "lessons": [
+        {
+          "id": "kantor.chat",
+          "title": "Biurowy czat",
+          "order": 0,
+          "difficulty": 1,
+          "grammarNote": {
+            "id": "kantor.chat.note",
+            "title": "Bahasa kantor",
+            "body": "W biurach w Dżakarcie mówi się mieszanką indonezyjskiego i angielskiego:\n\n- angielskie słowa dostają indonezyjskie końcówki i przedrostki: *meeting-nya*, *di-approve*, *di-follow up*,\n- skróty z czatów: **PIC** (osoba odpowiedzialna), **japri** (na priv), **WFH**, **otw**, **noted**,\n- między kolegami **aku/kamu** albo imię zamiast *saya/Anda*; do rówieśników **Mas/Mbak**, do starszych i szefów **Pak/Bu**.\n\nW mailach do klienta zostań przy języku formalnym."
+          },
+          "items": [
+            {
+              "id": "kantor.pic",
+              "kind": "word",
+              "id_text": "PIC",
+              "pl_text": "osoba odpowiedzialna",
+              "register": "office",
+              "acceptedPl": [
+                "odpowiedzialny",
+                "odpowiedzialna",
+                "osoba kontaktowa"
+              ],
+              "notes": "Od person in charge, czytane „pi-aj-si”. Pada na każdym spotkaniu projektowym."
+            },
+            {
+              "id": "kantor.japri",
+              "kind": "word",
+              "id_text": "japri",
+              "pl_text": "na priv (prywatna wiadomość)",
+              "register": "office",
+              "acceptedPl": [
+                "prywatnie",
+                "prywatna wiadomość",
+                "na priv",
+                "priv"
+              ],
+              "notes": "Skrót od jalur pribadi. Japri aja – napisz do mnie prywatnie, a nie na grupie."
+            },
+            {
+              "id": "kantor.wfh",
+              "kind": "word",
+              "id_text": "WFH",
+              "pl_text": "praca z domu",
+              "register": "office",
+              "acceptedPl": [
+                "home office",
+                "praca zdalna",
+                "pracuję z domu"
+              ],
+              "notes": "Też WFO – work from office."
+            },
+            {
+              "id": "kantor.otw",
+              "kind": "word",
+              "id_text": "otw",
+              "pl_text": "w drodze",
+              "register": "office",
+              "acceptedId": [
+                "on the way"
+              ],
+              "acceptedPl": [
+                "jestem w drodze",
+                "już jadę"
+              ]
+            },
+            {
+              "id": "kantor.noted",
+              "kind": "word",
+              "id_text": "noted",
+              "pl_text": "przyjąłem do wiadomości",
+              "register": "office",
+              "acceptedPl": [
+                "przyjęłam do wiadomości",
+                "przyjęte",
+                "jasne"
+              ],
+              "notes": "Standardowa odpowiedź na czacie, często „Noted, Pak” albo „Noted, Bu”."
+            },
+            {
+              "id": "kantor.kabarin",
+              "kind": "word",
+              "id_text": "kabarin",
+              "pl_text": "dać znać",
+              "register": "office",
+              "acceptedId": [
+                "kabari",
+                "kasih kabar"
+              ],
+              "acceptedPl": [
+                "daj znać",
+                "dawać znać",
+                "poinformować"
+              ],
+              "notes": "Od kabar (wiadomość) + -in. Formalnie: mengabari, memberi kabar."
+            },
+            {
+              "id": "kantor.bentar",
+              "kind": "word",
+              "id_text": "bentar",
+              "pl_text": "chwilkę",
+              "register": "office",
+              "acceptedId": [
+                "sebentar"
+              ],
+              "acceptedPl": [
+                "chwila",
+                "moment",
+                "sekundę",
+                "chwileczkę"
+              ],
+              "notes": "Formalnie: sebentar."
+            },
+            {
+              "id": "kantor.lembur",
+              "kind": "word",
+              "id_text": "lembur",
+              "pl_text": "nadgodziny",
+              "register": "neutral",
+              "acceptedPl": [
+                "praca po godzinach",
+                "zostać po godzinach",
+                "nadgodzina"
+              ]
+            },
+            {
+              "id": "kantor.follow-up",
+              "kind": "phrase",
+              "id_text": "follow up",
+              "pl_text": "zrobić follow-up",
+              "register": "office",
+              "acceptedId": [
+                "di-follow up",
+                "fu"
+              ],
+              "acceptedPl": [
+                "dopilnować",
+                "follow up",
+                "przypomnieć się"
+              ],
+              "notes": "Angielskie czasowniki dostają indonezyjskie przedrostki: di-follow up, di-forward, di-cc."
+            },
+            {
+              "id": "kantor.di-approve",
+              "kind": "word",
+              "id_text": "di-approve",
+              "pl_text": "zatwierdzony",
+              "register": "office",
+              "acceptedId": [
+                "approve"
+              ],
+              "acceptedPl": [
+                "zatwierdzone",
+                "zaakceptowany",
+                "zaakceptowane"
+              ]
+            },
+            {
+              "id": "kantor.di-reschedule",
+              "kind": "word",
+              "id_text": "di-reschedule",
+              "pl_text": "przełożony (termin)",
+              "register": "office",
+              "acceptedId": [
+                "reschedule"
+              ],
+              "acceptedPl": [
+                "przełożone",
+                "przesunięty",
+                "przesunięte"
+              ]
+            },
+            {
+              "id": "kantor.mas",
+              "kind": "word",
+              "id_text": "Mas",
+              "pl_text": "pan (do kolegi, po koleżeńsku)",
+              "register": "office",
+              "acceptedPl": [
+                "pan",
+                "kolego"
+              ],
+              "notes": "Z jawajskiego „starszy brat”. Do kolegów w podobnym wieku; do starszych i szefów: Pak."
+            },
+            {
+              "id": "kantor.mbak",
+              "kind": "word",
+              "id_text": "Mbak",
+              "pl_text": "pani (do koleżanki, po koleżeńsku)",
+              "register": "office",
+              "acceptedPl": [
+                "pani"
+              ],
+              "notes": "Z jawajskiego „starsza siostra”. Do koleżanek w podobnym wieku; do starszych i szefowych: Bu."
+            },
+            {
+              "id": "kantor.ngopi",
+              "kind": "word",
+              "id_text": "ngopi",
+              "pl_text": "iść na kawę",
+              "register": "office",
+              "acceptedPl": [
+                "pić kawę",
+                "na kawę",
+                "kawka"
+              ],
+              "notes": "Od kopi."
+            },
+            {
+              "id": "kantor.s-follow-up",
+              "kind": "sentence",
+              "id_text": "Nanti aku follow up ya.",
+              "pl_text": "Później zrobię follow-up, dobrze?",
+              "register": "office",
+              "acceptedPl": [
+                "Później to dopilnuję, dobrze?",
+                "Zrobię follow-up później, dobrze?",
+                "Później zrobię follow-up."
+              ],
+              "distractorsId": [
+                "sudah",
+                "kemarin"
+              ],
+              "distractorsPl": [
+                "wczoraj",
+                "już"
+              ]
+            },
+            {
+              "id": "kantor.s-reschedule",
+              "kind": "sentence",
+              "id_text": "Meeting-nya di-reschedule ke besok.",
+              "pl_text": "Spotkanie przełożono na jutro.",
+              "register": "office",
+              "acceptedPl": [
+                "Spotkanie zostało przełożone na jutro.",
+                "Spotkanie przesunięto na jutro.",
+                "Spotkanie zostało przesunięte na jutro."
+              ],
+              "distractorsId": [
+                "kemarin",
+                "dibatalkan"
+              ],
+              "distractorsPl": [
+                "wczoraj",
+                "odwołano"
+              ]
+            },
+            {
+              "id": "kantor.s-pic",
+              "kind": "sentence",
+              "id_text": "Siapa PIC-nya?",
+              "pl_text": "Kto jest odpowiedzialny?",
+              "register": "office",
+              "acceptedPl": [
+                "Kto za to odpowiada?",
+                "Kto jest osobą odpowiedzialną?",
+                "Kto jest odpowiedzialna?"
+              ]
+            },
+            {
+              "id": "kantor.s-approve",
+              "kind": "sentence",
+              "id_text": "Proposal-nya udah di-approve.",
+              "pl_text": "Propozycja jest już zatwierdzona.",
+              "register": "office",
+              "acceptedPl": [
+                "Propozycja została już zatwierdzona.",
+                "Oferta jest już zatwierdzona.",
+                "Oferta została już zatwierdzona.",
+                "Propozycję już zatwierdzono."
+              ],
+              "distractorsId": [
+                "belum",
+                "ditolak"
+              ],
+              "distractorsPl": [
+                "jeszcze",
+                "odrzucona"
+              ]
+            },
+            {
+              "id": "kantor.s-japri",
+              "kind": "sentence",
+              "id_text": "Japri aja ya, Mas.",
+              "pl_text": "Napisz do mnie na priv.",
+              "register": "office",
+              "acceptedPl": [
+                "Napisz do mnie prywatnie.",
+                "Napisz na priv.",
+                "Napisz prywatnie."
+              ],
+              "notes": "Mas – do kolegi; do koleżanki: Mbak."
+            },
+            {
+              "id": "kantor.s-otw",
+              "kind": "sentence",
+              "id_text": "Aku otw, bentar lagi sampai.",
+              "pl_text": "Jestem w drodze, zaraz będę.",
+              "register": "office",
+              "acceptedPl": [
+                "Już jadę, zaraz będę.",
+                "Jestem w drodze, zaraz dojadę.",
+                "Jestem w drodze, zaraz tam będę."
+              ]
+            },
+            {
+              "id": "kantor.s-wfh",
+              "kind": "sentence",
+              "id_text": "Hari ini aku WFH.",
+              "pl_text": "Dziś pracuję z domu.",
+              "register": "office",
+              "acceptedPl": [
+                "Dzisiaj pracuję z domu.",
+                "Pracuję dziś z domu.",
+                "Pracuję dzisiaj z domu."
+              ]
+            },
+            {
+              "id": "kantor.s-kabarin",
+              "kind": "sentence",
+              "id_text": "Kabarin aja kalau udah siap.",
+              "pl_text": "Daj znać, jak będzie gotowe.",
+              "register": "office",
+              "acceptedPl": [
+                "Daj znać, kiedy będzie gotowe.",
+                "Po prostu daj znać, jak będzie gotowe.",
+                "Daj znać, gdy będzie gotowe."
+              ]
+            },
+            {
+              "id": "kantor.s-noted",
+              "kind": "sentence",
+              "id_text": "Noted, Pak. Nanti saya cek dulu.",
+              "pl_text": "Przyjąłem. Najpierw to sprawdzę.",
+              "register": "office",
+              "acceptedPl": [
+                "Przyjąłem, najpierw to sprawdzę.",
+                "Przyjęłam. Najpierw to sprawdzę.",
+                "Przyjąłem, proszę pana. Najpierw to sprawdzę."
+              ],
+              "notes": "Do szefa lub klienta noted + saya; do kolegi wystarczy „Noted, nanti aku cek”."
+            },
+            {
+              "id": "kantor.s-lembur",
+              "kind": "sentence",
+              "id_text": "Malam ini aku lembur.",
+              "pl_text": "Dziś wieczorem zostaję po godzinach.",
+              "register": "office",
+              "acceptedPl": [
+                "Dziś wieczorem robię nadgodziny.",
+                "Dzisiaj wieczorem zostaję po godzinach.",
+                "Dziś zostaję po godzinach."
+              ]
+            },
+            {
+              "id": "kantor.s-ngopi",
+              "kind": "sentence",
+              "id_text": "Yuk, ngopi dulu.",
+              "pl_text": "Chodźmy najpierw na kawę.",
+              "register": "office",
+              "acceptedPl": [
+                "Chodźmy na kawę.",
+                "Chodź na kawę.",
+                "Chodźmy najpierw na kawkę."
+              ],
+              "notes": "Yuk – chodźmy, no to co."
+            }
+          ]
+        },
+        {
+          "id": "kantor.particles",
+          "title": "Partykuły i -in",
+          "order": 1,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "kantor.particles.note",
+            "title": "Partykuły i końcówka -in",
+            "body": "Krótkie słówka na końcu zdania nadają ton:\n\n- **ya** – „dobrze?”, łagodzi prośbę,\n- **dong** – nacisk: *Kirimin dong!* – no prześlij!,\n- **sih** – „tam”, „w sumie”,\n- **deh** – „no dobra”,\n- **kok** – zdziwienie, „jak to?”,\n- **kan** – „przecież”, „prawda?”.\n\nKońcówka **-in** (z dialektu Betawi) zastępuje formalne *-kan* i *-i*: *kirimin* = *kirimkan*, *kerjain* = *kerjakan*, *kabarin* = *kabari*."
+          },
+          "items": [
+            {
+              "id": "kantor.dong",
+              "kind": "word",
+              "id_text": "dong",
+              "pl_text": "no …! (nacisk w prośbie)",
+              "register": "office",
+              "acceptedPl": [
+                "no"
+              ]
+            },
+            {
+              "id": "kantor.sih",
+              "kind": "word",
+              "id_text": "sih",
+              "pl_text": "tam, w sumie (łagodzi)",
+              "register": "office",
+              "acceptedPl": [
+                "tam",
+                "w sumie"
+              ]
+            },
+            {
+              "id": "kantor.deh",
+              "kind": "word",
+              "id_text": "deh",
+              "pl_text": "no dobra (przekonanie)",
+              "register": "office",
+              "acceptedPl": [
+                "no dobra",
+                "dobra"
+              ]
+            },
+            {
+              "id": "kantor.kok",
+              "kind": "word",
+              "id_text": "kok",
+              "pl_text": "jak to? (zdziwienie)",
+              "register": "office",
+              "acceptedPl": [
+                "jak to",
+                "czemu"
+              ]
+            },
+            {
+              "id": "kantor.kan",
+              "kind": "word",
+              "id_text": "kan",
+              "pl_text": "przecież, prawda?",
+              "register": "office",
+              "acceptedId": [
+                "kan?"
+              ],
+              "acceptedPl": [
+                "przecież",
+                "prawda",
+                "nie"
+              ]
+            },
+            {
+              "id": "kantor.kirimin",
+              "kind": "word",
+              "id_text": "kirimin",
+              "pl_text": "przesłać (komuś)",
+              "register": "office",
+              "acceptedId": [
+                "kirimkan",
+                "kirim"
+              ],
+              "acceptedPl": [
+                "prześlij",
+                "wyślij mi",
+                "przesłać",
+                "wysłać"
+              ]
+            },
+            {
+              "id": "kantor.kerjain",
+              "kind": "word",
+              "id_text": "kerjain",
+              "pl_text": "zrobić (zadanie)",
+              "register": "office",
+              "acceptedId": [
+                "kerjakan",
+                "ngerjain"
+              ],
+              "acceptedPl": [
+                "zrobić",
+                "wykonać",
+                "ogarnąć"
+              ]
+            },
+            {
+              "id": "kantor.kayaknya",
+              "kind": "word",
+              "id_text": "kayaknya",
+              "pl_text": "chyba",
+              "register": "office",
+              "acceptedId": [
+                "kayanya",
+                "sepertinya"
+              ],
+              "acceptedPl": [
+                "wygląda na to",
+                "raczej",
+                "pewnie"
+              ],
+              "notes": "Formalnie: sepertinya."
+            },
+            {
+              "id": "kantor.mepet",
+              "kind": "word",
+              "id_text": "mepet",
+              "pl_text": "na styk (o terminie)",
+              "register": "office",
+              "acceptedPl": [
+                "napięty",
+                "na styk",
+                "ciasny"
+              ]
+            },
+            {
+              "id": "kantor.s-kirimin",
+              "kind": "sentence",
+              "id_text": "Kirimin dong file-nya.",
+              "pl_text": "No prześlij mi ten plik.",
+              "register": "office",
+              "acceptedPl": [
+                "Prześlij mi ten plik.",
+                "Prześlij mi plik.",
+                "Wyślij mi ten plik.",
+                "No wyślij mi ten plik."
+              ]
+            },
+            {
+              "id": "kantor.s-kok",
+              "kind": "sentence",
+              "id_text": "Kok belum dikirim?",
+              "pl_text": "Czemu jeszcze nie wysłane?",
+              "register": "office",
+              "acceptedPl": [
+                "Jak to, jeszcze nie wysłane?",
+                "Dlaczego jeszcze nie wysłane?",
+                "Czemu to jeszcze nie zostało wysłane?"
+              ]
+            },
+            {
+              "id": "kantor.s-deh",
+              "kind": "sentence",
+              "id_text": "Oke deh, nanti aku kerjain.",
+              "pl_text": "No dobra, później to zrobię.",
+              "register": "office",
+              "acceptedPl": [
+                "Dobra, później to zrobię.",
+                "No dobrze, zrobię to później.",
+                "Dobra, zrobię to później."
+              ]
+            },
+            {
+              "id": "kantor.s-sih",
+              "kind": "sentence",
+              "id_text": "Aku sih setuju.",
+              "pl_text": "Ja tam się zgadzam.",
+              "register": "office",
+              "acceptedPl": [
+                "Ja się zgadzam.",
+                "Ja w sumie się zgadzam."
+              ]
+            },
+            {
+              "id": "kantor.s-kan",
+              "kind": "sentence",
+              "id_text": "Udah dicek, kan?",
+              "pl_text": "Już sprawdzone, prawda?",
+              "register": "office",
+              "acceptedPl": [
+                "Sprawdzone, prawda?",
+                "Już sprawdziłeś, prawda?",
+                "Już to sprawdziłeś, nie?"
+              ]
+            },
+            {
+              "id": "kantor.s-mepet",
+              "kind": "sentence",
+              "id_text": "Kayaknya deadline-nya mepet banget.",
+              "pl_text": "Chyba termin jest bardzo napięty.",
+              "register": "office",
+              "acceptedPl": [
+                "Termin jest chyba bardzo napięty.",
+                "Wygląda na to, że termin jest bardzo napięty.",
+                "Chyba termin jest na styk."
+              ],
+              "distractorsId": [
+                "longgar",
+                "minggu"
+              ],
+              "distractorsPl": [
+                "luźny",
+                "tydzień"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "meet",
       "title": "Przedstawianie się i spotkania",
-      "order": 1,
+      "order": 2,
       "lessons": [
         {
           "id": "meet.intro",
@@ -534,7 +1124,7 @@
               "kind": "word",
               "id_text": "meeting",
               "pl_text": "spotkanie",
-              "register": "colloquial",
+              "register": "office",
               "acceptedId": [
                 "miting"
               ],
@@ -740,7 +1330,7 @@
     {
       "id": "comm",
       "title": "E-mail i komunikacja",
-      "order": 2,
+      "order": 3,
       "lessons": [
         {
           "id": "comm.email",
@@ -1116,7 +1706,7 @@
     {
       "id": "project",
       "title": "Projekt i wdrożenie",
-      "order": 3,
+      "order": 4,
       "lessons": [
         {
           "id": "project.presales",
@@ -1490,7 +2080,7 @@
     {
       "id": "telco",
       "title": "Sieci i telco",
-      "order": 4,
+      "order": 5,
       "lessons": [
         {
           "id": "telco.network",
@@ -1853,7 +2443,7 @@
     {
       "id": "daily",
       "title": "Na co dzień",
-      "order": 5,
+      "order": 6,
       "lessons": [
         {
           "id": "daily.food",
@@ -2188,7 +2778,7 @@
     {
       "id": "gaul",
       "title": "Luźna rozmowa",
-      "order": 6,
+      "order": 7,
       "lessons": [
         {
           "id": "gaul.chat",

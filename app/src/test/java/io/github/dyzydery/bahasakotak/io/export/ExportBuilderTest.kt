@@ -105,7 +105,7 @@ class ExportBuilderTest {
     fun `answers, sessions and metadata are carried over`() {
         val export = build()
         assertEquals("Europe/Warsaw", export.timeZone)
-        assertEquals(listOf(InstalledPackDto("starter", 1, "2026-10-26T10:00:00Z")), export.installedPacks)
+        assertEquals(listOf(InstalledPackDto("starter", starter.packVersion, "2026-10-26T10:00:00Z")), export.installedPacks)
         assertEquals("rapar", export.answers.single().userAnswer)
         assertEquals(null, export.answers.single().durationMs)
         assertTrue(export.lessons.single { it.lessonId == "meet.intro" }.grammarNoteSeen)
