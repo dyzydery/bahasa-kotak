@@ -37,7 +37,7 @@ import io.github.dyzydery.bahasakotak.data.PackEntity
 import io.github.dyzydery.bahasakotak.io.pack.ImportPreview
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () -> Unit) {
+fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () -> Unit, onStats: () -> Unit) {
     val packs by viewModel.packs.collectAsStateWithLifecycle()
     val placementDone by viewModel.placementDone.collectAsStateWithLifecycle()
     val stats by viewModel.stats.collectAsStateWithLifecycle()
@@ -77,7 +77,9 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () ->
             }
             Spacer(Modifier.height(32.dp))
             ContentSummary(packs, stats)
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(8.dp))
+            TextButton(onClick = onStats) { Text("Statystyki") }
+            Spacer(Modifier.height(16.dp))
             ToolsSection(title = "Pętla z Claude") {
                 OutlinedButton(onClick = viewModel::copyExport, Modifier.fillMaxWidth()) { Text("Kopiuj dla Claude") }
                 OutlinedButton(onClick = viewModel::importFromClipboard, Modifier.fillMaxWidth()) {

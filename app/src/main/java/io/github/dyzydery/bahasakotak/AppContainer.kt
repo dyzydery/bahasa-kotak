@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import io.github.dyzydery.bahasakotak.data.BahasaDatabase
 import io.github.dyzydery.bahasakotak.data.ContentRepository
+import io.github.dyzydery.bahasakotak.data.StatsRepository
 import io.github.dyzydery.bahasakotak.data.StudyRepository
 import io.github.dyzydery.bahasakotak.io.backup.BackupManager
 import io.github.dyzydery.bahasakotak.io.transport.ClipboardTransport
@@ -18,6 +19,7 @@ class AppContainer(private val context: Context) {
     val database by lazy { BahasaDatabase.open(context) }
     val contentRepository by lazy { ContentRepository(database) }
     val studyRepository by lazy { StudyRepository(database) }
+    val statsRepository by lazy { StatsRepository(database) }
     val shareTransport: ContentTransport by lazy { FileTransport(context) }
     val clipboardTransport: ContentTransport by lazy { ClipboardTransport(context) }
     val backupManager by lazy { BackupManager(context) { database } }

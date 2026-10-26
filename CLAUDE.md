@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-Greenfield. `bahasa-kotak-prompt.md` (Polish) is the original product brief for **Bahasa Kotak**, a sideloaded Android app for learning Indonesian. `docs/SPEC.md` (Polish) records the agreed design decisions on top of it (stack: Kotlin + Compose + Room; Leitner intervals; session planning; import idempotency) and wins where the two differ. Data formats live in `schemas/pack.schema.json` and `schemas/export.schema.json`; keep SPEC, schemas, and code in sync when changing any of them. Remote: `github.com/dyzydery/bahasa-kotak`. Commit and push after each milestone.
+All six milestones from the brief are implemented. The next planned piece is the Frog API transport (see SPEC §2.1). `bahasa-kotak-prompt.md` (Polish) is the original product brief for **Bahasa Kotak**, a sideloaded Android app for learning Indonesian. `docs/SPEC.md` (Polish) records the agreed design decisions on top of it (stack: Kotlin + Compose + Room; Leitner intervals; session planning; import idempotency) and wins where the two differ. Data formats live in `schemas/pack.schema.json` and `schemas/export.schema.json`; keep SPEC, schemas, and code in sync when changing any of them. Remote: `github.com/dyzydery/bahasa-kotak`. Commit and push after each milestone.
 
 ## Commands
 
@@ -32,6 +32,7 @@ Dependency versions live in `gradle/libs.versions.toml`. Bytecode targets Java 1
 - `schemas/` and `packs/` at the repo root are added as APK assets (see `sourceSets` in `app/build.gradle.kts`). On launch the app auto-imports `packs/starter.json` if its `packVersion` is newer than the installed one, so any edit to the starter pack must bump `packVersion`. Tests read these files through the `repoRoot` system property (`RepoFiles`).
 - `io/export/`: `ExportBuilder` turns all tables into `ExportDto`. Its `content` field rebuilds the installed packs from rows (`reconstructPacks` in `data/PackMapping.kt`, the inverse of `toRows`, which import uses), so Claude can return a corrected pack version. `docs/` is an asset dir too: `ANALYSIS_PROMPT.md` is shared as the message text alongside the export file. `AnalysisPromptTest` validates the prompt's example pack, and `ExportBuilderTest` checks that the starter pack survives the rows → pack round trip.
 - `io/transport/ContentTransport` is the seam for the future Frog API transport. `ClipboardTransport` is the primary route: the user's Claude app is in an Android work profile, which share intents and file pickers can't reach, but the clipboard can. `FileTransport` is the share sheet. Every pasted or picked pack goes through `PackText.extract`, which pulls the pack JSON out of a full Claude reply.
+- Statistics: `StatsCalculator` (domain) computes everything from the same `ExportDao.exportData()` snapshot the export uses. Charts in `ui/stats/Charts.kt` are hand-drawn on Canvas (single series, theme primary, tap-to-read value), not a chart library.
 - `io/backup/BackupManager`: checkpoints the WAL, then copies the raw SQLite file. Restore validates the header, tables and `user_version`, swaps the file and restarts the process.
 - Wiring is manual: `AppContainer`, owned by `BahasaKotakApp`. There is no DI framework.
 

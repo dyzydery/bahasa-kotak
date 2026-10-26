@@ -12,7 +12,7 @@ Aplikacja na Androida do nauki indonezyjskiego dla jednego użytkownika. Działa
 | Baza | Room (SQLite) | Offline-first, migracje schematu, zapytania do statystyk w SQL. Backup to kopia jednego pliku. |
 | JSON | kotlinx.serialization | Bez refleksji, typowane modele paczki i eksportu. |
 | Walidacja importu | JSON Schema (draft 2020-12), biblioteka `networknt/json-schema-validator` | Ten sam plik schematu waliduje paczkę w apce i opisuje format dla Claude. |
-| Wykresy | Vico (Compose) | Lekka biblioteka natywna dla Compose. |
+| Wykresy | Własne, Compose Canvas | Cztery proste wykresy z jedną serią; bez dodatkowej zależności (zob. §12). |
 | Testy | JUnit 5 na JVM | Logika domenowa nie zależy od Androida, więc testy nie wymagają emulatora. |
 | Build | Gradle wrapper, AGP, JDK 21 | JDK 21 to wersja LTS wspierana przez AGP. Systemowy JDK 25 jest za nowy jako JDK dla Gradle/AGP. |
 
@@ -189,11 +189,16 @@ Osobna funkcja w ustawieniach:
 
 ## 12. Statystyki
 
-- aktywność: odpowiedzi i sesje dziennie (wykres słupkowy, 30/90 dni),
-- postęp w czasie: liczba opanowanych kart i kart w przegródkach ≥ 3 (wykres liniowy),
-- rozkład kart w przegródkach 1–5 i opanowanych,
-- najtrudniejsze słowa: najwięcej błędów i najniższy odsetek poprawnych (min. 3 próby), z podziałem na kierunek,
-- postęp w tematach: odsetek kart w przegródce ≥ 3 na temat.
+„Znane” to karta w przegródce ≥ 3 (z opanowanymi). Aktywność i poprawność liczą tylko pierwsze odpowiedzi: bez powtórek po błędzie (`retry`) i bez testu poziomującego.
+
+- kafelki: opanowane karty, znane karty, poprawność pierwszych odpowiedzi z 7 dni, wprowadzone elementy / wszystkie elementy lekcji,
+- aktywność: odpowiedzi dziennie z 30 dni (słupki) i liczba dni z nauką,
+- postęp w czasie: liczba znanych kart na koniec każdego dnia (linia), odtworzona z logu (`boxAfter`). Karty bez wpisów w logu (np. ustawione przez test poziomujący) liczą się od dnia wprowadzenia z bieżącą przegródką,
+- rozkład kart w przegródkach 1–5 i opanowanych (słupki),
+- postęp w tematach: znane karty / 2 × liczba elementów tematu (pasek),
+- najtrudniejsze: para (element, kierunek) z co najmniej 3 próbami i błędem, posortowana po liczbie złych odpowiedzi, potem po poprawności; 10 pozycji.
+
+Wykresy są rysowane własnym kodem w Compose Canvas (jedna seria na wykres, kolor z motywu, wartość po stuknięciu). Przy czterech prostych wykresach biblioteka (Vico) nie była warta zależności.
 
 ## 13. Build i instalacja
 
