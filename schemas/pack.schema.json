@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dyzydery/bahasa-kotak/schemas/pack.schema.json",
+  "title": "Bahasa Kotak lesson pack",
+  "description": "A lesson pack imported into Bahasa Kotak. IDs are stable across pack versions; import is an upsert by ID.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packId", "packVersion", "title", "createdAt", "topics"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packId": { "$ref": "#/$defs/id", "description": "Stable pack ID. A newer version of the same pack retires items it no longer contains." },
+    "packVersion": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "basedOnExport": {
+      "type": "string",
+      "format": "date-time",
+      "description": "exportedAt of the export this pack was generated from, if any."
+    },
+    "topics": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/topic" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "topic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "order", "lessons"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "$ref": "#/$defs/nonEmptyString", "description": "Polish." },
+        "description": { "type": "string" },
+        "order": { "type": "integer", "minimum": 0 },
+        "lessons": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/lesson" }
+        }
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "order", "difficulty", "items"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "$ref": "#/$defs/nonEmptyString", "description": "Polish." },
+        "order": { "type": "integer", "minimum": 0 },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Drives the number of distractor tiles in word-block exercises (difficulty - 1)."
+        },
+        "grammarNote": { "$ref": "#/$defs/grammarNote" },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/item" }
+        }
+      }
+    },
+    "grammarNote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "body"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "$ref": "#/$defs/nonEmptyString" },
+        "body": {
+          "$ref": "#/$defs/nonEmptyString",
+          "description": "Polish, short (a phone screen). Simple Markdown: **bold**, *italic*, bullet lists."
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "id_text", "pl_text", "register"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["word", "phrase", "sentence"] },
+        "id_text": { "$ref": "#/$defs/nonEmptyString", "description": "Canonical Indonesian form." },
+        "pl_text": { "$ref": "#/$defs/nonEmptyString", "description": "Canonical Polish translation." },
+        "register": {
+          "enum": ["formal", "colloquial", "neutral"],
+          "description": "formal = bahasa baku, colloquial = gaul/Jakarta, neutral = used in both."
+        },
+        "acceptedId": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true,
+          "description": "Other Indonesian answers accepted for PL→ID."
+        },
+        "acceptedPl": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true,
+          "description": "Other Polish answers accepted for ID→PL."
+        },
+        "distractorsId": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "description": "Optional Indonesian decoy tiles for word-block exercises (PL→ID)."
+        },
+        "distractorsPl": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "description": "Optional Polish decoy tiles for word-block exercises (ID→PL)."
+        },
+        "notes": { "type": "string", "description": "Polish hint shown after answering." },
+        "tags": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "placementOnly": {
+          "type": "boolean",
+          "default": false,
+          "description": "Trivial basics: used in the placement test and reviews, never introduced as new material."
+        }
+      }
+    }
+  }
+}

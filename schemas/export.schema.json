@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dyzydery/bahasa-kotak/schemas/export.schema.json",
+  "title": "Bahasa Kotak learning export",
+  "description": "Full answer log and current learning state, exported for analysis by Claude.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "exportedAt", "appVersion", "packs", "answers", "cards", "lessons", "sessions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "exportedAt": { "type": "string", "format": "date-time" },
+    "appVersion": { "type": "string" },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["packId", "packVersion", "importedAt"],
+        "properties": {
+          "packId": { "type": "string" },
+          "packVersion": { "type": "integer", "minimum": 1 },
+          "importedAt": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "answers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/answer" }
+    },
+    "cards": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/card" }
+    },
+    "lessons": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/lessonProgress" }
+    },
+    "sessions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/session" }
+    }
+  },
+  "$defs": {
+    "direction": { "enum": ["pl_id", "id_pl"] },
+    "box": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6,
+      "description": "0 = not introduced yet, 1-5 = Leitner box, 6 = mastered."
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["itemId", "direction", "exerciseType", "prompt", "userAnswer", "expected", "grade", "answeredAt", "boxBefore", "boxAfter", "sessionId", "retry"],
+      "properties": {
+        "itemId": { "type": "string" },
+        "direction": { "$ref": "#/$defs/direction" },
+        "exerciseType": { "enum": ["typed", "blocks", "placement"] },
+        "prompt": { "type": "string", "description": "Text shown to the user." },
+        "userAnswer": { "type": "string" },
+        "expected": { "type": "string", "description": "Closest accepted variant." },
+        "grade": { "enum": ["correct", "typo", "wrong"] },
+        "answeredAt": { "type": "string", "format": "date-time" },
+        "durationMs": { "type": "integer", "minimum": 0 },
+        "boxBefore": { "$ref": "#/$defs/box" },
+        "boxAfter": { "$ref": "#/$defs/box" },
+        "sessionId": { "type": "string" },
+        "retry": { "type": "boolean", "description": "True for an in-session repeat after a wrong answer (does not move the card)." }
+      }
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["itemId", "direction", "box", "dueAt"],
+      "properties": {
+        "itemId": { "type": "string" },
+        "direction": { "$ref": "#/$defs/direction" },
+        "box": { "$ref": "#/$defs/box" },
+        "dueAt": { "type": ["string", "null"], "format": "date-time" },
+        "masteredIntervalDays": { "type": "integer", "minimum": 0 },
+        "introducedAt": { "type": ["string", "null"], "format": "date-time" },
+        "retired": { "type": "boolean" }
+      }
+    },
+    "lessonProgress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lessonId", "topicId", "status"],
+      "properties": {
+        "lessonId": { "type": "string" },
+        "topicId": { "type": "string" },
+        "status": { "enum": ["locked", "available", "in_progress", "completed"] },
+        "grammarNoteSeen": { "type": "boolean" }
+      }
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "startedAt", "taskCount"],
+      "properties": {
+        "id": { "type": "string" },
+        "startedAt": { "type": "string", "format": "date-time" },
+        "endedAt": { "type": ["string", "null"], "format": "date-time" },
+        "taskCount": { "type": "integer", "minimum": 0 },
+        "placement": { "type": "boolean" }
+      }
+    }
+  }
+}
