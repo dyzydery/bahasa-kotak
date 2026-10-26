@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "packId": "loop-001",
+  "packVersion": 1,
+  "title": "Mylone słowa, rozmowy online i awarie",
+  "description": "Utrwalenie słów pytających i par bardzo/dużo, zwroty z wideorozmów oraz zgłoszenia awarii u operatora.",
+  "createdAt": "2026-10-26T12:45:00Z",
+  "basedOnExport": "2026-10-26T12:25:36.077378Z",
+  "topics": [
+    {
+      "id": "pairs",
+      "title": "Mylone słowa i pytania",
+      "description": "Kontrastowe pary i pytania, które sprawiały kłopot.",
+      "order": 7,
+      "lessons": [
+        {
+          "id": "pairs.bardzo",
+          "title": "Bardzo, dużo i pytania",
+          "order": 0,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "pairs.bardzo.note",
+            "title": "Bardzo czy dużo?",
+            "body": "**Bardzo** z przymiotnikiem:\n\n- **sangat** + przymiotnik (formalnie): *sangat penting*\n- przymiotnik + **sekali**: *enak sekali*\n- przymiotnik + **banget** (potocznie): *capek banget*\n\n**banyak** to *dużo / wielu* i stoi przed rzeczownikiem: *banyak kopi*. Z przymiotnikiem nie znaczy *bardzo*."
+          },
+          "items": [
+            {
+              "id": "pairs.sangat",
+              "kind": "word",
+              "id_text": "sangat",
+              "pl_text": "bardzo (przed przymiotnikiem)",
+              "register": "formal",
+              "acceptedPl": ["bardzo"],
+              "notes": "Stoi przed przymiotnikiem: sangat penting. Sekali stoi po nim: penting sekali."
+            },
+            {
+              "id": "pairs.sibuk",
+              "kind": "word",
+              "id_text": "sibuk",
+              "pl_text": "zajęty",
+              "register": "neutral",
+              "acceptedPl": ["zajęta", "zajęte", "zapracowany"]
+            },
+            {
+              "id": "pairs.macet",
+              "kind": "word",
+              "id_text": "macet",
+              "pl_text": "zakorkowany (korek)",
+              "register": "neutral",
+              "acceptedPl": ["korek", "zakorkowana", "zawieszony", "zablokowany"],
+              "notes": "O urządzeniu lub systemie: zawiesił się."
+            },
+            {
+              "id": "pairs.pulang",
+              "kind": "word",
+              "id_text": "pulang",
+              "pl_text": "wracać do domu",
+              "register": "neutral",
+              "acceptedPl": ["wrócić do domu", "wracać", "wrócić", "wracać do kraju"],
+              "notes": "Pulang: do domu lub kraju. Kembali: wrócić ogólnie."
+            },
+            {
+              "id": "pairs.s-kopi-enak-sekali",
+              "kind": "sentence",
+              "id_text": "Kopinya enak sekali.",
+              "pl_text": "Kawa jest bardzo smaczna.",
+              "register": "neutral",
+              "acceptedId": ["Kopinya sangat enak.", "Kopinya enak banget."],
+              "acceptedPl": ["Kawa jest bardzo dobra.", "Kawa jest pyszna.", "Kawa jest bardzo pyszna.", "Ta kawa jest bardzo smaczna."],
+              "distractorsId": ["banyak", "minum"],
+              "distractorsPl": ["dużo", "pić"]
+            },
+            {
+              "id": "pairs.s-banyak-kopi",
+              "kind": "sentence",
+              "id_text": "Saya minum banyak kopi.",
+              "pl_text": "Piję dużo kawy.",
+              "register": "neutral",
+              "acceptedPl": ["Piję sporo kawy.", "Wypijam dużo kawy.", "Ja piję dużo kawy."],
+              "distractorsId": ["sekali", "mau"],
+              "distractorsPl": ["bardzo", "chcę"]
+            },
+            {
+              "id": "pairs.s-sangat-sibuk",
+              "kind": "sentence",
+              "id_text": "Hari ini saya sangat sibuk.",
+              "pl_text": "Dziś jestem bardzo zajęty.",
+              "register": "formal",
+              "acceptedId": ["Saya sangat sibuk hari ini.", "Hari ini saya sibuk sekali.", "Saya sibuk sekali hari ini."],
+              "acceptedPl": ["Dzisiaj jestem bardzo zajęty.", "Dziś jestem bardzo zajęta.", "Dzisiaj jestem bardzo zajęta.", "Jestem dziś bardzo zajęty.", "Jestem dziś bardzo zajęta."],
+              "distractorsId": ["banyak", "besok"],
+              "distractorsPl": ["dużo", "jutro"]
+            },
+            {
+              "id": "pairs.s-jalan-macet",
+              "kind": "sentence",
+              "id_text": "Jalannya macet banget.",
+              "pl_text": "Na ulicy jest straszny korek.",
+              "register": "colloquial",
+              "acceptedId": ["Jalannya macet sekali.", "Jalannya sangat macet."],
+              "acceptedPl": ["Na drodze jest straszny korek.", "Jest straszny korek.", "Ulica jest bardzo zakorkowana.", "Droga jest bardzo zakorkowana."],
+              "distractorsId": ["banyak", "kantor"],
+              "distractorsPl": ["dużo", "biuro"]
+            },
+            {
+              "id": "pairs.s-di-mana-bandara",
+              "kind": "sentence",
+              "id_text": "Di mana bandaranya?",
+              "pl_text": "Gdzie jest lotnisko?",
+              "register": "neutral",
+              "acceptedId": ["Bandaranya di mana?", "Di mana bandara?", "Dimana bandaranya?"],
+              "acceptedPl": ["Gdzie lotnisko?"],
+              "distractorsId": ["kapan", "siapa"],
+              "distractorsPl": ["kiedy", "kto"]
+            },
+            {
+              "id": "pairs.s-kapan-pulang",
+              "kind": "sentence",
+              "id_text": "Kapan Anda pulang ke Polandia?",
+              "pl_text": "Kiedy wraca Pan do Polski?",
+              "register": "formal",
+              "acceptedPl": ["Kiedy wraca Pani do Polski?", "Kiedy Pan wraca do Polski?", "Kiedy Pani wraca do Polski?", "Kiedy wracasz do Polski?"],
+              "distractorsId": ["di mana", "kembali"],
+              "distractorsPl": ["gdzie", "jedzie"]
+            },
+            {
+              "id": "pairs.s-siapa-nama",
+              "kind": "sentence",
+              "id_text": "Siapa nama Anda?",
+              "pl_text": "Jak się Pan nazywa?",
+              "register": "formal",
+              "acceptedId": ["Nama Anda siapa?"],
+              "acceptedPl": ["Jak się Pani nazywa?", "Jak Pan się nazywa?", "Jak Pani się nazywa?", "Jak się nazywasz?", "Jak masz na imię?"],
+              "distractorsId": ["apa", "kapan"],
+              "distractorsPl": ["kto", "gdzie"],
+              "notes": "O imię pytamy siapa (kto), nie apa (co)."
+            },
+            {
+              "id": "pairs.s-kapan-bertemu",
+              "kind": "sentence",
+              "id_text": "Kapan kita bisa bertemu?",
+              "pl_text": "Kiedy możemy się spotkać?",
+              "register": "neutral",
+              "acceptedPl": ["Kiedy się możemy spotkać?", "Kiedy możemy się zobaczyć?", "Kiedy możemy się umówić?"],
+              "distractorsId": ["rapat", "di mana"],
+              "distractorsPl": ["spotkanie", "gdzie"],
+              "notes": "Bertemu to czasownik (spotkać się), rapat to rzeczownik (spotkanie, zebranie)."
+            },
+            {
+              "id": "pairs.s-terima-kasih-bu",
+              "kind": "phrase",
+              "id_text": "Terima kasih, Bu.",
+              "pl_text": "Dziękuję pani.",
+              "register": "formal",
+              "acceptedId": ["Terima kasih, Ibu."],
+              "acceptedPl": ["Dziękuję."],
+              "distractorsId": ["Pak", "sama-sama"],
+              "distractorsPl": ["panu", "proszę"],
+              "notes": "Bu i Pak to skróty od Ibu i Bapak, używane, gdy zwracamy się do kogoś."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "call",
+      "title": "Rozmowy online",
+      "description": "Wideorozmowy z klientem: dźwięk, ekran, linki i pytania.",
+      "order": 8,
+      "lessons": [
+        {
+          "id": "call.online",
+          "title": "Spotkanie online",
+          "order": 0,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "call.online.note",
+            "title": "Bisa, boleh, harus",
+            "body": "Czasowniki modalne stoją przed czasownikiem i się nie odmieniają:\n\n- **bisa** – móc, umieć: *Saya bisa mendengar Anda.*\n- **boleh** – wolno, mieć pozwolenie: *Boleh saya bertanya?*\n- **harus** – musieć: *Kita harus mulai.*\n- **perlu** – trzeba: *Perangkat perlu diperbarui.*"
+          },
+          "items": [
+            {
+              "id": "call.layar",
+              "kind": "word",
+              "id_text": "layar",
+              "pl_text": "ekran",
+              "register": "neutral",
+              "acceptedId": ["screen"],
+              "notes": "Też „żagiel”."
+            },
+            {
+              "id": "call.berbagi-layar",
+              "kind": "phrase",
+              "id_text": "berbagi layar",
+              "pl_text": "udostępnić ekran",
+              "register": "neutral",
+              "acceptedId": ["share layar", "share screen"],
+              "acceptedPl": ["udostępniać ekran", "udostępnianie ekranu", "udostępnij ekran"]
+            },
+            {
+              "id": "call.suara",
+              "kind": "word",
+              "id_text": "suara",
+              "pl_text": "dźwięk (głos)",
+              "register": "neutral",
+              "acceptedPl": ["głos", "dźwięk"]
+            },
+            {
+              "id": "call.jelas",
+              "kind": "word",
+              "id_text": "jelas",
+              "pl_text": "wyraźny (jasny)",
+              "register": "neutral",
+              "acceptedPl": ["jasny", "wyraźnie", "jasne", "wyraźne", "zrozumiały"]
+            },
+            {
+              "id": "call.mendengar",
+              "kind": "word",
+              "id_text": "mendengar",
+              "pl_text": "słyszeć",
+              "register": "neutral",
+              "acceptedId": ["dengar", "denger"],
+              "acceptedPl": ["usłyszeć", "słuchać"]
+            },
+            {
+              "id": "call.tautan",
+              "kind": "word",
+              "id_text": "tautan",
+              "pl_text": "link",
+              "register": "formal",
+              "acceptedId": ["link"],
+              "acceptedPl": ["odnośnik", "łącze"],
+              "notes": "W mowie i na czacie częściej po prostu link."
+            },
+            {
+              "id": "call.harus",
+              "kind": "word",
+              "id_text": "harus",
+              "pl_text": "musieć",
+              "register": "neutral",
+              "acceptedPl": ["trzeba", "należy", "muszę"]
+            },
+            {
+              "id": "call.boleh",
+              "kind": "word",
+              "id_text": "boleh",
+              "pl_text": "wolno (móc)",
+              "register": "neutral",
+              "acceptedPl": ["móc", "można", "wolno"],
+              "notes": "Boleh: pozwolenie. Bisa: możliwość lub umiejętność."
+            },
+            {
+              "id": "call.coba",
+              "kind": "word",
+              "id_text": "coba",
+              "pl_text": "spróbować",
+              "register": "neutral",
+              "acceptedId": ["mencoba"],
+              "acceptedPl": ["próbować", "spróbuj"]
+            },
+            {
+              "id": "call.lagi",
+              "kind": "word",
+              "id_text": "lagi",
+              "pl_text": "jeszcze raz (znowu)",
+              "register": "neutral",
+              "acceptedPl": ["znowu", "ponownie", "jeszcze raz", "jeszcze"],
+              "notes": "Potocznie też „właśnie (w trakcie)”, jak sedang."
+            },
+            {
+              "id": "call.s-bisa-dengar",
+              "kind": "sentence",
+              "id_text": "Apakah Anda bisa mendengar saya?",
+              "pl_text": "Czy Pan mnie słyszy?",
+              "register": "formal",
+              "acceptedId": ["Anda bisa mendengar saya?", "Bisa dengar saya?", "Apakah Anda bisa dengar saya?"],
+              "acceptedPl": ["Czy Pani mnie słyszy?", "Czy mnie Pan słyszy?", "Czy mnie Pani słyszy?", "Czy słyszy mnie Pan?", "Czy słyszy mnie Pani?", "Czy mnie słyszysz?", "Słyszysz mnie?"],
+              "distractorsId": ["boleh", "kamu"],
+              "distractorsPl": ["widzi", "może"]
+            },
+            {
+              "id": "call.s-suara-tidak-jelas",
+              "kind": "sentence",
+              "id_text": "Suaranya tidak jelas.",
+              "pl_text": "Dźwięk jest niewyraźny.",
+              "register": "neutral",
+              "acceptedId": ["Suaranya nggak jelas.", "Suaranya kurang jelas."],
+              "acceptedPl": ["Głos jest niewyraźny.", "Dźwięk nie jest wyraźny.", "Głos nie jest wyraźny."],
+              "distractorsId": ["layar", "belum"],
+              "distractorsPl": ["ekran", "wyraźny"]
+            },
+            {
+              "id": "call.s-berbagi-layar",
+              "kind": "sentence",
+              "id_text": "Saya akan berbagi layar sekarang.",
+              "pl_text": "Teraz udostępnię ekran.",
+              "register": "neutral",
+              "acceptedId": ["Sekarang saya akan berbagi layar."],
+              "acceptedPl": ["Udostępnię teraz ekran.", "Udostępnię ekran teraz.", "Teraz udostępnię swój ekran.", "Teraz udostępnię mój ekran."],
+              "distractorsId": ["sudah", "suara"],
+              "distractorsPl": ["udostępniłem", "dźwięk"]
+            },
+            {
+              "id": "call.s-kirim-tautan",
+              "kind": "sentence",
+              "id_text": "Tolong kirim tautannya lagi.",
+              "pl_text": "Proszę wysłać link jeszcze raz.",
+              "register": "neutral",
+              "acceptedId": ["Tolong kirim linknya lagi.", "Tolong kirimkan tautannya lagi."],
+              "acceptedPl": ["Proszę jeszcze raz wysłać link.", "Proszę ponownie wysłać link.", "Proszę wysłać link ponownie."],
+              "distractorsId": ["mengirim", "balas"],
+              "distractorsPl": ["odpisać", "wysłałem"],
+              "notes": "W prośbie z tolong czasownik traci me-: mengirim → kirim."
+            },
+            {
+              "id": "call.s-boleh-tanya",
+              "kind": "sentence",
+              "id_text": "Boleh saya bertanya?",
+              "pl_text": "Czy mogę zadać pytanie?",
+              "register": "formal",
+              "acceptedId": ["Boleh saya tanya?", "Boleh tanya?"],
+              "acceptedPl": ["Czy mogę zapytać?", "Czy mogę o coś zapytać?", "Mogę zapytać?", "Mogę zadać pytanie?"],
+              "distractorsId": ["harus", "pertanyaan"],
+              "distractorsPl": ["muszę", "pytania"]
+            },
+            {
+              "id": "call.s-harus-mulai",
+              "kind": "sentence",
+              "id_text": "Kita harus mulai sekarang.",
+              "pl_text": "Musimy teraz zacząć.",
+              "register": "neutral",
+              "acceptedId": ["Sekarang kita harus mulai."],
+              "acceptedPl": ["Musimy zacząć teraz.", "Teraz musimy zacząć.", "Musimy już zaczynać.", "Musimy już zacząć."],
+              "distractorsId": ["boleh", "besok"],
+              "distractorsPl": ["możemy", "jutro"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "telco",
+      "title": "Sieci i telco",
+      "order": 4,
+      "lessons": [
+        {
+          "id": "telco.support",
+          "title": "Wsparcie i awarie",
+          "order": 2,
+          "difficulty": 2,
+          "grammarNote": {
+            "id": "telco.support.note",
+            "title": "Rzeczowniki ke-…-an",
+            "body": "**ke-…-an** robi z przymiotnika lub czasownika rzeczownik:\n\n- *aman* (bezpieczny) → **ke**aman**an** (bezpieczeństwo)\n- *cepat* (szybki) → **ke**cepat**an** (prędkość)\n- *butuh* (potrzebować) → **ke**butuh**an** (potrzeba)\n\nSamo **-an** też tworzy rzeczowniki: *mengeluh* (skarżyć się) → *keluh***an** (skarga)."
+          },
+          "items": [
+            {
+              "id": "telco.mati",
+              "kind": "word",
+              "id_text": "mati",
+              "pl_text": "nie działa (wyłączony)",
+              "register": "neutral",
+              "acceptedPl": ["wyłączony", "wyłączone", "zepsuty", "martwy"],
+              "notes": "Dosłownie „martwy”. O urządzeniu albo prądzie: nie działa, wyłączony. Mati lampu: brak prądu."
+            },
+            {
+              "id": "telco.menyalakan-ulang",
+              "kind": "phrase",
+              "id_text": "menyalakan ulang",
+              "pl_text": "zrestartować (włączyć ponownie)",
+              "register": "neutral",
+              "acceptedId": ["nyalakan ulang", "restart", "merestart"],
+              "acceptedPl": ["restartować", "uruchomić ponownie", "włączyć ponownie", "zrestartuj"],
+              "notes": "W pracy często po prostu restart."
+            },
+            {
+              "id": "telco.kata-sandi",
+              "kind": "phrase",
+              "id_text": "kata sandi",
+              "pl_text": "hasło",
+              "register": "neutral",
+              "acceptedId": ["sandi", "password"]
+            },
+            {
+              "id": "telco.aman",
+              "kind": "word",
+              "id_text": "aman",
+              "pl_text": "bezpieczny",
+              "register": "neutral",
+              "acceptedPl": ["bezpieczne", "bezpieczna", "bezpiecznie"],
+              "notes": "Potocznie też „w porządku”: Aman? – Wszystko OK?"
+            },
+            {
+              "id": "telco.keamanan",
+              "kind": "word",
+              "id_text": "keamanan",
+              "pl_text": "bezpieczeństwo",
+              "register": "neutral",
+              "acceptedPl": ["ochrona", "security"]
+            },
+            {
+              "id": "telco.mengeluh",
+              "kind": "word",
+              "id_text": "mengeluh",
+              "pl_text": "skarżyć się",
+              "register": "neutral",
+              "acceptedId": ["komplain"],
+              "acceptedPl": ["narzekać", "reklamować", "poskarżyć się"]
+            },
+            {
+              "id": "telco.keluhan",
+              "kind": "word",
+              "id_text": "keluhan",
+              "pl_text": "skarga (reklamacja)",
+              "register": "neutral",
+              "acceptedId": ["komplain"],
+              "acceptedPl": ["reklamacja", "skarga", "zażalenie"]
+            },
+            {
+              "id": "telco.kembali",
+              "kind": "word",
+              "id_text": "kembali",
+              "pl_text": "wrócić",
+              "register": "neutral",
+              "acceptedId": ["balik"],
+              "acceptedPl": ["wracać", "z powrotem", "ponownie"],
+              "notes": "Kembali: wrócić ogólnie. Pulang: wrócić do domu."
+            },
+            {
+              "id": "telco.tentang",
+              "kind": "word",
+              "id_text": "tentang",
+              "pl_text": "o (na temat)",
+              "register": "neutral",
+              "acceptedPl": ["o", "na temat", "na"]
+            },
+            {
+              "id": "telco.s-modem-mati",
+              "kind": "sentence",
+              "id_text": "Modemnya mati sejak kemarin.",
+              "pl_text": "Modem nie działa od wczoraj.",
+              "register": "neutral",
+              "acceptedPl": ["Od wczoraj modem nie działa.", "Modem od wczoraj nie działa.", "Modem jest wyłączony od wczoraj."],
+              "distractorsId": ["besok", "lambat"],
+              "distractorsPl": ["jutro", "wolno"],
+              "notes": "Sejak: od (jakiegoś czasu)."
+            },
+            {
+              "id": "telco.s-coba-restart",
+              "kind": "sentence",
+              "id_text": "Coba nyalakan ulang modemnya.",
+              "pl_text": "Proszę spróbować zrestartować modem.",
+              "register": "neutral",
+              "acceptedId": ["Coba restart modemnya.", "Coba menyalakan ulang modemnya."],
+              "acceptedPl": ["Spróbuj zrestartować modem.", "Proszę zrestartować modem.", "Spróbuj uruchomić ponownie modem.", "Proszę spróbować uruchomić ponownie modem."],
+              "distractorsId": ["menyalakan", "mati"],
+              "distractorsPl": ["wyłączyć", "router"],
+              "notes": "W poleceniu me- odpada: menyalakan → nyalakan."
+            },
+            {
+              "id": "telco.s-pelanggan-mengeluh",
+              "kind": "sentence",
+              "id_text": "Banyak pelanggan mengeluh tentang koneksi.",
+              "pl_text": "Wielu klientów skarży się na połączenie.",
+              "register": "neutral",
+              "acceptedPl": ["Dużo klientów skarży się na połączenie.", "Wielu klientów narzeka na połączenie.", "Dużo klientów narzeka na połączenie.", "Wielu abonentów skarży się na połączenie.", "Wielu abonentów narzeka na połączenie."],
+              "distractorsId": ["sekali", "keluhan"],
+              "distractorsPl": ["bardzo", "skarga"]
+            },
+            {
+              "id": "telco.s-koneksi-kembali",
+              "kind": "sentence",
+              "id_text": "Koneksinya sudah kembali normal.",
+              "pl_text": "Połączenie wróciło już do normy.",
+              "register": "neutral",
+              "acceptedPl": ["Połączenie już wróciło do normy.", "Połączenie wróciło do normy.", "Połączenie już działa normalnie.", "Połączenie znowu działa normalnie."],
+              "distractorsId": ["belum", "pulang"],
+              "distractorsPl": ["jeszcze", "nie"]
+            },
+            {
+              "id": "telco.s-kata-sandi-aman",
+              "kind": "sentence",
+              "id_text": "Kata sandi ini tidak aman.",
+              "pl_text": "To hasło nie jest bezpieczne.",
+              "register": "neutral",
+              "acceptedId": ["Password ini tidak aman.", "Kata sandi ini nggak aman."],
+              "acceptedPl": ["To hasło jest niebezpieczne.", "Hasło nie jest bezpieczne."],
+              "distractorsId": ["keamanan", "belum"],
+              "distractorsPl": ["bezpieczeństwo", "jeszcze"]
+            },
+            {
+              "id": "telco.s-keamanan-penting",
+              "kind": "sentence",
+              "id_text": "Keamanan jaringan sangat penting.",
+              "pl_text": "Bezpieczeństwo sieci jest bardzo ważne.",
+              "register": "formal",
+              "acceptedId": ["Keamanan jaringan penting sekali."],
+              "acceptedPl": ["Bezpieczeństwo sieci jest niezwykle ważne.", "Bardzo ważne jest bezpieczeństwo sieci."],
+              "distractorsId": ["banyak", "aman"],
+              "distractorsPl": ["dużo", "bezpieczny"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

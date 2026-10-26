@@ -1,11 +1,13 @@
 package io.github.dyzydery.bahasakotak
 
+import android.content.ClipboardManager
 import android.content.Context
 import android.net.Uri
 import io.github.dyzydery.bahasakotak.data.BahasaDatabase
 import io.github.dyzydery.bahasakotak.data.ContentRepository
 import io.github.dyzydery.bahasakotak.data.StudyRepository
 import io.github.dyzydery.bahasakotak.io.backup.BackupManager
+import io.github.dyzydery.bahasakotak.io.transport.ClipboardTransport
 import io.github.dyzydery.bahasakotak.io.transport.ContentTransport
 import io.github.dyzydery.bahasakotak.io.transport.FileTransport
 import io.github.dyzydery.bahasakotak.io.pack.PackImportService
@@ -16,7 +18,8 @@ class AppContainer(private val context: Context) {
     val database by lazy { BahasaDatabase.open(context) }
     val contentRepository by lazy { ContentRepository(database) }
     val studyRepository by lazy { StudyRepository(database) }
-    val transport: ContentTransport by lazy { FileTransport(context) }
+    val shareTransport: ContentTransport by lazy { FileTransport(context) }
+    val clipboardTransport: ContentTransport by lazy { ClipboardTransport(context) }
     val backupManager by lazy { BackupManager(context) { database } }
     val appVersion: String by lazy {
         context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "?"
@@ -26,6 +29,12 @@ class AppContainer(private val context: Context) {
     }
 
     fun asset(name: String): String = context.assets.open(name).bufferedReader().use { it.readText() }
+
+    fun clipboardText(): String? {
+        val clip = context.getSystemService(ClipboardManager::class.java).primaryClip ?: return null
+        return (0 until clip.itemCount).joinToString("\n") { clip.getItemAt(it).coerceToText(context) }
+            .takeIf { it.isNotBlank() }
+    }
 
     fun openWriter(uri: Uri) = context.contentResolver.openOutputStream(uri, "wt")?.bufferedWriter()
 

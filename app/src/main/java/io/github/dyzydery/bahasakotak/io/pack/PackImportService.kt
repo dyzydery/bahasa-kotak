@@ -15,7 +15,7 @@ class PackImportService(
     private val clock: () -> Long = System::currentTimeMillis,
 ) {
     suspend fun preview(text: String): ImportPreview {
-        val pack = when (val read = reader.read(text)) {
+        val pack = when (val read = reader.read(PackText.extract(text))) {
             is PackReadResult.Invalid -> return ImportPreview.Invalid(read.errors)
             is PackReadResult.Valid -> read.pack
         }

@@ -42,6 +42,7 @@ interface ContentTransport {
 ```
 
 - `FileTransport` (teraz): zapisuje eksport w cache i otwiera systemowe udostępnianie (`ACTION_SEND` przez FileProvider). Plik jest załącznikiem, a treść `docs/ANALYSIS_PROMPT.md` tekstem wiadomości, więc do aplikacji Claude wystarcza jedno udostępnienie. Zwraca `null`: paczka wraca później jako plik wybierany przyciskiem „Importuj paczkę”. Dla drogi przez laptopa jest też „Zapisz eksport do pliku”.
+- `ClipboardTransport` (teraz, główna droga): kopiuje prompt i eksport do schowka jako jedną wiadomość. Powód: apka Claude jest w profilu służbowym, a systemowe udostępnianie i pliki nie przechodzą między profilami Androida. Schowek domyślnie przechodzi. Odpowiedź wraca przez „Importuj ze schowka”. Apka sama wyciąga paczkę z wklejonej odpowiedzi (ostatni blok ```json z `packId` albo zewnętrzne `{…}`). Limit: schowek idzie przez Binder (~1 MB), więc przy bardzo dużym logu trzeba będzie przyciąć eksport albo przejść na Frog API.
 - `FrogApiTransport` (później): POST eksportu i promptu do serwisu na VPS (Mikrus Frog, Alpine, 256 MB RAM, za Cloudflare). Serwis woła Claude API i odsyła paczkę, którą `sendExport` zwraca. Apka od razu pokazuje podgląd importu. Uwierzytelnianie: statyczny token w nagłówku.
 
 Import zawsze przechodzi przez `PackImportService`, czyli tę samą walidację, niezależnie od źródła.

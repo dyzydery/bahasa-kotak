@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import io.github.dyzydery.bahasakotak.io.export.ExportBuilder
 import io.github.dyzydery.bahasakotak.io.export.ExportFile
+import io.github.dyzydery.bahasakotak.io.transport.ContentTransport
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -86,12 +87,34 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
     }
 
     /** Builds the export and hands it to the transport; a transport that returns a pack goes to import preview. */
-    fun shareExport() {
+    fun shareExport() = sendExport(container.shareTransport, confirmation = null)
+
+    fun copyExport() = sendExport(
+        container.clipboardTransport,
+        confirmation = "Skopiowano prompt i eksport. Wklej je w rozmowie z Claude.",
+    )
+
+    private fun sendExport(transport: ContentTransport, confirmation: String?) {
         viewModelScope.launch {
             val file = withContext(Dispatchers.IO) { buildExport() }
             val prompt = withContext(Dispatchers.IO) { container.asset(AppContainer.ANALYSIS_PROMPT_ASSET) }
-            val pack = container.transport.sendExport(file, prompt)
-            if (pack != null) _importState.value = ImportUiState.Showing(importService.preview(pack))
+            val pack = transport.sendExport(file, prompt)
+            _importState.value = when {
+                pack != null -> ImportUiState.Showing(importService.preview(pack))
+                confirmation != null -> ImportUiState.Done(confirmation)
+                else -> ImportUiState.Idle
+            }
+        }
+    }
+
+    fun importFromClipboard() {
+        val text = container.clipboardText()
+        if (text == null) {
+            _importState.value = ImportUiState.Done("Schowek jest pusty. Skopiuj odpowiedź Claude z paczką.")
+            return
+        }
+        viewModelScope.launch {
+            _importState.value = ImportUiState.Showing(withContext(Dispatchers.IO) { importService.preview(text) })
         }
     }
 

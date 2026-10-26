@@ -79,14 +79,18 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () ->
             ContentSummary(packs, stats)
             Spacer(Modifier.height(24.dp))
             ToolsSection(title = "Pętla z Claude") {
-                OutlinedButton(onClick = viewModel::shareExport, Modifier.fillMaxWidth()) { Text("Wyślij eksport do Claude") }
+                OutlinedButton(onClick = viewModel::copyExport, Modifier.fillMaxWidth()) { Text("Kopiuj dla Claude") }
+                OutlinedButton(onClick = viewModel::importFromClipboard, Modifier.fillMaxWidth()) {
+                    Text("Importuj ze schowka")
+                }
+                OutlinedButton(onClick = viewModel::shareExport, Modifier.fillMaxWidth()) { Text("Udostępnij eksport") }
                 OutlinedButton(onClick = { saveExport.launch(viewModel.exportFileName()) }, Modifier.fillMaxWidth()) {
                     Text("Zapisz eksport do pliku")
                 }
                 // MIUI's file manager often reports .json as application/octet-stream, so accept anything
                 // and let the schema validation reject what isn't a pack.
                 OutlinedButton(onClick = { pickPack.launch(arrayOf("*/*")) }, Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.home_import_pack))
+                    Text("Importuj paczkę z pliku")
                 }
             }
             Spacer(Modifier.height(16.dp))
