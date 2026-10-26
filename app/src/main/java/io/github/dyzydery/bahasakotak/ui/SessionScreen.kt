@@ -4,6 +4,9 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -33,6 +37,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -48,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.github.dyzydery.bahasakotak.domain.AnswerOutcome
 import io.github.dyzydery.bahasakotak.domain.Direction
+import io.github.dyzydery.bahasakotak.domain.ExerciseType
 import io.github.dyzydery.bahasakotak.domain.Grade
 import io.github.dyzydery.bahasakotak.domain.ItemKind
 import io.github.dyzydery.bahasakotak.domain.Register
@@ -82,7 +88,9 @@ fun SessionScreen(viewModel: SessionViewModel, onExit: () -> Unit) {
                 is SessionUiState.Running -> when (val task = s.task) {
                     is Task.Note -> NoteView(task, viewModel::next)
                     is Task.Intro -> IntroView(task.item, viewModel::next)
-                    is Task.Ask -> AskView(task, s.feedback, viewModel::submit, viewModel::next)
+                    is Task.Ask ->
+                        if (task.exerciseType == ExerciseType.BLOCKS) BlocksView(task, s.feedback, viewModel::submit, viewModel::next)
+                        else AskView(task, s.feedback, viewModel::submit, viewModel::next)
                 }
             }
         }
@@ -174,6 +182,54 @@ private fun AskView(task: Task.Ask, feedback: AnswerOutcome?, onSubmit: (String)
     }
 }
 
+/** Tap tiles in the pool to build the answer; tap a placed tile to put it back. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun BlocksView(task: Task.Ask, feedback: AnswerOutcome?, onSubmit: (String) -> Unit, onNext: () -> Unit) {
+    // Indices into task.tiles, so repeated words stay distinct.
+    val placed = remember(task) { mutableStateListOf<Int>() }
+    val answer = placed.joinToString(" ") { task.tiles[it] }
+
+    Column(Modifier.fillMaxSize()) {
+        Text(
+            if (task.direction == Direction.PL_ID) "Ułóż po indonezyjsku" else "Ułóż po polsku",
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.primary,
+        )
+        Spacer(Modifier.height(8.dp))
+        RegisterChip(task.item.register)
+        Spacer(Modifier.height(12.dp))
+        Text(task.item.prompt(task.direction), style = MaterialTheme.typography.headlineSmall)
+        Spacer(Modifier.height(24.dp))
+        Card(Modifier.fillMaxWidth().heightIn(min = 64.dp)) {
+            FlowRow(Modifier.padding(8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                placed.forEach { index ->
+                    Button(onClick = { if (feedback == null) placed.remove(index) }) { Text(task.tiles[index]) }
+                }
+            }
+        }
+        Spacer(Modifier.height(16.dp))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            task.tiles.indices.filter { it !in placed }.forEach { index ->
+                OutlinedButton(onClick = { if (feedback == null) placed.add(index) }) { Text(task.tiles[index]) }
+            }
+        }
+        Spacer(Modifier.height(16.dp))
+        feedback?.let { FeedbackCard(it) }
+        Spacer(Modifier.weight(1f))
+        if (feedback == null) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                TextButton(onClick = { onSubmit("") }, modifier = Modifier.weight(1f)) { Text("Nie wiem") }
+                Button(onClick = { onSubmit(answer) }, enabled = placed.isNotEmpty(), modifier = Modifier.weight(2f)) {
+                    Text("Sprawdź")
+                }
+            }
+        } else {
+            Button(onClick = onNext, modifier = Modifier.fillMaxWidth()) { Text("Dalej") }
+        }
+    }
+}
+
 @Composable
 private fun FeedbackCard(outcome: AnswerOutcome) {
     val colors = MaterialTheme.colorScheme
@@ -223,11 +279,18 @@ private fun FinishedView(state: SessionUiState.Finished, onExit: () -> Unit) {
             Spacer(Modifier.height(8.dp))
             Text("Brak zaległych powtórek i nowego materiału. Wróć jutro.", textAlign = TextAlign.Center)
         } else {
-            Text("Koniec sesji", style = MaterialTheme.typography.headlineSmall)
+            Text(if (state.placement) "Koniec testu" else "Koniec sesji", style = MaterialTheme.typography.headlineSmall)
             Spacer(Modifier.height(16.dp))
             Text("Dobrze: ${state.correct}")
             Text("Prawie dobrze: ${state.typo}")
             Text("Źle: ${state.wrong}")
+            if (state.placement) {
+                Spacer(Modifier.height(16.dp))
+                Text(
+                    "Znane słowa trafiły od razu do wyższych przegródek. Sprawdzisz je w zwykłych powtórkach.",
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
         Spacer(Modifier.height(32.dp))
         Button(onClick = onExit) { Text("Wróć") }

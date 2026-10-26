@@ -26,6 +26,18 @@ object SessionPlanner {
         val newSlots = (input.taskLimit - reviews.size) / 2 // each new item brings two graded tasks
         val newItems = pickNewItems(input).take(minOf(newSlots, input.maxNewItems).coerceAtLeast(0))
         return interleave(reviews.shuffled(random), newItems, input.lessons, random)
+            .map { if (it is Task.Ask) withExercise(it, input, random) else it }
+    }
+
+    /** Long answers become word blocks; tiles draw distractors from the same lesson first, then everything. */
+    private fun withExercise(task: Task.Ask, input: PlannerInput, random: Random): Task.Ask {
+        if (Blocks.exerciseFor(task.item, task.direction) != ExerciseType.BLOCKS) return task
+        val lesson = input.lessons.firstOrNull { it.id == task.item.lessonId }
+        val answerText = { it: StudyItem -> it.answers(task.direction).first() }
+        val pool = lesson?.items.orEmpty().filter { it.id != task.item.id }.map(answerText).shuffled(random) +
+            input.items.values.filter { it.lessonId != task.item.lessonId }.map(answerText).shuffled(random)
+        val tiles = Blocks.tiles(task.item, task.direction, lesson?.difficulty ?: 1, pool, random)
+        return task.copy(exerciseType = ExerciseType.BLOCKS, tiles = tiles)
     }
 
     /** Task count calibrated so a session takes about five minutes at the user's recent pace. */

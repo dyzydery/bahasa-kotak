@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -28,10 +29,18 @@ class MainActivity : ComponentActivity() {
                 // 0 = home; n > 0 = the n-th session started in this activity (keys a fresh SessionViewModel).
                 var session by rememberSaveable { mutableIntStateOf(0) }
                 var lastSession by rememberSaveable { mutableIntStateOf(0) }
+                var placement by rememberSaveable { mutableStateOf(false) }
                 if (session == 0) {
-                    HomeScreen(homeViewModel, onStart = { lastSession++; session = lastSession })
+                    HomeScreen(
+                        homeViewModel,
+                        onStart = { placement = false; lastSession++; session = lastSession },
+                        onPlacement = { placement = true; lastSession++; session = lastSession },
+                    )
                 } else {
-                    val vm: SessionViewModel = viewModel(key = "session-$session", factory = SessionViewModel.factory(container))
+                    val vm: SessionViewModel = viewModel(
+                        key = "session-$session",
+                        factory = SessionViewModel.factory(container, placement),
+                    )
                     SessionScreen(vm, onExit = { session = 0 })
                 }
             }

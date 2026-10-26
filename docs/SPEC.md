@@ -122,7 +122,7 @@ Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko
   1. zaległe karty (`dueAt ≤ teraz`), od najstarszych; opanowane na końcu kolejki,
   2. jeśli zostało miejsce: nowe elementy z bieżącej lekcji (max 5 nowych elementów na sesję). Nowy element wprowadza obie karty kierunkowe, z kierunkiem ID→PL najpierw. Każdy nowy element najpierw pojawia się jako karta „Nowe” (oba teksty, rejestr, notka), bo nie da się odpytać ze słowa, którego się jeszcze nie widziało. Pytanie ID→PL pada 2–3 zadania później, a pytania PL→ID zamykają sesję. Karta „Nowe” nie jest oceniana i nie wlicza się do limitu.
 - Kierunki są losowane tak, żeby w sesji było ich po równo (±1).
-- Typ ćwiczenia: zdania (`sentence`) dostają klocki, a słowa i frazy fiszki z wpisywaniem. Zdanie co trzeci raz trafia na fiszkę, a fraza z ≥ 3 słowami na klocki, żeby oba typy się przeplatały.
+- Typ ćwiczenia zależy od długości odpowiedzi: jeśli główne tłumaczenie w języku docelowym ma **≥ 3 słowa**, są klocki, a w przeciwnym razie fiszka z wpisywaniem. Reguła działa w obu kierunkach. Zmiana po pierwszych sesjach: wpisywanie długich polskich zwrotów na telefonie jest nużące, a samo układanie dobrze ćwiczy szyk.
 - Błędne zadanie wraca po 3–5 kolejnych zadaniach i nie wlicza się do limitu. Wraca najwyżej 3 razy, żeby sesja się nie zapętliła.
 - Lekcja jest „zaliczona”, gdy wszystkie jej karty są w przegródce ≥ 2. Następna lekcja tematu odblokowuje się wtedy automatycznie. Tematy idą równolegle według `order`.
 - Ekran startowy ma jeden przycisk „Zacznij”, a sesja ładuje się bez ekranów pośrednich. Jeśli nowa lekcja ma notkę gramatyczną, pokazuje się ona raz przed jej pierwszym zadaniem.
@@ -131,14 +131,14 @@ Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko
 
 **Fiszka z wpisywaniem** – pokazuje tekst źródłowy i rejestr (znaczek „formalny”/„potoczny”), użytkownik wpisuje tłumaczenie. Wynik jest oceniany wg §4.
 
-**Klocki słów** – rozsypane tokeny zdania docelowego plus pułapki. Liczba pułapek zależy od `difficulty` lekcji: 1→0, 2→1, 3→2, 4→3, 5→4. Pułapki pochodzą z pola `distractors` elementu, jeśli istnieje, a w przeciwnym razie z innych elementów tej samej lekcji lub tematu w tym samym języku. Odpowiedź jest poprawna, gdy ułożona sekwencja po normalizacji równa się któremuś wariantowi. Ocena `typo` tu nie występuje.
+**Klocki słów** – rozsypane słowa głównego tłumaczenia (bez podpowiedzi w nawiasach i bez interpunkcji, pierwsze słowo małą literą, żeby wielka litera nie zdradzała początku) plus pułapki. Liczba pułapek zależy od `difficulty` lekcji: 1→0, 2→1, 3→2, 4→3, 5→4. Pułapki pochodzą z pola `distractors` elementu, jeśli istnieje, a potem z innych elementów tej samej lekcji, a na końcu z całej treści, w tym samym języku. Pułapka nigdy nie powtarza słowa z odpowiedzi. Odpowiedź jest poprawna, gdy ułożona sekwencja po normalizacji równa się któremuś wariantowi. Ocena `typo` tu nie występuje.
 
 ## 8. Test poziomujący
 
-Przy pierwszym uruchomieniu (z możliwością pominięcia) apka zadaje ok. 20 fiszek ID→PL:
+Dopóki test nie zostanie zrobiony albo pominięty, ekran główny go proponuje. Apka zadaje do 12 + 2 × liczba tematów fiszek ID→PL (bez powtórek po błędzie):
 
-- najpierw elementy `placementOnly` (podstawy pominięte w lekcjach: powitania, liczby, zaimki),
-- potem po 2 elementy z pierwszych lekcji każdego tematu.
+- do 12 losowych elementów `placementOnly` (podstawy pominięte w lekcjach: powitania, liczby, zaimki),
+- po 2 elementy z pierwszej lekcji każdego tematu.
 
 Wynik:
 
@@ -148,7 +148,7 @@ Wynik:
 
 Pominięcie testu oznacza, że podstawy `placementOnly` uznajemy za znane: nie powstają dla nich karty.
 
-Jeśli w lekcji poprawnie odpowiedziano na wszystkie testowane elementy, cała lekcja jest oznaczana jako przejrzana i jej pozostałe elementy startują z przegródki 2. Elementy `placementOnly` po teście są zwykłymi kartami w powtórkach, ale nie pojawiają się jako nowy materiał.
+Jeśli w lekcji poprawnie odpowiedziano na wszystkie testowane elementy, jej pozostałe elementy startują z przegródki 2 z terminem na dziś, więc najbliższa sesja od razu je sprawdzi (błąd cofa do przegródki 1). Test nigdy nie nadpisuje istniejących kart. Pomija elementy, które już są w nauce, oraz zdania. Elementy `placementOnly` po teście są zwykłymi kartami w powtórkach, ale nie pojawiają się jako nowy materiał.
 
 ## 9. Paczki i import
 

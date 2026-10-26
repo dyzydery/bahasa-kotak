@@ -9,6 +9,8 @@ data class StudyItem(
     val register: Register,
     val acceptedId: List<String> = emptyList(),
     val acceptedPl: List<String> = emptyList(),
+    val distractorsId: List<String> = emptyList(),
+    val distractorsPl: List<String> = emptyList(),
     val notes: String? = null,
     val placementOnly: Boolean = false,
 ) {
@@ -17,6 +19,8 @@ data class StudyItem(
     /** Canonical answer first, then the pack's accepted variants. */
     fun answers(direction: Direction) =
         if (direction == Direction.PL_ID) listOf(idText) + acceptedId else listOf(plText) + acceptedPl
+
+    fun distractors(direction: Direction) = if (direction == Direction.PL_ID) distractorsId else distractorsPl
 }
 
 data class CardKey(val itemId: String, val direction: Direction)
@@ -50,6 +54,8 @@ sealed interface Task {
         val item: StudyItem,
         val direction: Direction,
         val exerciseType: ExerciseType = ExerciseType.TYPED,
+        /** Shuffled word tiles (answer + distractors) for [ExerciseType.BLOCKS]; empty otherwise. */
+        val tiles: List<String> = emptyList(),
         val retry: Boolean = false,
     ) : Task {
         val key get() = CardKey(item.id, direction)

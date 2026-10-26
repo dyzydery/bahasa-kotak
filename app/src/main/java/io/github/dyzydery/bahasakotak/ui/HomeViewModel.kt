@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import io.github.dyzydery.bahasakotak.AppContainer
 import io.github.dyzydery.bahasakotak.data.ContentStats
 import io.github.dyzydery.bahasakotak.data.PackEntity
+import io.github.dyzydery.bahasakotak.data.SessionEntity
 import io.github.dyzydery.bahasakotak.io.pack.ImportPreview
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.UUID
 
 sealed interface ImportUiState {
     data object Idle : ImportUiState
@@ -33,6 +35,9 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
         repository.packs.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
     val stats: StateFlow<ContentStats?> =
         repository.stats.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+
+    val placementDone: StateFlow<Boolean?> =
+        container.studyRepository.placementDone.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
     private val _importState = MutableStateFlow<ImportUiState>(ImportUiState.Idle)
     val importState = _importState.asStateFlow()
@@ -61,6 +66,16 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) { importService.apply(preview.plan) }
             _importState.value = ImportUiState.Done("Zaimportowano paczkę „${preview.plan.pack.title}”.")
+        }
+    }
+
+    /** Skipping records an empty, finished placement session; basics are then treated as known. */
+    fun skipPlacement() {
+        viewModelScope.launch {
+            val now = System.currentTimeMillis()
+            container.studyRepository.saveSession(
+                SessionEntity(UUID.randomUUID().toString(), now, now, taskCount = 0, placement = true)
+            )
         }
     }
 

@@ -51,11 +51,14 @@ object AnswerChecker {
      * "dzień dobry", and "Pan / Pani" accepts each side on its own.
      */
     internal fun expandVariant(variant: String): List<String> {
-        val withoutHints = variant.replace(PARENTHESIZED, "").replace(WHITESPACE, " ").trim()
+        val withoutHints = stripHints(variant)
         val alternatives = variant.split(" / ").map { it.trim() }.filter { it.isNotEmpty() }
         return (listOf(variant, withoutHints) + if (alternatives.size > 1) alternatives else emptyList())
             .filter { normalize(it).isNotEmpty() }
     }
+
+    /** Removes parenthesized hints: "pozwól(cie), że się przedstawię" → "pozwól, że się przedstawię". */
+    fun stripHints(text: String): String = text.replace(PARENTHESIZED, "").replace(WHITESPACE, " ").trim()
 
     /** Optimal string alignment distance: Levenshtein plus adjacent transpositions. */
     internal fun damerauLevenshtein(a: String, b: String): Int {

@@ -42,6 +42,9 @@ class StudyRepository(private val db: BahasaDatabase) {
 
     suspend fun durationsSince(since: Long) = dao.durationsSince(since)
 
+    /** True once the placement test was finished or skipped (a skip is an empty placement session). */
+    val placementDone = dao.observePlacementDone()
+
     suspend fun saveCards(cards: List<CardState>) = dao.upsertCards(cards.map { it.toEntity() })
 
     suspend fun markGrammarNoteSeen(lessonId: String) =
@@ -52,6 +55,11 @@ class StudyRepository(private val db: BahasaDatabase) {
     /** Card update and its log entry are written together so the log always matches card state. */
     suspend fun saveAnswer(outcome: AnswerOutcome, sessionId: String) = db.withTransaction {
         dao.upsertCards(listOf(outcome.cardAfter.toEntity()))
+        logAnswer(outcome, sessionId)
+    }
+
+    /** Log entry only, for the placement test, whose cards are written together when it ends. */
+    suspend fun logAnswer(outcome: AnswerOutcome, sessionId: String) =
         dao.insertAnswer(
             AnswerEntity(
                 itemId = outcome.task.item.id,
@@ -69,12 +77,12 @@ class StudyRepository(private val db: BahasaDatabase) {
                 retry = outcome.task.retry,
             )
         )
-    }
 }
 
 private fun ItemEntity.toStudyItem() = StudyItem(
     id = id, lessonId = lessonId, kind = kind, idText = idText, plText = plText, register = register,
-    acceptedId = acceptedId, acceptedPl = acceptedPl, notes = notes, placementOnly = placementOnly,
+    acceptedId = acceptedId, acceptedPl = acceptedPl, distractorsId = distractorsId, distractorsPl = distractorsPl,
+    notes = notes, placementOnly = placementOnly,
 )
 
 private fun CardEntity.toCardState() = CardState(

@@ -4,6 +4,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -12,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
@@ -31,8 +34,9 @@ import io.github.dyzydery.bahasakotak.data.PackEntity
 import io.github.dyzydery.bahasakotak.io.pack.ImportPreview
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit) {
+fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () -> Unit) {
     val packs by viewModel.packs.collectAsStateWithLifecycle()
+    val placementDone by viewModel.placementDone.collectAsStateWithLifecycle()
     val stats by viewModel.stats.collectAsStateWithLifecycle()
     val importState by viewModel.importState.collectAsStateWithLifecycle()
     val pickPack = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
@@ -53,6 +57,10 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit) {
             Text(stringResource(R.string.home_subtitle), style = MaterialTheme.typography.bodyLarge)
             Spacer(Modifier.height(32.dp))
             Button(onClick = onStart) { Text(stringResource(R.string.home_start)) }
+            if (placementDone == false) {
+                Spacer(Modifier.height(24.dp))
+                PlacementOffer(onPlacement, viewModel::skipPlacement)
+            }
             Spacer(Modifier.height(32.dp))
             ContentSummary(packs, stats)
             Spacer(Modifier.height(16.dp))
@@ -68,6 +76,25 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit) {
         ImportUiState.Idle -> Unit
         is ImportUiState.Done -> InfoDialog(state.message, viewModel::dismissImport)
         is ImportUiState.Showing -> ImportPreviewDialog(state.preview, viewModel::confirmImport, viewModel::dismissImport)
+    }
+}
+
+@Composable
+private fun PlacementOffer(onStart: () -> Unit, onSkip: () -> Unit) {
+    Card(Modifier.fillMaxWidth()) {
+        Column(Modifier.padding(16.dp)) {
+            Text("Test poziomujący", style = MaterialTheme.typography.titleMedium)
+            Spacer(Modifier.height(4.dp))
+            Text(
+                "Około 20 krótkich pytań. To, co już znasz, pominie początkowe przegródki.",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Spacer(Modifier.height(8.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                TextButton(onClick = onSkip) { Text("Pomiń") }
+                Button(onClick = onStart) { Text("Rozpocznij test") }
+            }
+        }
     }
 }
 

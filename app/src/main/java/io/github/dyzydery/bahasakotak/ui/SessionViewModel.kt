@@ -10,9 +10,12 @@ import io.github.dyzydery.bahasakotak.AppContainer
 import io.github.dyzydery.bahasakotak.data.SessionEntity
 import io.github.dyzydery.bahasakotak.domain.AnswerOutcome
 import io.github.dyzydery.bahasakotak.domain.Grade
+import io.github.dyzydery.bahasakotak.domain.PlacementEngine
+import io.github.dyzydery.bahasakotak.domain.PlacementPlanner
 import io.github.dyzydery.bahasakotak.domain.PlannerInput
 import io.github.dyzydery.bahasakotak.domain.SessionEngine
 import io.github.dyzydery.bahasakotak.domain.SessionPlanner
+import io.github.dyzydery.bahasakotak.domain.SessionRunner
 import io.github.dyzydery.bahasakotak.domain.Task
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,17 +34,17 @@ sealed interface SessionUiState {
         val planned: Int,
     ) : SessionUiState
 
-    data class Finished(val correct: Int, val typo: Int, val wrong: Int) : SessionUiState {
+    data class Finished(val correct: Int, val typo: Int, val wrong: Int, val placement: Boolean) : SessionUiState {
         val nothingToDo get() = correct + typo + wrong == 0
     }
 }
 
-class SessionViewModel(container: AppContainer) : ViewModel() {
+class SessionViewModel(container: AppContainer, private val placement: Boolean) : ViewModel() {
     private val repository = container.studyRepository
     private val zone = ZoneId.systemDefault()
     private val sessionId = UUID.randomUUID().toString()
     private val startedAt = Instant.now()
-    private lateinit var engine: SessionEngine
+    private lateinit var engine: SessionRunner
     private var questionShownAt = 0L
 
     private val _state = MutableStateFlow<SessionUiState>(SessionUiState.Loading)
@@ -50,18 +53,24 @@ class SessionViewModel(container: AppContainer) : ViewModel() {
     init {
         viewModelScope.launch {
             val snapshot = repository.snapshot()
-            val since = startedAt.minus(Duration.ofDays(7)).toEpochMilli()
-            val tasks = SessionPlanner.plan(
-                PlannerInput(
-                    nowMillis = startedAt.toEpochMilli(),
-                    cards = snapshot.cards,
-                    items = snapshot.items,
-                    lessons = snapshot.lessons,
-                    taskLimit = SessionPlanner.taskLimit(repository.durationsSince(since)),
+            engine = if (placement) {
+                val tasks = PlacementPlanner.plan(snapshot.lessons, snapshot.cards)
+                val introduced = snapshot.cards.keys.mapTo(HashSet()) { it.itemId }
+                PlacementEngine(tasks, snapshot.lessons, introduced, zone)
+            } else {
+                val since = startedAt.minus(Duration.ofDays(7)).toEpochMilli()
+                val tasks = SessionPlanner.plan(
+                    PlannerInput(
+                        nowMillis = startedAt.toEpochMilli(),
+                        cards = snapshot.cards,
+                        items = snapshot.items,
+                        lessons = snapshot.lessons,
+                        taskLimit = SessionPlanner.taskLimit(repository.durationsSince(since)),
+                    )
                 )
-            )
-            engine = SessionEngine(tasks, snapshot.cards, zone)
-            if (tasks.isNotEmpty()) repository.saveSession(sessionEntity(endedAt = null))
+                SessionEngine(tasks, snapshot.cards, zone)
+            }
+            if (engine.plannedQuestions > 0) repository.saveSession(sessionEntity(endedAt = null))
             showCurrent()
         }
     }
@@ -72,7 +81,9 @@ class SessionViewModel(container: AppContainer) : ViewModel() {
         val now = Instant.now()
         val outcome = engine.submit(answer, now, SystemClock.elapsedRealtime() - questionShownAt)
         _state.value = running.copy(feedback = outcome, answered = engine.answeredQuestions)
-        viewModelScope.launch { repository.saveAnswer(outcome, sessionId) }
+        viewModelScope.launch {
+            if (placement) repository.logAnswer(outcome, sessionId) else repository.saveAnswer(outcome, sessionId)
+        }
     }
 
     fun next() {
@@ -95,8 +106,11 @@ class SessionViewModel(container: AppContainer) : ViewModel() {
 
     private suspend fun finish() {
         val g = engine.grades
-        _state.value = SessionUiState.Finished(g[Grade.CORRECT] ?: 0, g[Grade.TYPO] ?: 0, g[Grade.WRONG] ?: 0)
-        if (engine.plannedQuestions > 0) repository.saveSession(sessionEntity(endedAt = Instant.now()))
+        val now = Instant.now()
+        (engine as? PlacementEngine)?.let { repository.saveCards(it.resultCards(now)) }
+        // A placement test is always recorded, even when empty, so Home stops offering it.
+        if (engine.plannedQuestions > 0 || placement) repository.saveSession(sessionEntity(endedAt = now))
+        _state.value = SessionUiState.Finished(g[Grade.CORRECT] ?: 0, g[Grade.TYPO] ?: 0, g[Grade.WRONG] ?: 0, placement)
     }
 
     private fun sessionEntity(endedAt: Instant?) = SessionEntity(
@@ -104,12 +118,12 @@ class SessionViewModel(container: AppContainer) : ViewModel() {
         startedAt = startedAt.toEpochMilli(),
         endedAt = endedAt?.toEpochMilli(),
         taskCount = if (::engine.isInitialized) engine.answeredQuestions else 0,
-        placement = false,
+        placement = placement,
     )
 
     companion object {
-        fun factory(container: AppContainer): ViewModelProvider.Factory = viewModelFactory {
-            initializer { SessionViewModel(container) }
+        fun factory(container: AppContainer, placement: Boolean): ViewModelProvider.Factory = viewModelFactory {
+            initializer { SessionViewModel(container, placement) }
         }
     }
 }
