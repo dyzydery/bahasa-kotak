@@ -12,8 +12,8 @@ object Blocks {
     fun exerciseFor(item: StudyItem, direction: Direction): ExerciseType =
         if (tokens(item.answers(direction).first()).size >= MIN_WORDS) ExerciseType.BLOCKS else ExerciseType.TYPED
 
-    /** Lesson difficulty 1..5 gives 0..4 distractor tiles. */
-    fun distractorCount(difficulty: Int) = (difficulty - 1).coerceIn(0, 4)
+    /** Lesson difficulty 1..5 gives 2..5 distractor tiles; even easy lessons need some, or blocks solve themselves. */
+    fun distractorCount(difficulty: Int) = (difficulty + 1).coerceIn(2, 5)
 
     /**
      * Tiles for one question: the canonical answer's words plus distractors, shuffled. Distractors come from

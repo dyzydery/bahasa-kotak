@@ -131,7 +131,7 @@ Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko
 
 **Fiszka z wpisywaniem** – pokazuje tekst źródłowy i rejestr (znaczek „formalny”/„potoczny”), użytkownik wpisuje tłumaczenie. Wynik jest oceniany wg §4.
 
-**Klocki słów** – rozsypane słowa głównego tłumaczenia (bez podpowiedzi w nawiasach i bez interpunkcji, pierwsze słowo małą literą, żeby wielka litera nie zdradzała początku) plus pułapki. Liczba pułapek zależy od `difficulty` lekcji: 1→0, 2→1, 3→2, 4→3, 5→4. Pułapki pochodzą z pola `distractors` elementu, jeśli istnieje, a potem z innych elementów tej samej lekcji, a na końcu z całej treści, w tym samym języku. Pułapka nigdy nie powtarza słowa z odpowiedzi. Odpowiedź jest poprawna, gdy ułożona sekwencja po normalizacji równa się któremuś wariantowi. Ocena `typo` tu nie występuje.
+**Klocki słów** – rozsypane słowa głównego tłumaczenia (bez podpowiedzi w nawiasach i bez interpunkcji, pierwsze słowo małą literą, żeby wielka litera nie zdradzała początku) plus pułapki. Liczba pułapek zależy od `difficulty` lekcji: 1→2, 2→3, 3→4, 4→5, 5→5. Zawsze są co najmniej 2: bez pułapek zdanie z 3–4 słów układało się samo (zmiana po pierwszych sesjach). Pułapki pochodzą z pola `distractors` elementu, jeśli istnieje, a potem z innych elementów tej samej lekcji, a na końcu z całej treści, w tym samym języku. Pułapka nigdy nie powtarza słowa z odpowiedzi. Odpowiedź jest poprawna, gdy ułożona sekwencja po normalizacji równa się któremuś wariantowi. Ocena `typo` tu nie występuje.
 
 ## 8. Test poziomujący
 

@@ -59,7 +59,7 @@ Pola obowiązkowe (pełny schemat: `schemas/pack.schema.json` w repozytorium):
 
 - korzeń: `schemaVersion` (zawsze `1`), `packId`, `packVersion`, `title`, `createdAt` (ISO 8601), `topics`; opcjonalnie `description`, `basedOnExport`,
 - temat: `id`, `title`, `order`, `lessons`; opcjonalnie `description`,
-- lekcja: `id`, `title`, `order`, `difficulty` (1–5; liczba klocków-pułapek = difficulty − 1), `items`; opcjonalnie `grammarNote` (`id`, `title`, `body` w prostym Markdownie: `**pogrubienie**`, `*kursywa*`, listy `- `),
+- lekcja: `id`, `title`, `order`, `difficulty` (1–5; liczba klocków-pułapek = difficulty + 1, maks. 5), `items`; opcjonalnie `grammarNote` (`id`, `title`, `body` w prostym Markdownie: `**pogrubienie**`, `*kursywa*`, listy `- `),
 - element: `id`, `kind`, `id_text`, `pl_text`, `register`; opcjonalnie `acceptedId`, `acceptedPl`, `distractorsId`, `distractorsPl`, `notes`, `tags`, `placementOnly`.
 
 Przykład:

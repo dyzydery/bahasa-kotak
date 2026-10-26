@@ -162,6 +162,14 @@ private fun IntroView(item: StudyItem, onNext: () -> Unit) {
                 Text(item.idText, style = MaterialTheme.typography.headlineLarge, color = Color.White)
                 Spacer(Modifier.height(12.dp))
                 Text(item.plText, style = MaterialTheme.typography.titleLarge, color = Color.White.copy(alpha = 0.8f))
+                if (item.acceptedId.isNotEmpty()) {
+                    Spacer(Modifier.height(16.dp))
+                    Text(
+                        "Też: " + item.acceptedId.joinToString(", "),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.White.copy(alpha = 0.7f),
+                    )
+                }
             }
         }
         item.notes?.let {

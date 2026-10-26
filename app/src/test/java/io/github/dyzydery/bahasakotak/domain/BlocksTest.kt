@@ -38,17 +38,19 @@ class BlocksTest {
     @Test
     fun `distractor count follows difficulty`() {
         val pool = listOf("Kami menunggu laporan operator besok")
-        for (difficulty in 1..5) {
+        val expected = mapOf(1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 5)
+        for ((difficulty, distractors) in expected) {
             val tiles = Blocks.tiles(sentence, PL_ID, difficulty, pool, Random(difficulty))
-            assertEquals(4 + difficulty - 1, tiles.size, "difficulty $difficulty")
+            assertEquals(4 + distractors, tiles.size, "difficulty $difficulty")
         }
     }
 
     @Test
     fun `item distractors are used first and never duplicate answer words`() {
         val withOwn = sentence.copy(distractorsId = listOf("kerja", "Saya"))
-        val tiles = Blocks.tiles(withOwn, PL_ID, difficulty = 2, pool = listOf("besok"), random = Random(1))
-        assertEquals(listOf("bekerja", "di", "Jakarta", "kerja", "saya").sorted(), tiles.sorted())
+        val tiles = Blocks.tiles(withOwn, PL_ID, difficulty = 1, pool = listOf("besok"), random = Random(1))
+        // "Saya" duplicates an answer word, so the second distractor comes from the pool.
+        assertEquals(listOf("bekerja", "di", "Jakarta", "kerja", "saya", "besok").sorted(), tiles.sorted())
     }
 
     @Test
