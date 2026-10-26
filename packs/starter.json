@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 2,
+  "packVersion": 3,
   "title": "Paczka startowa",
   "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
-  "createdAt": "2026-10-26T14:30:00Z",
+  "createdAt": "2026-10-26T15:00:00Z",
   "topics": [
     {
       "id": "basics",
@@ -46,9 +46,11 @@
               "pl_text": "dzień dobry (po południu)",
               "register": "neutral",
               "acceptedPl": [
-                "dzień dobry"
+                "dzień dobry",
+                "dobry wieczór"
               ],
-              "placementOnly": true
+              "placementOnly": true,
+              "notes": "Sore to mniej więcej 15–18. Po zmroku: selamat malam."
             },
             {
               "id": "basics.selamat-malam",
@@ -107,7 +109,8 @@
                 "nie ma za co",
                 "proszę"
               ],
-              "placementOnly": true
+              "placementOnly": true,
+              "notes": "Dosłownie „to samo, to samo”, czyli „nawzajem”, „nie ma za co”."
             },
             {
               "id": "basics.maaf",
@@ -330,7 +333,8 @@
               "acceptedPl": [
                 "odpowiedzialny",
                 "odpowiedzialna",
-                "osoba kontaktowa"
+                "osoba kontaktowa",
+                "person in charge"
               ],
               "notes": "Od person in charge, czytane „pi-aj-si”. Pada na każdym spotkaniu projektowym."
             },

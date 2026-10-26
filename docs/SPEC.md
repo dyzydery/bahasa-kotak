@@ -43,7 +43,14 @@ interface ContentTransport {
 
 - `FileTransport` (teraz): zapisuje eksport w cache i otwiera systemowe udostępnianie (`ACTION_SEND` przez FileProvider). Plik jest załącznikiem, a treść `docs/ANALYSIS_PROMPT.md` tekstem wiadomości, więc do aplikacji Claude wystarcza jedno udostępnienie. Zwraca `null`: paczka wraca później jako plik wybierany przyciskiem „Importuj paczkę”. Dla drogi przez laptopa jest też „Zapisz eksport do pliku”.
 - `ClipboardTransport` (teraz, główna droga): kopiuje prompt i eksport do schowka jako jedną wiadomość. Powód: apka Claude jest w profilu służbowym, a systemowe udostępnianie i pliki nie przechodzą między profilami Androida. Schowek domyślnie przechodzi. Odpowiedź wraca przez „Importuj ze schowka”. Apka sama wyciąga paczkę z wklejonej odpowiedzi (ostatni blok ```json z `packId` albo zewnętrzne `{…}`). Limit: schowek idzie przez Binder (~1 MB), więc przy bardzo dużym logu trzeba będzie przyciąć eksport albo przejść na Frog API.
-- `FrogApiTransport` (później): POST eksportu i promptu do serwisu na VPS (Mikrus Frog, Alpine, 256 MB RAM, za Cloudflare). Serwis woła Claude API i odsyła paczkę, którą `sendExport` zwraca. Apka od razu pokazuje podgląd importu. Uwierzytelnianie: statyczny token w nagłówku.
+- **Pętla z laptopa (główna droga od 2026-10-26):** Claude Code na laptopie sam robi analizę, więc nie potrzeba API ani serwera. Polecenie `/petla` (skill w `.claude/skills/petla/`, skrypty w `tools/loop/`):
+  1. pobiera przez adb (`run-as`, build debug) eksport, który apka zapisuje sama do `files/export/latest.json` przy starcie i po każdej sesji,
+  2. streszcza go (`summarize-export.py`) i analizuje według `ANALYSIS_PROMPT.md`,
+  3. pisze paczkę z polem `feedback` i sprawdza ją (`check-pack.py`: schemat, kolizje ID, udział rejestru `office`),
+  4. wrzuca ją do `files/inbox/` apki (z sumą kontrolną) i otwiera apkę.
+
+  Ekran główny przy każdym powrocie na pierwszy plan sprawdza skrzynkę i pokazuje podgląd importu z uwagami od Claude. Użytkownik wpisuje `/petla` i stuka „Importuj”. Telefon łączy się przez USB albo debugowanie bezprzewodowe (sparowane raz).
+- `FrogApiTransport` (opcjonalnie, później; przy pętli z laptopa raczej niepotrzebny): POST eksportu i promptu do serwisu na VPS (Mikrus Frog, Alpine, 256 MB RAM, za Cloudflare). Serwis woła Claude API i odsyła paczkę, którą `sendExport` zwraca. Apka od razu pokazuje podgląd importu. Uwierzytelnianie: statyczny token w nagłówku.
 
 Import zawsze przechodzi przez `PackImportService`, czyli tę samą walidację, niezależnie od źródła.
 

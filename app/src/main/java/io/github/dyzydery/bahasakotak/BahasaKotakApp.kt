@@ -7,6 +7,6 @@ class BahasaKotakApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        container.bundledImport.start()
+        container.start()
     }
 }

@@ -41,7 +41,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -54,6 +53,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.github.dyzydery.bahasakotak.data.ContentStats
 import io.github.dyzydery.bahasakotak.data.PackEntity
@@ -70,7 +70,10 @@ fun HomeScreen(viewModel: HomeViewModel, onStart: () -> Unit, onPlacement: () ->
     val today by viewModel.today.collectAsStateWithLifecycle()
     val placementDone by viewModel.placementDone.collectAsStateWithLifecycle()
     val importState by viewModel.importState.collectAsStateWithLifecycle()
-    LaunchedEffect(Unit) { viewModel.refreshToday() }
+    LifecycleResumeEffect(Unit) {
+        viewModel.onResume()
+        onPauseOrDispose {}
+    }
 
     val pickPack = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) viewModel.onPackFilePicked(uri)
@@ -326,13 +329,21 @@ private fun ImportPreviewDialog(preview: ImportPreview, onConfirm: () -> Unit, o
                 onDismissRequest = onDismiss,
                 title = { Text(if (plan.isUpgrade) "Aktualizacja paczki" else "Nowa paczka") },
                 text = {
-                    Text(
-                        "„${plan.pack.title}”, wersja ${plan.pack.packVersion}\n\n" +
-                            "Nowe elementy: ${plan.newItemIds.size}\n" +
-                            "Zaktualizowane: ${plan.updatedItemIds.size}\n" +
-                            "Wycofane: ${plan.retiredItemIds.size}\n\n" +
-                            "Postępy w nauce zostaną zachowane."
-                    )
+                    Column(Modifier.verticalScroll(rememberScrollState())) {
+                        Text(
+                            "„${plan.pack.title}”, wersja ${plan.pack.packVersion}\n\n" +
+                                "Nowe elementy: ${plan.newItemIds.size}\n" +
+                                "Zaktualizowane: ${plan.updatedItemIds.size}\n" +
+                                "Wycofane: ${plan.retiredItemIds.size}\n\n" +
+                                "Postępy w nauce zostaną zachowane."
+                        )
+                        plan.pack.feedback?.let { feedback ->
+                            Spacer(Modifier.height(16.dp))
+                            Text("Uwagi od Claude", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+                            Spacer(Modifier.height(4.dp))
+                            Text(simpleMarkdown(feedback), style = MaterialTheme.typography.bodyMedium)
+                        }
+                    }
                 },
                 confirmButton = { TextButton(onClick = onConfirm) { Text("Importuj") } },
                 dismissButton = { TextButton(onClick = onDismiss) { Text("Anuluj") } },

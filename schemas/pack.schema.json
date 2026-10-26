@@ -41,6 +41,10 @@
       "format": "date-time",
       "description": "exportedAt of the export this pack was generated from, if any."
     },
+    "feedback": {
+      "type": "string",
+      "description": "Claude's short report for the learner, in Polish, simple Markdown (**bold**, *italic*, '- ' bullets). Shown in the app's import dialog; not stored."
+    },
     "topics": {
       "type": "array",
       "minItems": 1,

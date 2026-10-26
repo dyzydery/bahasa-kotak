@@ -26,6 +26,7 @@ import io.github.dyzydery.bahasakotak.domain.StatsCalculator
 import io.github.dyzydery.bahasakotak.io.export.ExportBuilder
 import io.github.dyzydery.bahasakotak.io.export.ExportFile
 import io.github.dyzydery.bahasakotak.io.transport.ContentTransport
+import java.io.File
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -44,7 +45,8 @@ data class TodaySummary(
 
 sealed interface ImportUiState {
     data object Idle : ImportUiState
-    data class Showing(val preview: ImportPreview) : ImportUiState
+    /** [inboxFile] is set when the pack came from the inbox; it is removed once the dialog is closed. */
+    data class Showing(val preview: ImportPreview, val inboxFile: File? = null) : ImportUiState
     data class Done(val message: String) : ImportUiState
 }
 
@@ -62,6 +64,25 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
 
     private val _today = MutableStateFlow<TodaySummary?>(null)
     val today = _today.asStateFlow()
+
+    /** Home came to the foreground: refresh counts and offer any pack the laptop loop dropped in the inbox. */
+    fun onResume() {
+        refreshToday()
+        checkInbox()
+    }
+
+    private fun checkInbox() {
+        if (_importState.value != ImportUiState.Idle) return
+        viewModelScope.launch {
+            container.bundledImport.await()
+            val file = withContext(Dispatchers.IO) { container.packInbox.next() } ?: return@launch
+            val preview = withContext(Dispatchers.IO) {
+                runCatching { importService.preview(file.readText()) }
+                    .getOrElse { ImportPreview.Invalid(listOf("Nie udało się odczytać ${file.name}: ${it.message}")) }
+            }
+            _importState.value = ImportUiState.Showing(preview, inboxFile = file)
+        }
+    }
 
     /** Called whenever Home is shown, so the counts reflect the session just finished. */
     fun refreshToday() {
@@ -101,9 +122,14 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
     }
 
     fun confirmImport() {
-        val preview = (_importState.value as? ImportUiState.Showing)?.preview as? ImportPreview.Ready ?: return
+        val showing = _importState.value as? ImportUiState.Showing ?: return
+        val preview = showing.preview as? ImportPreview.Ready ?: return
         viewModelScope.launch {
-            withContext(Dispatchers.IO) { importService.apply(preview.plan) }
+            withContext(Dispatchers.IO) {
+                importService.apply(preview.plan)
+                showing.inboxFile?.let(container.packInbox::remove)
+            }
+            container.refreshLatestExportAsync()
             refreshToday()
             _importState.value = ImportUiState.Done("Zaimportowano paczkę „${preview.plan.pack.title}”.")
         }
@@ -171,12 +197,7 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
         }
     }
 
-    private suspend fun buildExport(): ExportFile {
-        val now = Instant.now()
-        val zone = ZoneId.systemDefault()
-        val data = container.database.exportDao().exportData()
-        return ExportBuilder.toFile(ExportBuilder.build(data, container.appVersion, now, zone), now, zone)
-    }
+    private suspend fun buildExport(): ExportFile = container.exportService.build()
 
     private fun runReporting(success: String, action: suspend () -> Unit) {
         viewModelScope.launch {
@@ -191,6 +212,8 @@ class HomeViewModel(private val container: AppContainer) : ViewModel() {
     }
 
     fun dismissImport() {
+        // A declined or invalid inbox pack is dropped; the laptop keeps its copy in postepy/.
+        (_importState.value as? ImportUiState.Showing)?.inboxFile?.let(container.packInbox::remove)
         _importState.value = ImportUiState.Idle
     }
 

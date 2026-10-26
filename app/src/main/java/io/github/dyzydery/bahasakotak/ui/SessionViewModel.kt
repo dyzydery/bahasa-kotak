@@ -111,6 +111,7 @@ class SessionViewModel(private val container: AppContainer, private val placemen
         (engine as? PlacementEngine)?.let { repository.saveCards(it.resultCards(now)) }
         // A placement test is always recorded, even when empty, so Home stops offering it.
         if (engine.plannedQuestions > 0 || placement) repository.saveSession(sessionEntity(endedAt = now))
+        container.refreshLatestExportAsync()
         _state.value = SessionUiState.Finished(g[Grade.CORRECT] ?: 0, g[Grade.TYPO] ?: 0, g[Grade.WRONG] ?: 0, placement)
     }
 

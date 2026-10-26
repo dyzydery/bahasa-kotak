@@ -64,7 +64,7 @@ Domyślnie przygotuj **nową paczkę z nowym materiałem**:
 
 Pola obowiązkowe (pełny schemat: `schemas/pack.schema.json` w repozytorium):
 
-- korzeń: `schemaVersion` (zawsze `1`), `packId`, `packVersion`, `title`, `createdAt` (ISO 8601), `topics`; opcjonalnie `description`, `basedOnExport`,
+- korzeń: `schemaVersion` (zawsze `1`), `packId`, `packVersion`, `title`, `createdAt` (ISO 8601), `topics`; opcjonalnie `description`, `basedOnExport`, `feedback` (raport dla mnie, zob. niżej),
 - temat: `id`, `title`, `order`, `lessons`; opcjonalnie `description`,
 - lekcja: `id`, `title`, `order`, `difficulty` (1–5; liczba klocków-pułapek = difficulty + 1, maks. 5), `items`; opcjonalnie `grammarNote` (`id`, `title`, `body` w prostym Markdownie: `**pogrubienie**`, `*kursywa*`, listy `- `),
 - element: `id`, `kind`, `id_text`, `pl_text`, `register`; opcjonalnie `acceptedId`, `acceptedPl`, `distractorsId`, `distractorsPl`, `notes`, `tags`, `placementOnly`.
@@ -80,6 +80,7 @@ Przykład:
   "description": "Rozmowy o awariach i umowach serwisowych.",
   "createdAt": "2026-11-02T18:00:00Z",
   "basedOnExport": "2026-11-02T17:45:12Z",
+  "feedback": "- Dobrze idą powitania i liczby.\n- Mylisz **sudah** i **belum** w pytaniach.\n- Nowa lekcja: zgłoszenia i SLA, z biurowymi zwrotami z czatu.",
   "topics": [
     {
       "id": "telco",
@@ -126,5 +127,5 @@ Przykład:
 
 ## Odpowiedź
 
-1. **Krótki raport po polsku** (maks. ok. 15 punktów): najważniejsze wnioski z analizy, co dodajesz i dlaczego, proponowane poprawki istniejących elementów, jeśli nie trafiły do tej paczki.
+1. **Krótki raport po polsku** (maks. ok. 15 punktów): najważniejsze wnioski z analizy, co dodajesz i dlaczego, proponowane poprawki istniejących elementów, jeśli nie trafiły do tej paczki. **Skróconą wersję (5–8 punktów) wpisz też w pole `feedback` paczki**, bo aplikacja pokazuje ją przy imporcie. Format: lista `- `, `**pogrubienie**`, bez nagłówków.
 2. **Paczka**: jeden kompletny blok ```json z poprawnym JSON-em, bez komentarzy, gotowy do zapisania jako plik `.json` i importu. Przed odpowiedzią sprawdź, czy ID są unikalne w całej paczce i nie kolidują z innymi elementami z `content`.

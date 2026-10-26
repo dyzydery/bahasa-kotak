@@ -15,6 +15,8 @@ data class PackDto(
     val description: String? = null,
     val createdAt: String,
     val basedOnExport: String? = null,
+    /** Claude's report for the learner, shown when importing; not stored. */
+    val feedback: String? = null,
     val topics: List<TopicDto>,
 )
 
