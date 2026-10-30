@@ -124,10 +124,10 @@ Przejścia:
 - nowa karta → przegródka 1, termin: dziś,
 - terminy są liczone w dniach kalendarzowych (północ czasu lokalnego), więc karta „za 1 dzień” pojawi się w jutrzejszej sesji niezależnie od pory dnia,
 - **correct**: przegródka +1; z przegródki 5 → **opanowane** (termin +60 dni); przy opanowanym słowie odstęp się podwaja,
-- **wrong**: przegródka 1 (również ze stanu opanowane), termin: jutro; zadanie wraca jeszcze w tej sesji,
+- **wrong** (także „Nie wiem”): przegródka 1 (również ze stanu opanowane), termin: jutro; zadanie wraca raz pod koniec tej sesji,
 - **typo**: przegródka bez zmian, termin wyznaczony jak dla tej przegródki (bez awansu).
 
-Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko pierwsza odpowiedź na daną kartę w danej sesji. Powtórka służy utrwaleniu, a w logu jest zapisana z `boxBefore = boxAfter`.
+Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko pierwsza odpowiedź na daną kartę w danej sesji. Powtórka służy utrwaleniu, a w logu jest zapisana z `boxBefore = boxAfter`. Błąd przy powtórce nic już nie zmienia: karta jest w przegródce 1 i wróci w kolejnych sesjach według harmonogramu.
 
 ## 6. Sesja (`SessionPlanner`)
 
@@ -137,11 +137,15 @@ Powrót zadania w tej samej sesji nie zmienia już przegródki. Liczy się tylko
   2. jeśli zostało miejsce: nowe elementy z bieżącej lekcji (max 5 nowych elementów na sesję). Nowy element wprowadza obie karty kierunkowe, z kierunkiem ID→PL najpierw. Każdy nowy element najpierw pojawia się jako karta „Nowe” (oba teksty, rejestr, notka), bo nie da się odpytać ze słowa, którego się jeszcze nie widziało. Pytanie ID→PL pada 2–3 zadania później, a pytania PL→ID zamykają sesję. Karta „Nowe” nie jest oceniana i nie wlicza się do limitu.
 - Kierunki są losowane tak, żeby w sesji było ich po równo (±1).
 - Typ ćwiczenia zależy od długości odpowiedzi: jeśli główne tłumaczenie w języku docelowym ma **≥ 3 słowa**, są klocki, a w przeciwnym razie fiszka z wpisywaniem. Reguła działa w obu kierunkach. Zmiana po pierwszych sesjach: wpisywanie długich polskich zwrotów na telefonie jest nużące, a samo układanie dobrze ćwiczy szyk.
-- Błędne zadanie wraca po 3–5 kolejnych zadaniach i nie wlicza się do limitu. Wraca najwyżej 3 razy, żeby sesja się nie zapętliła.
+- Błędne zadanie (także „Nie wiem”) wraca w tej sesji **najwyżej raz**, na jej końcu, i nie wlicza się do limitu. Błąd przy tym powtórzeniu już go nie przywraca, więc karta pojawia się w sesji najwyżej 2 razy, a sesja zawsze się kończy. Zmiana po pierwszych sesjach: wcześniej zadanie wracało po 3–5 kolejnych zadaniach do 3 razy, co przy trudnym słowie zapętlało sesję. Licznik i pasek postępu pokazują wszystkie zadania, razem z dodanymi powtórkami (`odpowiedziane / wszystkie`), więc licznik rośnie po błędzie, a sesja kończy się dokładnie, gdy dojdzie do końca. `taskCount` sesji w eksporcie nadal liczy tylko pierwsze odpowiedzi.
 - Lekcja jest „zaliczona”, gdy wszystkie jej karty są w przegródce ≥ 2. Następna lekcja tematu odblokowuje się wtedy automatycznie. Tematy idą równolegle według `order`.
 - Ekran startowy ma jeden przycisk „Zacznij”, a sesja ładuje się bez ekranów pośrednich. Jeśli nowa lekcja ma notkę gramatyczną, pokazuje się ona raz przed jej pierwszym zadaniem.
 
 ## 7. Ćwiczenia
+
+Każde zadanie (fiszka i klocki) ma znacznik przegródki, z której pochodzi karta: „Kotak 1”–„Kotak 5” albo „Opanowane”. Przy powtórce po błędzie jest to już przegródka 1. Test poziomujący znacznika nie ma.
+
+„Sprawdź” jest nieaktywny, dopóki pole odpowiedzi jest puste (po przycięciu spacji) albo w klockach nie ułożono żadnego klocka; klawisz „Gotowe” na klawiaturze też wtedy nic nie robi. Do poddania się służy tylko „Nie wiem”: liczy się jako błędna odpowiedź (przegródka 1) i jest zapisane w logu z pustą odpowiedzią.
 
 **Fiszka z wpisywaniem** – pokazuje tekst źródłowy i rejestr (znaczek „formalny”/„potoczny”), użytkownik wpisuje tłumaczenie. Wynik jest oceniany wg §4.
 

@@ -31,7 +31,9 @@ sealed interface SessionUiState {
         val task: Task,
         val feedback: AnswerOutcome?,
         val answered: Int,
-        val planned: Int,
+        val total: Int,
+        /** Leitner box the asked card came from; null for non-questions and the placement test. */
+        val box: Int?,
     ) : SessionUiState
 
     data class Finished(val correct: Int, val typo: Int, val wrong: Int, val placement: Boolean) : SessionUiState {
@@ -71,7 +73,7 @@ class SessionViewModel(private val container: AppContainer, private val placemen
                 )
                 SessionEngine(tasks, snapshot.cards, zone)
             }
-            if (engine.plannedQuestions > 0) repository.saveSession(sessionEntity(endedAt = null))
+            if (engine.totalQuestions > 0) repository.saveSession(sessionEntity(endedAt = null))
             showCurrent()
         }
     }
@@ -81,7 +83,7 @@ class SessionViewModel(private val container: AppContainer, private val placemen
         if (running.task !is Task.Ask || running.feedback != null) return
         val now = Instant.now()
         val outcome = engine.submit(answer, now, SystemClock.elapsedRealtime() - questionShownAt)
-        _state.value = running.copy(feedback = outcome, answered = engine.answeredQuestions)
+        _state.value = running.copy(feedback = outcome, answered = engine.answeredQuestions, total = engine.totalQuestions)
         viewModelScope.launch {
             if (placement) repository.logAnswer(outcome, sessionId) else repository.saveAnswer(outcome, sessionId)
         }
@@ -101,7 +103,8 @@ class SessionViewModel(private val container: AppContainer, private val placemen
             is Task.Ask -> questionShownAt = SystemClock.elapsedRealtime()
         }
         engine.current?.let { task ->
-            _state.value = SessionUiState.Running(task, null, engine.answeredQuestions, engine.plannedQuestions)
+            val box = (task as? Task.Ask)?.let(engine::boxOf)
+            _state.value = SessionUiState.Running(task, null, engine.answeredQuestions, engine.totalQuestions, box)
         }
     }
 
@@ -110,7 +113,7 @@ class SessionViewModel(private val container: AppContainer, private val placemen
         val now = Instant.now()
         (engine as? PlacementEngine)?.let { repository.saveCards(it.resultCards(now)) }
         // A placement test is always recorded, even when empty, so Home stops offering it.
-        if (engine.plannedQuestions > 0 || placement) repository.saveSession(sessionEntity(endedAt = now))
+        if (engine.totalQuestions > 0 || placement) repository.saveSession(sessionEntity(endedAt = now))
         container.refreshLatestExportAsync()
         _state.value = SessionUiState.Finished(g[Grade.CORRECT] ?: 0, g[Grade.TYPO] ?: 0, g[Grade.WRONG] ?: 0, placement)
     }
@@ -119,7 +122,8 @@ class SessionViewModel(private val container: AppContainer, private val placemen
         id = sessionId,
         startedAt = startedAt.toEpochMilli(),
         endedAt = endedAt?.toEpochMilli(),
-        taskCount = if (::engine.isInitialized) engine.answeredQuestions else 0,
+        // First answers only; retries are in the answer log.
+        taskCount = if (::engine.isInitialized) engine.grades.values.sum() else 0,
         placement = placement,
     )
 

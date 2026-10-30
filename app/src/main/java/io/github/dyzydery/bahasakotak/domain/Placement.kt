@@ -41,10 +41,12 @@ class PlacementEngine(
     private val queue = ArrayDeque(tasks)
     private val results = mutableMapOf<StudyItem, Grade>()
 
-    override val plannedQuestions = tasks.size
+    override val totalQuestions = tasks.size
     override val answeredQuestions get() = results.size
     override val grades get() = results.values.groupingBy { it }.eachCount()
     override val current: Task? get() = queue.firstOrNull()
+
+    override fun boxOf(task: Task.Ask): Int? = null
 
     override fun introduce(item: StudyItem, now: Instant): List<CardState> = emptyList()
 

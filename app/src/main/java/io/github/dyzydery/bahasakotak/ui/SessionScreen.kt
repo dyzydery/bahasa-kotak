@@ -73,6 +73,7 @@ import io.github.dyzydery.bahasakotak.domain.Direction
 import io.github.dyzydery.bahasakotak.domain.ExerciseType
 import io.github.dyzydery.bahasakotak.domain.Grade
 import io.github.dyzydery.bahasakotak.domain.ItemKind
+import io.github.dyzydery.bahasakotak.domain.Leitner
 import io.github.dyzydery.bahasakotak.domain.Register
 import io.github.dyzydery.bahasakotak.domain.StudyItem
 import io.github.dyzydery.bahasakotak.domain.Task
@@ -95,7 +96,7 @@ fun SessionScreen(viewModel: SessionViewModel, onExit: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = onExit) { Icon(Icons.Filled.Close, contentDescription = "Zakończ") }
                 LinearProgressIndicator(
-                    progress = { running?.let { it.answered.toFloat() / it.planned.coerceAtLeast(1) } ?: 0f },
+                    progress = { running?.let { it.answered.toFloat() / it.total.coerceAtLeast(1) } ?: 0f },
                     modifier = Modifier.weight(1f).height(10.dp),
                     strokeCap = StrokeCap.Round,
                     trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -103,7 +104,7 @@ fun SessionScreen(viewModel: SessionViewModel, onExit: () -> Unit) {
                     drawStopIndicator = {},
                 )
                 Text(
-                    running?.let { "${it.answered}/${it.planned}" } ?: "",
+                    running?.let { "${it.answered}/${it.total}" } ?: "",
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(start = 12.dp, end = 4.dp),
@@ -117,8 +118,8 @@ fun SessionScreen(viewModel: SessionViewModel, onExit: () -> Unit) {
                     is Task.Note -> NoteView(task, viewModel::next)
                     is Task.Intro -> IntroView(task.item, viewModel::next)
                     is Task.Ask ->
-                        if (task.exerciseType == ExerciseType.BLOCKS) BlocksView(task, s.feedback, viewModel::submit, viewModel::next)
-                        else AskView(task, s.feedback, viewModel::submit, viewModel::next)
+                        if (task.exerciseType == ExerciseType.BLOCKS) BlocksView(task, s.box, s.feedback, viewModel::submit, viewModel::next)
+                        else AskView(task, s.box, s.feedback, viewModel::submit, viewModel::next)
                 }
             }
         }
@@ -182,13 +183,14 @@ private fun IntroView(item: StudyItem, onNext: () -> Unit) {
 }
 
 @Composable
-private fun QuestionHeader(task: Task.Ask, instruction: String) {
+private fun QuestionHeader(task: Task.Ask, box: Int?, instruction: String) {
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
         Tag(
             if (task.direction == Direction.PL_ID) "PL → ID" else "ID → PL",
             MaterialTheme.colorScheme.surfaceContainerHighest,
             MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        box?.let { BoxTag(it) }
         RegisterTag(task.item.register)
         if (task.retry) Tag("Jeszcze raz", MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.colorScheme.onTertiaryContainer)
     }
@@ -208,15 +210,18 @@ private fun QuestionHeader(task: Task.Ask, instruction: String) {
 }
 
 @Composable
-private fun AskView(task: Task.Ask, feedback: AnswerOutcome?, onSubmit: (String) -> Unit, onNext: () -> Unit) {
+private fun AskView(task: Task.Ask, box: Int?, feedback: AnswerOutcome?, onSubmit: (String) -> Unit, onNext: () -> Unit) {
     // Keyed by the task so a re-queued retry of the same card starts with an empty field.
     var answer by rememberSaveable(task) { mutableStateOf("") }
     val focus = remember { FocusRequester() }
     LaunchedEffect(task) { focus.requestFocus() }
-    val submitOrNext = { if (feedback == null) onSubmit(answer) else onNext() }
+    val canSubmit = answer.isNotBlank()
+    val submitOrNext = {
+        if (feedback != null) onNext() else if (canSubmit) onSubmit(answer)
+    }
 
     Column(Modifier.fillMaxSize()) {
-        QuestionHeader(task, if (task.direction == Direction.PL_ID) "Napisz po indonezyjsku" else "Napisz po polsku")
+        QuestionHeader(task, box, if (task.direction == Direction.PL_ID) "Napisz po indonezyjsku" else "Napisz po polsku")
         Spacer(Modifier.height(20.dp))
         OutlinedTextField(
             value = answer,
@@ -239,20 +244,20 @@ private fun AskView(task: Task.Ask, feedback: AnswerOutcome?, onSubmit: (String)
         Spacer(Modifier.height(16.dp))
         FeedbackArea(feedback)
         Spacer(Modifier.weight(1f))
-        AnswerActions(feedback, canSubmit = true, onSubmit = { onSubmit(answer) }, onSkip = { onSubmit("") }, onNext = onNext)
+        AnswerActions(feedback, canSubmit = canSubmit, onSubmit = { onSubmit(answer) }, onSkip = { onSubmit("") }, onNext = onNext)
     }
 }
 
 /** Tap tiles in the pool to build the answer; tap a placed tile to put it back. */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun BlocksView(task: Task.Ask, feedback: AnswerOutcome?, onSubmit: (String) -> Unit, onNext: () -> Unit) {
+private fun BlocksView(task: Task.Ask, box: Int?, feedback: AnswerOutcome?, onSubmit: (String) -> Unit, onNext: () -> Unit) {
     // Indices into task.tiles, so repeated words stay distinct.
     val placed = remember(task) { mutableStateListOf<Int>() }
     val answer = placed.joinToString(" ") { task.tiles[it] }
 
     Column(Modifier.fillMaxSize()) {
-        QuestionHeader(task, if (task.direction == Direction.PL_ID) "Ułóż po indonezyjsku" else "Ułóż po polsku")
+        QuestionHeader(task, box, if (task.direction == Direction.PL_ID) "Ułóż po indonezyjsku" else "Ułóż po polsku")
         Spacer(Modifier.height(16.dp))
         Box(
             Modifier
@@ -390,6 +395,12 @@ private fun Tag(text: String, container: Color, content: Color) {
             .background(container)
             .padding(horizontal = 10.dp, vertical = 4.dp),
     )
+}
+
+@Composable
+private fun BoxTag(box: Int) {
+    val text = if (box == Leitner.MASTERED) "Opanowane" else "Kotak $box"
+    Tag(text, MaterialTheme.colorScheme.surfaceContainerHighest, MaterialTheme.colorScheme.onSurfaceVariant)
 }
 
 @Composable
