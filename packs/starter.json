@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 3,
+  "packVersion": 4,
   "title": "Paczka startowa",
   "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
   "createdAt": "2026-10-26T15:00:00Z",
@@ -107,7 +107,8 @@
               "acceptedPl": [
                 "proszę bardzo",
                 "nie ma za co",
-                "proszę"
+                "proszę",
+                "nawzajem"
               ],
               "placementOnly": true,
               "notes": "Dosłownie „to samo, to samo”, czyli „nawzajem”, „nie ma za co”."
@@ -424,7 +425,7 @@
                 "sekundę",
                 "chwileczkę"
               ],
-              "notes": "Formalnie: sebentar."
+              "notes": "Formalnie: sebentar. Bentar lagi = zaraz (dosłownie „jeszcze chwilka”)."
             },
             {
               "id": "kantor.lembur",
@@ -436,7 +437,8 @@
                 "praca po godzinach",
                 "zostać po godzinach",
                 "nadgodzina"
-              ]
+              ],
+              "notes": "Też czasownik: aku lembur = zostaję po godzinach."
             },
             {
               "id": "kantor.follow-up",
@@ -467,8 +469,13 @@
               "acceptedPl": [
                 "zatwierdzone",
                 "zaakceptowany",
-                "zaakceptowane"
-              ]
+                "zaakceptowane",
+                "zatwierdzona",
+                "zatwierdzono",
+                "zaakceptowana",
+                "zaakceptowano"
+              ],
+              "notes": "di- to strona bierna: zatwierdzony / zatwierdzono. Zatwierdzić to samo approve."
             },
             {
               "id": "kantor.di-reschedule",
@@ -482,8 +489,13 @@
               "acceptedPl": [
                 "przełożone",
                 "przesunięty",
-                "przesunięte"
-              ]
+                "przesunięte",
+                "przełożona",
+                "przełożono",
+                "przesunięta",
+                "przesunięto"
+              ],
+              "notes": "di- to strona bierna: przełożony / przełożono. Przełożyć to samo reschedule."
             },
             {
               "id": "kantor.mas",
@@ -493,7 +505,8 @@
               "register": "office",
               "acceptedPl": [
                 "pan",
-                "kolego"
+                "kolego",
+                "kolega"
               ],
               "notes": "Z jawajskiego „starszy brat”. Do kolegów w podobnym wieku; do starszych i szefów: Pak."
             },
@@ -504,7 +517,9 @@
               "pl_text": "pani (do koleżanki, po koleżeńsku)",
               "register": "office",
               "acceptedPl": [
-                "pani"
+                "pani",
+                "koleżanka",
+                "koleżanko"
               ],
               "notes": "Z jawajskiego „starsza siostra”. Do koleżanek w podobnym wieku; do starszych i szefowych: Bu."
             },
@@ -571,6 +586,10 @@
                 "Kto za to odpowiada?",
                 "Kto jest osobą odpowiedzialną?",
                 "Kto jest odpowiedzialna?"
+              ],
+              "acceptedId": [
+                "PIC-nya siapa?",
+                "Siapa yang jadi PIC-nya?"
               ]
             },
             {
@@ -605,7 +624,11 @@
                 "Napisz na priv.",
                 "Napisz prywatnie."
               ],
-              "notes": "Mas – do kolegi; do koleżanki: Mbak."
+              "notes": "Mas – do kolegi; do koleżanki: Mbak.",
+              "acceptedId": [
+                "Japri ya, Mas.",
+                "Japri aja, Mas."
+              ]
             },
             {
               "id": "kantor.s-otw",
@@ -641,6 +664,9 @@
                 "Daj znać, kiedy będzie gotowe.",
                 "Po prostu daj znać, jak będzie gotowe.",
                 "Daj znać, gdy będzie gotowe."
+              ],
+              "acceptedId": [
+                "Kabarin kalau udah siap."
               ]
             },
             {
@@ -654,7 +680,11 @@
                 "Przyjęłam. Najpierw to sprawdzę.",
                 "Przyjąłem, proszę pana. Najpierw to sprawdzę."
               ],
-              "notes": "Do szefa lub klienta noted + saya; do kolegi wystarczy „Noted, nanti aku cek”."
+              "notes": "Do szefa lub klienta noted + saya; do kolegi wystarczy „Noted, nanti aku cek”.",
+              "acceptedId": [
+                "Noted. Nanti saya cek dulu.",
+                "Noted, Pak, nanti saya cek dulu."
+              ]
             },
             {
               "id": "kantor.s-lembur",
@@ -925,7 +955,8 @@
                 "pozwólcie że się przedstawię",
                 "pozwól że się przedstawię",
                 "pozwolę sobie się przedstawić"
-              ]
+              ],
+              "notes": "kenal = znać → per-kenal-kan = zapoznać. Tak zaczyna się każde przedstawienie: Perkenalkan, nama saya …"
             },
             {
               "id": "meet.nama",
@@ -961,8 +992,11 @@
                 "bu"
               ],
               "acceptedPl": [
-                "pani"
-              ]
+                "pani",
+                "matka",
+                "mama"
+              ],
+              "notes": "Dosłownie „matka”. Jako zwrot do kobiety: pani (Ibu Rina, krócej Bu Rina)."
             },
             {
               "id": "meet.senang",
@@ -986,7 +1020,8 @@
                 "spotkać",
                 "spotykać się",
                 "spotkać się"
-              ]
+              ],
+              "notes": "Spotkać się z kimś; potocznie ketemu. Spotkanie jako zebranie to rapat / meeting."
             },
             {
               "id": "meet.dengan",
