@@ -48,11 +48,22 @@ class SessionPlannerTest {
     }
 
     @Test
-    fun `due reviews come before new material and respect the limit`() {
+    fun `a full review queue still leaves room for a few new items`() {
         val reviewed = (1..30).map { item("t.r$it") }
         val fresh = (1..5).map { item("t.n$it", lessonId = "t.l2") }
         val cards = reviewed.flatMap { listOf(card(it.id, ID_PL, 3), card(it.id, PL_ID, 3)) }
         val tasks = plan(input(listOf(lesson("t.l1", 0, 0, reviewed), lesson("t.l2", 0, 1, fresh)), cards, limit = 20))
+        val asks = tasks.filterIsInstance<Task.Ask>()
+        assertEquals(20, asks.size)
+        assertEquals(SessionPlanner.MIN_NEW_ITEMS, tasks.count { it is Task.Intro })
+        assertEquals(20 - 2 * SessionPlanner.MIN_NEW_ITEMS, asks.count { it.item.id.startsWith("t.r") })
+    }
+
+    @Test
+    fun `without new material reviews take the whole session`() {
+        val reviewed = (1..30).map { item("t.r$it") }
+        val cards = reviewed.flatMap { listOf(card(it.id, ID_PL, 3), card(it.id, PL_ID, 3)) }
+        val tasks = plan(input(listOf(lesson("t.l1", 0, 0, reviewed)), cards, limit = 20))
         assertEquals(20, tasks.count { it is Task.Ask })
         assertTrue(tasks.none { it is Task.Intro })
     }

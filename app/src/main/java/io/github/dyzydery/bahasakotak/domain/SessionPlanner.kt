@@ -17,14 +17,23 @@ data class PlannerInput(
 /** Builds the task list for one ~5-minute session. See docs/SPEC.md §6. */
 object SessionPlanner {
     const val MAX_NEW_ITEMS = 5
+
+    /**
+     * New items every session gets even when due reviews alone would fill it. Without this reserve a learner
+     * whose daily reviews match the task limit never sees new material again.
+     */
+    const val MIN_NEW_ITEMS = 3
     const val DEFAULT_TASK_LIMIT = 20
     private const val TARGET_SESSION_MS = 300_000L
     private const val MIN_SAMPLES = 20
 
     fun plan(input: PlannerInput, random: Random = Random.Default): List<Task> {
-        val reviews = pickReviews(input)
-        val newSlots = (input.taskLimit - reviews.size) / 2 // each new item brings two graded tasks
-        val newItems = pickNewItems(input).take(minOf(newSlots, input.maxNewItems).coerceAtLeast(0))
+        val candidates = pickNewItems(input)
+        // Each new item brings two graded tasks.
+        val reserved = minOf(MIN_NEW_ITEMS, input.maxNewItems, candidates.size).coerceAtLeast(0)
+        val reviews = pickReviews(input, input.taskLimit - 2 * reserved)
+        val newSlots = (input.taskLimit - reviews.size) / 2
+        val newItems = candidates.take(minOf(newSlots, input.maxNewItems).coerceAtLeast(0))
         return interleave(reviews.shuffled(random), newItems, input.lessons, random)
             .map { if (it is Task.Ask) withExercise(it, input, random) else it }
     }
@@ -49,14 +58,14 @@ object SessionPlanner {
     }
 
     /** Due cards, oldest first and mastered last, alternating directions so both stay balanced. */
-    private fun pickReviews(input: PlannerInput): List<Task.Ask> {
+    private fun pickReviews(input: PlannerInput, limit: Int): List<Task.Ask> {
         val due = input.cards.values
             .filter { it.dueAt <= input.nowMillis && it.key.itemId in input.items }
             .sortedWith(compareBy({ it.box == Leitner.MASTERED }, { it.dueAt }))
         val byDirection = Direction.entries.map { d -> ArrayDeque(due.filter { it.key.direction == d }) }
         val picked = mutableListOf<CardState>()
         var turn = 0
-        while (picked.size < input.taskLimit && byDirection.any { it.isNotEmpty() }) {
+        while (picked.size < limit && byDirection.any { it.isNotEmpty() }) {
             val queue = byDirection[turn % 2].takeIf { it.isNotEmpty() } ?: byDirection[(turn + 1) % 2]
             picked += queue.removeFirst()
             turn++
