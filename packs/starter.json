@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 4,
+  "packVersion": 5,
   "title": "Paczka startowa",
   "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
   "createdAt": "2026-10-26T15:00:00Z",
@@ -156,8 +156,12 @@
               "id": "basics.saya",
               "kind": "word",
               "id_text": "saya",
-              "pl_text": "ja",
+              "pl_text": "ja (grzecznie)",
               "register": "formal",
+              "acceptedPl": [
+                "ja"
+              ],
+              "notes": "Do szefa, klienta i obcych. Do kolegów i na czacie: aku.",
               "placementOnly": true
             },
             {
@@ -388,6 +392,8 @@
               "register": "office",
               "acceptedPl": [
                 "przyjęłam do wiadomości",
+                "przyjąłem",
+                "przyjęłam",
                 "przyjęte",
                 "jasne"
               ],
@@ -545,7 +551,10 @@
               "acceptedPl": [
                 "Później to dopilnuję, dobrze?",
                 "Zrobię follow-up później, dobrze?",
-                "Później zrobię follow-up."
+                "Później zrobię follow-up.",
+                "Zrobię follow-up później.",
+                "Follow-up zrobię później.",
+                "Follow-up zrobię później, dobrze?"
               ],
               "distractorsId": [
                 "sudah",
@@ -589,7 +598,9 @@
               ],
               "acceptedId": [
                 "PIC-nya siapa?",
-                "Siapa yang jadi PIC-nya?"
+                "Siapa yang jadi PIC-nya?",
+                "Siapa yang PIC-nya?",
+                "Siapa PIC-nya, ya?"
               ]
             },
             {
@@ -627,7 +638,10 @@
               "notes": "Mas – do kolegi; do koleżanki: Mbak.",
               "acceptedId": [
                 "Japri ya, Mas.",
-                "Japri aja, Mas."
+                "Japri aja, Mas.",
+                "Japri, Mas, ya.",
+                "Japri aku ya, Mas.",
+                "Japri aku, Mas, ya."
               ]
             },
             {
