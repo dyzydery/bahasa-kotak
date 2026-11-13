@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 5,
+  "packVersion": 6,
   "title": "Paczka startowa",
   "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
   "createdAt": "2026-10-26T15:00:00Z",
@@ -423,15 +423,17 @@
               "pl_text": "chwilkę",
               "register": "office",
               "acceptedId": [
-                "sebentar"
+                "sebentar",
+                "bentar ya"
               ],
               "acceptedPl": [
                 "chwila",
                 "moment",
                 "sekundę",
-                "chwileczkę"
+                "chwileczkę",
+                "chwilę"
               ],
-              "notes": "Formalnie: sebentar. Bentar lagi = zaraz (dosłownie „jeszcze chwilka”)."
+              "notes": "Formalnie: sebentar. **Bentar ya** = poczekaj chwilkę (prośba). **Bentar lagi** = zaraz, za chwilę (kiedy coś się stanie)."
             },
             {
               "id": "kantor.lembur",
@@ -641,7 +643,8 @@
                 "Japri aja, Mas.",
                 "Japri, Mas, ya.",
                 "Japri aku ya, Mas.",
-                "Japri aku, Mas, ya."
+                "Japri aku, Mas, ya.",
+                "Japri aja, Mas, ya."
               ]
             },
             {
@@ -653,8 +656,11 @@
               "acceptedPl": [
                 "Już jadę, zaraz będę.",
                 "Jestem w drodze, zaraz dojadę.",
-                "Jestem w drodze, zaraz tam będę."
-              ]
+                "Jestem w drodze, zaraz tam będę.",
+                "Jestem w drodze, będę zaraz.",
+                "Już jadę, będę zaraz."
+              ],
+              "notes": "**bentar lagi** (zaraz) to jedna całość, a czasownik idzie na koniec: bentar lagi + sampai (dotrę)."
             },
             {
               "id": "kantor.s-wfh",
@@ -666,6 +672,10 @@
                 "Dzisiaj pracuję z domu.",
                 "Pracuję dziś z domu.",
                 "Pracuję dzisiaj z domu."
+              ],
+              "acceptedId": [
+                "Aku hari ini WFH.",
+                "Hari ini WFH."
               ]
             },
             {
@@ -697,7 +707,9 @@
               "notes": "Do szefa lub klienta noted + saya; do kolegi wystarczy „Noted, nanti aku cek”.",
               "acceptedId": [
                 "Noted. Nanti saya cek dulu.",
-                "Noted, Pak, nanti saya cek dulu."
+                "Noted, Pak, nanti saya cek dulu.",
+                "Noted, Pak. Saya cek dulu.",
+                "Noted. Saya cek dulu."
               ]
             },
             {
@@ -1118,7 +1130,9 @@
               "pl_text": "Miło Pana poznać.",
               "register": "formal",
               "acceptedId": [
-                "Senang bertemu Anda."
+                "Senang bertemu Anda.",
+                "Saya senang bertemu dengan Anda.",
+                "Saya senang bertemu Anda."
               ],
               "acceptedPl": [
                 "Miło Panią poznać.",
@@ -1170,6 +1184,9 @@
               "acceptedPl": [
                 "zebranie",
                 "narada"
+              ],
+              "acceptedId": [
+                "meeting"
               ]
             },
             {
@@ -1179,7 +1196,8 @@
               "pl_text": "spotkanie",
               "register": "office",
               "acceptedId": [
-                "miting"
+                "miting",
+                "rapat"
               ],
               "acceptedPl": [
                 "zebranie"
