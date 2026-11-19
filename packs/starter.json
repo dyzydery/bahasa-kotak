@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 6,
+  "packVersion": 7,
   "title": "Paczka startowa",
   "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
   "createdAt": "2026-10-26T15:00:00Z",
@@ -733,7 +733,8 @@
               "acceptedPl": [
                 "Chodźmy na kawę.",
                 "Chodź na kawę.",
-                "Chodźmy najpierw na kawkę."
+                "Chodźmy najpierw na kawkę.",
+                "Najpierw chodźmy na kawę."
               ],
               "notes": "Yuk – chodźmy, no to co."
             }
@@ -1518,7 +1519,8 @@
               "acceptedPl": [
                 "proszę",
                 "uprzejmie proszę",
-                "prosić"
+                "prosić",
+                "bardzo proszę"
               ]
             },
             {
@@ -1556,7 +1558,13 @@
                 "Dziś wyślę e-mail.",
                 "Wyślę e-mail dziś.",
                 "Wyślę dziś e-mail."
-              ]
+              ],
+              "acceptedId": [
+                "Hari ini saya akan mengirim email.",
+                "Saya akan kirim email hari ini.",
+                "Hari ini saya mengirim email."
+              ],
+              "notes": "**akan** = przyszłość (wyślę). W mowie często się je pomija, ale w zdaniu z klocków jest potrzebne."
             },
             {
               "id": "comm.s-cek-lampiran",
