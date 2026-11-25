@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "packId": "starter",
-  "packVersion": 7,
+  "packVersion": 8,
   "title": "Paczka startowa",
   "description": "Podstawy pracy z Indonezyjczykami z naciskiem na to, jak mówi się w biurach w Dżakarcie: spotkania, e-maile, wdrożenia, sieci i telco, plus codzienność i trochę slangu.",
   "createdAt": "2026-10-26T15:00:00Z",
@@ -644,7 +644,9 @@
                 "Japri, Mas, ya.",
                 "Japri aku ya, Mas.",
                 "Japri aku, Mas, ya.",
-                "Japri aja, Mas, ya."
+                "Japri aja, Mas, ya.",
+                "Japri aja ya.",
+                "Japri ya."
               ]
             },
             {
@@ -791,7 +793,8 @@
               "register": "office",
               "acceptedPl": [
                 "jak to",
-                "czemu"
+                "czemu",
+                "dlaczego"
               ]
             },
             {
@@ -806,7 +809,9 @@
               "acceptedPl": [
                 "przecież",
                 "prawda",
-                "nie"
+                "nie",
+                "co nie",
+                "no nie"
               ]
             },
             {
@@ -1600,7 +1605,9 @@
                 "Zadzwonię do Pani jutro.",
                 "Jutro do Pani zadzwonię.",
                 "Jutro zadzwonię do Pana.",
-                "Jutro zadzwonię do Pani."
+                "Jutro zadzwonię do Pani.",
+                "Zadzwonię jutro do Pana.",
+                "Zadzwonię jutro do Pani."
               ]
             }
           ]
@@ -1818,9 +1825,10 @@
               "acceptedPl": [
                 "deadline",
                 "termin końcowy",
-                "ostateczny termin"
+                "ostateczny termin",
+                "termin oddania"
               ],
-              "notes": "Potocznie: deadline."
+              "notes": "Formalnie, w dokumentach. W biurze każdy mówi po prostu **deadline**."
             },
             {
               "id": "project.pelanggan",
@@ -1833,7 +1841,11 @@
                 "subskrybent",
                 "klienci"
               ],
-              "notes": "W telco to też „abonent”."
+              "notes": "Od *langganan* (abonament): pe-**langgan**-an = ten, kto ma abonament. W telco też „abonent”. W biurze częściej: **klien**.",
+              "acceptedId": [
+                "klien",
+                "customer"
+              ]
             },
             {
               "id": "project.kebutuhan",
@@ -1845,7 +1857,12 @@
                 "wymagania",
                 "potrzeba",
                 "potrzeby"
-              ]
+              ],
+              "acceptedId": [
+                "requirement",
+                "kebutuhan-nya"
+              ],
+              "notes": "ke-**butuh**-an: od *butuh* (potrzebować) → to, czego się potrzebuje. W biurze IT: **requirement**."
             },
             {
               "id": "project.solusi",
@@ -1876,14 +1893,28 @@
               "acceptedPl": [
                 "koszty",
                 "opłata"
-              ]
+              ],
+              "acceptedId": [
+                "ongkos",
+                "cost"
+              ],
+              "notes": "Potocznie też *ongkos*. Nie myl z *budget* (budżet, formalnie *anggaran*)."
             },
             {
               "id": "project.penawaran",
               "kind": "word",
               "id_text": "penawaran",
               "pl_text": "oferta",
-              "register": "neutral"
+              "register": "neutral",
+              "acceptedId": [
+                "penawaran harga",
+                "quotation"
+              ],
+              "acceptedPl": [
+                "wycena",
+                "propozycja"
+              ],
+              "notes": "pe-**nawar**-an: od *tawar* (targować się, w biurze *nawar*) → to, co się proponuje. Oferta cenowa: *penawaran harga*, w biurze **quotation**."
             },
             {
               "id": "project.kontrak",
